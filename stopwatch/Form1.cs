@@ -19,7 +19,6 @@ namespace stopwatch
 
         int hours = 0, minutes = 0, seconds = 0;       
         int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
-        Boolean startTime = false;
 
         public void shift(int number)
         {
@@ -73,6 +72,29 @@ namespace stopwatch
             hoursLbl.Text = System.Convert.ToString(hours);
         }
 
+        public bool timeToSeconds()
+        {
+            if (seconds == 0)
+            {
+                minutes--;
+                seconds = 60;
+
+                if (minutes <= 0)
+                {
+                    hours--;
+                    minutes = 59;                   
+                }
+            }
+
+
+            if (seconds < 0 || hours < 0)
+            {                
+                return false;
+            }            
+
+            return true;
+        }      
+
         public async void startTimer()
         {
             do
@@ -80,8 +102,10 @@ namespace stopwatch
                 seconds--;
                 updateTime();
                 addZero();
+                timeToSeconds();
                 await Task.Delay(1000);
-            } while (seconds != 0);
+                
+            } while (timeToSeconds());
         }
 
         private void startBtn_Click(object sender, EventArgs e)
@@ -121,6 +145,19 @@ namespace stopwatch
             }            
             
             hoursLbl.Text = System.Convert.ToString(hours);
+
+            if (hours > 0)
+            {
+                if (minutes <= 0)
+                {
+                    if (seconds <= 0)
+                    {
+                        hours--;
+                        minutes = 59;
+                        seconds = 60;
+                    }
+                }
+            }
 
             addZero();
 
