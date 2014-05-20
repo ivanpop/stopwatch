@@ -40,6 +40,32 @@ namespace stopwatch
             hoursLbl.Text = System.Convert.ToString(timeArr[2, 1]) + System.Convert.ToString(timeArr[2, 0]);
         }
 
+        public void addZero()
+        {
+            if (hours < 10)
+            {
+                hoursLbl.Location = new Point(31, 13);
+            }
+
+            if (seconds < 10)
+            {
+                secondsLbl.Text = "0" + System.Convert.ToString(seconds);
+            }
+            else
+            {
+                secondsLbl.Text = System.Convert.ToString(seconds);
+            }
+
+            if (minutes < 10)
+            {
+                minutesLbl.Text = "0" + System.Convert.ToString(minutes);
+            }
+            else
+            {
+                minutesLbl.Text = System.Convert.ToString(minutes);
+            }
+        }
+
         public void updateTime()
         {
             secondsLbl.Text = System.Convert.ToString(seconds);
@@ -47,11 +73,15 @@ namespace stopwatch
             hoursLbl.Text = System.Convert.ToString(hours);
         }
 
-        public void startTimer()
-        {            
-            seconds--;
-            updateTime();
-            System.Threading.Thread.Sleep(4000);            
+        public async void startTimer()
+        {
+            do
+            {
+                seconds--;
+                updateTime();
+                addZero();
+                await Task.Delay(1000);
+            } while (seconds != 0);
         }
 
         private void startBtn_Click(object sender, EventArgs e)
@@ -88,26 +118,13 @@ namespace stopwatch
             {
                 hoursLbl.Visible = false;
                 label1.Visible = false;
-            }
-
-            if (hours < 10)
-            {
-                hoursLbl.Location = new Point(31, 13);
-            }
-
-            if (seconds < 10)
-            {
-                secondsLbl.Text = "0" + System.Convert.ToString(seconds);
-            }
-            else
-            {
-                secondsLbl.Text = System.Convert.ToString(seconds);
-            }
-
-            minutesLbl.Text = System.Convert.ToString(minutes);
+            }            
+            
             hoursLbl.Text = System.Convert.ToString(hours);
 
-            
+            addZero();
+
+            startTimer();
         }
 
         private void btn1_Click(object sender, EventArgs e)
