@@ -16,8 +16,9 @@ namespace stopwatch
         {
             InitializeComponent();
         }
-
-        int hours = 0, minutes = 0, seconds = 0;       
+                
+        System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
+        int hours = 0, minutes = 0, seconds = 0, time = 0;       
         int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
 
         public void shift(int number)
@@ -41,11 +42,6 @@ namespace stopwatch
 
         public void addZero()
         {
-            if (hours < 10)
-            {
-                hoursLbl.Location = new Point(31, 13);
-            }
-
             if (seconds < 10)
             {
                 secondsLbl.Text = "0" + System.Convert.ToString(seconds);
@@ -62,6 +58,15 @@ namespace stopwatch
             else
             {
                 minutesLbl.Text = System.Convert.ToString(minutes);
+            }
+
+            if (hours < 10)
+            {
+                hoursLbl.Text = "0" + System.Convert.ToString(hours);
+            }
+            else
+            {
+                hoursLbl.Text = System.Convert.ToString(hours);
             }
         }
 
@@ -88,18 +93,20 @@ namespace stopwatch
 
 
             if (seconds < 0 || hours < 0)
-            {                
-                return false;
+            {
+                player.Play();                
+                return false;                
             }            
 
             return true;
-        }      
+        }
 
         public async void startTimer()
         {
             do
             {
                 seconds--;
+                progressBar1.PerformStep();
                 updateTime();
                 addZero();
                 timeToSeconds();
@@ -110,18 +117,6 @@ namespace stopwatch
 
         private void startBtn_Click(object sender, EventArgs e)
         {
-            btn1.Enabled = false;
-            btn2.Enabled = false;
-            btn3.Enabled = false;
-            btn4.Enabled = false;
-            btn5.Enabled = false;
-            btn6.Enabled = false;
-            btn7.Enabled = false;
-            btn8.Enabled = false;
-            btn9.Enabled = false;
-            btn0.Enabled = false;
-            startBtn.Enabled = false;
-
             seconds = System.Convert.ToInt32(secondsLbl.Text);
             minutes = System.Convert.ToInt32(minutesLbl.Text);
             hours = System.Convert.ToInt32(hoursLbl.Text);
@@ -136,13 +131,7 @@ namespace stopwatch
             {
                 hours++;
                 minutes -= 59;
-            }
-
-            if (hours == 0)
-            {
-                hoursLbl.Visible = false;
-                label1.Visible = false;
-            }            
+            }           
             
             hoursLbl.Text = System.Convert.ToString(hours);
 
@@ -159,9 +148,53 @@ namespace stopwatch
                 }
             }
 
-            addZero();
+            if (minutes > 0)
+            {
+                if (seconds <= 0)
+                {
+                    minutes--;
+                    seconds = 60;
+                }
+            }
 
-            startTimer();
+            if (seconds != 0 || minutes != 0 || hours != 0)
+            {
+                btn1.Enabled = false;
+                btn2.Enabled = false;
+                btn3.Enabled = false;
+                btn4.Enabled = false;
+                btn5.Enabled = false;
+                btn6.Enabled = false;
+                btn7.Enabled = false;
+                btn8.Enabled = false;
+                btn9.Enabled = false;
+                btn0.Enabled = false;
+                startBtn.Enabled = false;
+
+                closeBtn.Text = "Stop";
+
+                if (hours == 0)
+                {
+                    hoursLbl.Visible = false;
+                    label1.Visible = false;
+                }
+
+                time += hours * 3600;
+                time += minutes * 60;
+                time += seconds;
+
+                progressBar1.Minimum = 0;
+                progressBar1.Maximum = time;
+                progressBar1.Step = 1;                
+                addZero();
+                startTimer();
+            }
+
+            else
+            {
+                hoursLbl.Text = "00";
+            }
+            
         }
 
         private void btn1_Click(object sender, EventArgs e)
@@ -212,6 +245,16 @@ namespace stopwatch
         private void btn9_Click(object sender, EventArgs e)
         {
             shift(9);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+ 
+        }
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
