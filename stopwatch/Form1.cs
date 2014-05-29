@@ -197,7 +197,8 @@ namespace stopwatch
             {
                 hoursLbl.Text = "00";
             }
-            
+
+            buttonAdd1.Enabled = true;            
         }
 
         private void btn1_Click_1(object sender, EventArgs e)
@@ -258,6 +259,16 @@ namespace stopwatch
         private void closeBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void buttonAdd1_Click(object sender, EventArgs e)
+        {
+            if (timeToSeconds())
+            {                
+                time += 60;
+                minutes++;
+                progressBar1.Maximum = time;
+            }
         }
         
     }

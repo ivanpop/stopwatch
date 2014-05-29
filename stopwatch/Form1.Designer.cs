@@ -52,6 +52,7 @@
             this.hoursLbl = new System.Windows.Forms.Label();
             this.startBtn = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.buttonAdd1 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -69,6 +70,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.buttonAdd1);
             this.tabPage1.Controls.Add(this.progressBar1);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.closeBtn);
@@ -314,9 +316,21 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(301, 323);
+            this.tabPage2.Size = new System.Drawing.Size(288, 311);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stopwatch";
+            // 
+            // buttonAdd1
+            // 
+            this.buttonAdd1.Enabled = false;
+            this.buttonAdd1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd1.Location = new System.Drawing.Point(170, 158);
+            this.buttonAdd1.Name = "buttonAdd1";
+            this.buttonAdd1.Size = new System.Drawing.Size(40, 40);
+            this.buttonAdd1.TabIndex = 40;
+            this.buttonAdd1.Text = "+1\'";
+            this.buttonAdd1.UseVisualStyleBackColor = true;
+            this.buttonAdd1.Click += new System.EventHandler(this.buttonAdd1_Click);
             // 
             // Form1
             // 
@@ -360,6 +374,7 @@
         private System.Windows.Forms.Label minutesLbl;
         private System.Windows.Forms.Label hoursLbl;
         private System.Windows.Forms.Button startBtn;
+        private System.Windows.Forms.Button buttonAdd1;
 
     }
 }
