@@ -278,34 +278,62 @@ namespace stopwatch
         #region Stopwatch
 
         int hours2 = 0, minutes2 = 0, seconds2 = 0, tempSeconds1, tempSeconds2;
-        bool stopwatchRunning = false;
+        bool stopwatchRunning = false, sixty = false;
 
         public async void startMs()
         {
             do
             {
+                tempSeconds1 = DateTime.Now.Second;
+
                 if (tempSeconds1 == tempSeconds2)
                 {
                     seconds2++;
-                    tempSeconds2++;
+                    tempSeconds2 = tempSeconds1 + 1;
+                }               
+
+                if (tempSeconds1 == 0 && !sixty)
+                {
+                    seconds2++;
+                    tempSeconds2 = 1;
+                    sixty = true;
                 }
-                tempSeconds1 = DateTime.Now.Second;
+
+                if (seconds2 == 10) sixty = false;
+
+                if (seconds2 > 59)
+                {
+                    seconds2 = 0;
+                    minutes2++;
+                }
+
+                if (minutes > 59)
+                {
+                    minutes2 = 0;
+                    hours2++;
+                }
+                
                 msLbl.Text = System.Convert.ToString(DateTime.Now.Millisecond);
                 seconds2Lbl.Text = System.Convert.ToString(seconds2);
-                await Task.Delay(1);
+                minutes2Lbl.Text = System.Convert.ToString(minutes2);
+                                
+                if (DateTime.Now.Millisecond < 10) msLbl.Text = "00" + System.Convert.ToString(DateTime.Now.Millisecond);
+                if (DateTime.Now.Millisecond > 10 && DateTime.Now.Millisecond < 100) msLbl.Text = "0" + System.Convert.ToString(DateTime.Now.Millisecond);
+                if (seconds2 < 10) seconds2Lbl.Text = "0" + System.Convert.ToString(seconds2);
+                if (minutes2 < 10) minutes2Lbl.Text = "0" + System.Convert.ToString(minutes2);
+                if (hours2 < 10) hours2Lbl.Text = "0" + System.Convert.ToString(hours2);
+
+                await Task.Delay(33);
             } while (stopwatchRunning);
-
-
-
         }
 
         private void start2Btn_Click(object sender, EventArgs e)
         {
             start2Btn.Enabled = false;
-            stopwatchRunning = true;            
-            tempSeconds2 = tempSeconds1 + 1;
-            startMs();
-            
+            stopwatchRunning = true;
+            tempSeconds1 = DateTime.Now.Second;
+            tempSeconds2 = tempSeconds1 + 1; 
+            startMs();            
         }
 
         #endregion
