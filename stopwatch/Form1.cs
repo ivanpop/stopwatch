@@ -18,6 +18,8 @@ namespace stopwatch
             InitializeComponent();
         }
 
+        #region Countdown Timer
+
         TaskbarManager taskbar = TaskbarManager.Instance;
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
         int hours = 0, minutes = 0, seconds = 0, time = 0;       
@@ -103,7 +105,7 @@ namespace stopwatch
             return true;
         }
 
-        public async void startTimer()
+        public async void startCountdown()
         {
             do
             {
@@ -190,7 +192,7 @@ namespace stopwatch
                 progressBar1.Maximum = time;
                 progressBar1.Step = 1;                
                 addZero();
-                startTimer();
+                startCountdown();
             }
 
             else
@@ -271,5 +273,41 @@ namespace stopwatch
             }
         }
         
+        #endregion
+
+        #region Stopwatch
+
+        int hours2 = 0, minutes2 = 0, seconds2 = 0, tempSeconds1, tempSeconds2;
+        bool stopwatchRunning = false;
+
+        public async void startMs()
+        {
+            do
+            {
+                if (tempSeconds1 == tempSeconds2)
+                {
+                    seconds2++;
+                    tempSeconds2++;
+                }
+                tempSeconds1 = DateTime.Now.Second;
+                msLbl.Text = System.Convert.ToString(DateTime.Now.Millisecond);
+                seconds2Lbl.Text = System.Convert.ToString(seconds2);
+                await Task.Delay(1);
+            } while (stopwatchRunning);
+
+
+
+        }
+
+        private void start2Btn_Click(object sender, EventArgs e)
+        {
+            start2Btn.Enabled = false;
+            stopwatchRunning = true;            
+            tempSeconds2 = tempSeconds1 + 1;
+            startMs();
+            
+        }
+
+        #endregion
     }
 }

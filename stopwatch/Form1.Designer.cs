@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.buttonAdd1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.closeBtn = new System.Windows.Forms.Button();
@@ -52,9 +53,21 @@
             this.hoursLbl = new System.Windows.Forms.Label();
             this.startBtn = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.buttonAdd1 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.msLbl = new System.Windows.Forms.Label();
+            this.lapBtn = new System.Windows.Forms.Button();
+            this.start2Btn = new System.Windows.Forms.Button();
+            this.close2Btn = new System.Windows.Forms.Button();
+            this.resetBtn = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.seconds2Lbl = new System.Windows.Forms.Label();
+            this.minutes2Lbl = new System.Windows.Forms.Label();
+            this.hours2Lbl = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -97,6 +110,18 @@
             this.tabPage1.Size = new System.Drawing.Size(288, 311);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Countdown timer";
+            // 
+            // buttonAdd1
+            // 
+            this.buttonAdd1.Enabled = false;
+            this.buttonAdd1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd1.Location = new System.Drawing.Point(170, 158);
+            this.buttonAdd1.Name = "buttonAdd1";
+            this.buttonAdd1.Size = new System.Drawing.Size(40, 40);
+            this.buttonAdd1.TabIndex = 40;
+            this.buttonAdd1.Text = "+1\'";
+            this.buttonAdd1.UseVisualStyleBackColor = true;
+            this.buttonAdd1.Click += new System.EventHandler(this.buttonAdd1_Click);
             // 
             // progressBar1
             // 
@@ -313,6 +338,18 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.msLbl);
+            this.tabPage2.Controls.Add(this.lapBtn);
+            this.tabPage2.Controls.Add(this.start2Btn);
+            this.tabPage2.Controls.Add(this.close2Btn);
+            this.tabPage2.Controls.Add(this.resetBtn);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.seconds2Lbl);
+            this.tabPage2.Controls.Add(this.minutes2Lbl);
+            this.tabPage2.Controls.Add(this.hours2Lbl);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -320,17 +357,126 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stopwatch";
             // 
-            // buttonAdd1
+            // label8
             // 
-            this.buttonAdd1.Enabled = false;
-            this.buttonAdd1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd1.Location = new System.Drawing.Point(170, 158);
-            this.buttonAdd1.Name = "buttonAdd1";
-            this.buttonAdd1.Size = new System.Drawing.Size(40, 40);
-            this.buttonAdd1.TabIndex = 40;
-            this.buttonAdd1.Text = "+1\'";
-            this.buttonAdd1.UseVisualStyleBackColor = true;
-            this.buttonAdd1.Click += new System.EventHandler(this.buttonAdd1_Click);
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(257, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(25, 13);
+            this.label8.TabIndex = 43;
+            this.label8.Text = "MS";
+            // 
+            // msLbl
+            // 
+            this.msLbl.AutoSize = true;
+            this.msLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.msLbl.Location = new System.Drawing.Point(198, 3);
+            this.msLbl.Name = "msLbl";
+            this.msLbl.Size = new System.Drawing.Size(69, 36);
+            this.msLbl.TabIndex = 42;
+            this.msLbl.Text = "000";
+            // 
+            // lapBtn
+            // 
+            this.lapBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lapBtn.Location = new System.Drawing.Point(103, 49);
+            this.lapBtn.Name = "lapBtn";
+            this.lapBtn.Size = new System.Drawing.Size(85, 40);
+            this.lapBtn.TabIndex = 41;
+            this.lapBtn.Text = "Lap";
+            this.lapBtn.UseVisualStyleBackColor = true;
+            // 
+            // start2Btn
+            // 
+            this.start2Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.start2Btn.Location = new System.Drawing.Point(12, 49);
+            this.start2Btn.Name = "start2Btn";
+            this.start2Btn.Size = new System.Drawing.Size(85, 40);
+            this.start2Btn.TabIndex = 40;
+            this.start2Btn.Text = "Start";
+            this.start2Btn.UseVisualStyleBackColor = true;
+            this.start2Btn.Click += new System.EventHandler(this.start2Btn_Click);
+            // 
+            // close2Btn
+            // 
+            this.close2Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.close2Btn.Location = new System.Drawing.Point(12, 96);
+            this.close2Btn.Name = "close2Btn";
+            this.close2Btn.Size = new System.Drawing.Size(267, 40);
+            this.close2Btn.TabIndex = 39;
+            this.close2Btn.Text = "Close";
+            this.close2Btn.UseVisualStyleBackColor = true;
+            // 
+            // resetBtn
+            // 
+            this.resetBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetBtn.Location = new System.Drawing.Point(194, 49);
+            this.resetBtn.Name = "resetBtn";
+            this.resetBtn.Size = new System.Drawing.Size(85, 40);
+            this.resetBtn.TabIndex = 38;
+            this.resetBtn.Text = "Reset";
+            this.resetBtn.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(182, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(15, 13);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "S";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(118, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(17, 13);
+            this.label6.TabIndex = 31;
+            this.label6.Text = "M";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(55, 20);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(16, 13);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "H";
+            // 
+            // seconds2Lbl
+            // 
+            this.seconds2Lbl.AutoSize = true;
+            this.seconds2Lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.seconds2Lbl.Location = new System.Drawing.Point(141, 3);
+            this.seconds2Lbl.Name = "seconds2Lbl";
+            this.seconds2Lbl.Size = new System.Drawing.Size(51, 36);
+            this.seconds2Lbl.TabIndex = 29;
+            this.seconds2Lbl.Text = "00";
+            // 
+            // minutes2Lbl
+            // 
+            this.minutes2Lbl.AutoSize = true;
+            this.minutes2Lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.minutes2Lbl.Location = new System.Drawing.Point(77, 3);
+            this.minutes2Lbl.Name = "minutes2Lbl";
+            this.minutes2Lbl.Size = new System.Drawing.Size(51, 36);
+            this.minutes2Lbl.TabIndex = 28;
+            this.minutes2Lbl.Text = "00";
+            // 
+            // hours2Lbl
+            // 
+            this.hours2Lbl.AutoSize = true;
+            this.hours2Lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.hours2Lbl.Location = new System.Drawing.Point(14, 3);
+            this.hours2Lbl.Name = "hours2Lbl";
+            this.hours2Lbl.Size = new System.Drawing.Size(51, 36);
+            this.hours2Lbl.TabIndex = 27;
+            this.hours2Lbl.Text = "00";
             // 
             // Form1
             // 
@@ -345,6 +491,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -375,6 +523,18 @@
         private System.Windows.Forms.Label hoursLbl;
         private System.Windows.Forms.Button startBtn;
         private System.Windows.Forms.Button buttonAdd1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label seconds2Lbl;
+        private System.Windows.Forms.Label minutes2Lbl;
+        private System.Windows.Forms.Label hours2Lbl;
+        private System.Windows.Forms.Button lapBtn;
+        private System.Windows.Forms.Button start2Btn;
+        private System.Windows.Forms.Button close2Btn;
+        private System.Windows.Forms.Button resetBtn;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label msLbl;
 
     }
 }
