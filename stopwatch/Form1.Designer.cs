@@ -65,6 +65,7 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -338,6 +339,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.Controls.Add(this.listBox1);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.msLbl);
             this.tabPage2.Controls.Add(this.lapBtn);
@@ -379,6 +381,7 @@
             // 
             // lapBtn
             // 
+            this.lapBtn.Enabled = false;
             this.lapBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lapBtn.Location = new System.Drawing.Point(103, 49);
             this.lapBtn.Name = "lapBtn";
@@ -386,6 +389,7 @@
             this.lapBtn.TabIndex = 41;
             this.lapBtn.Text = "Lap";
             this.lapBtn.UseVisualStyleBackColor = true;
+            this.lapBtn.Click += new System.EventHandler(this.lapBtn_Click);
             // 
             // start2Btn
             // 
@@ -407,9 +411,11 @@
             this.close2Btn.TabIndex = 39;
             this.close2Btn.Text = "Close";
             this.close2Btn.UseVisualStyleBackColor = true;
+            this.close2Btn.Click += new System.EventHandler(this.close2Btn_Click);
             // 
             // resetBtn
             // 
+            this.resetBtn.Enabled = false;
             this.resetBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resetBtn.Location = new System.Drawing.Point(194, 49);
             this.resetBtn.Name = "resetBtn";
@@ -478,6 +484,15 @@
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(12, 169);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(267, 121);
+            this.listBox1.TabIndex = 44;
+            this.listBox1.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -535,6 +550,7 @@
         private System.Windows.Forms.Button resetBtn;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label msLbl;
+        private System.Windows.Forms.ListBox listBox1;
 
     }
 }

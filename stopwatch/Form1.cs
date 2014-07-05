@@ -277,7 +277,7 @@ namespace stopwatch
 
         #region Stopwatch
 
-        int hours2 = 0, minutes2 = 0, seconds2 = 0, tempSeconds1, tempSeconds2;
+        int hours2 = 0, minutes2 = 0, seconds2 = 0, tempSeconds1, tempSeconds2, lapCount = 0;
         bool stopwatchRunning = false, sixty = false;
 
         public async void startMs()
@@ -330,6 +330,8 @@ namespace stopwatch
         private void start2Btn_Click(object sender, EventArgs e)
         {
             start2Btn.Enabled = false;
+            lapBtn.Enabled = true;
+            resetBtn.Enabled = true;
             stopwatchRunning = true;
             tempSeconds1 = DateTime.Now.Second;
             tempSeconds2 = tempSeconds1 + 1; 
@@ -337,5 +339,19 @@ namespace stopwatch
         }
 
         #endregion
+
+        private void lapBtn_Click(object sender, EventArgs e)
+        {
+            listBox1.Visible = true;
+            lapCount++;
+
+            if (lapCount < 10) listBox1.Items.Add("# 0" + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond);
+            else listBox1.Items.Add("# " + lapCount);
+        }
+
+        private void close2Btn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
