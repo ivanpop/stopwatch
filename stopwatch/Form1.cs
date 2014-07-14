@@ -24,6 +24,7 @@ namespace stopwatch
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
         int hours = 0, minutes = 0, seconds = 0, time = 0;       
         int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
+        bool mute = false;
 
         public void shift(int number)
         {
@@ -98,7 +99,7 @@ namespace stopwatch
 
             if (hours < 0)
             {
-                player.Play();                
+                if (!mute) player.Play();                
                 return false;                
             }            
 
@@ -272,7 +273,13 @@ namespace stopwatch
                 progressBar1.Maximum = time;
             }
         }
-        
+
+        private void beepBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (beepBox.Checked) mute = false;
+            else mute = true;
+        }
+
         #endregion
 
         #region Stopwatch
@@ -336,9 +343,7 @@ namespace stopwatch
             tempSeconds1 = DateTime.Now.Second;
             tempSeconds2 = tempSeconds1 + 1; 
             startMs();            
-        }
-
-        #endregion
+        }        
 
         private void lapBtn_Click(object sender, EventArgs e)
         {
@@ -353,5 +358,8 @@ namespace stopwatch
         {
             Application.Exit();
         }
+
+        #endregion
+
     }
 }

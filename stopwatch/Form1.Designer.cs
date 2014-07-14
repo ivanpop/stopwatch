@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.beepBox = new System.Windows.Forms.CheckBox();
             this.buttonAdd1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@
             this.hoursLbl = new System.Windows.Forms.Label();
             this.startBtn = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.msLbl = new System.Windows.Forms.Label();
             this.lapBtn = new System.Windows.Forms.Button();
@@ -65,7 +67,6 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -84,6 +85,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.beepBox);
             this.tabPage1.Controls.Add(this.buttonAdd1);
             this.tabPage1.Controls.Add(this.progressBar1);
             this.tabPage1.Controls.Add(this.label4);
@@ -111,6 +113,19 @@
             this.tabPage1.Size = new System.Drawing.Size(288, 311);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Countdown timer";
+            // 
+            // beepBox
+            // 
+            this.beepBox.AutoSize = true;
+            this.beepBox.Checked = true;
+            this.beepBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.beepBox.Location = new System.Drawing.Point(228, 171);
+            this.beepBox.Name = "beepBox";
+            this.beepBox.Size = new System.Drawing.Size(51, 17);
+            this.beepBox.TabIndex = 41;
+            this.beepBox.Text = "Beep";
+            this.beepBox.UseVisualStyleBackColor = true;
+            this.beepBox.CheckedChanged += new System.EventHandler(this.beepBox_CheckedChanged);
             // 
             // buttonAdd1
             // 
@@ -359,6 +374,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stopwatch";
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(12, 169);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(267, 121);
+            this.listBox1.TabIndex = 44;
+            this.listBox1.Visible = false;
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -484,15 +508,6 @@
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 169);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(267, 121);
-            this.listBox1.TabIndex = 44;
-            this.listBox1.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -551,6 +566,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label msLbl;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.CheckBox beepBox;
 
     }
 }

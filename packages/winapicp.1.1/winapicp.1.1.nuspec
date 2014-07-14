@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>winapicp</id>
+    <version>1.1</version>
+    <title>Windows API Code Pack</title>
+    <authors>DwayneNeed, EricF, ivom, sumitmsft, yochay</authors>
+    <owners>DwayneNeed, EricF, ivom, sumitmsft, yochay</owners>
+    <projectUrl>http://archive.msdn.microsoft.com/WindowsAPICodePack</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Windows® API Code Pack for Microsoft® .NET Framework provides a source code library that can be used to access some features of Windows 7 and Windows Vista from managed code. These Windows features are not available to developers today in the .NET Framework.</description>
+  </metadata>
+</package>
