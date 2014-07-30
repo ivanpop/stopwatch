@@ -284,19 +284,27 @@ namespace stopwatch
 
         #region Stopwatch
 
-        int hours2 = 0, minutes2 = 0, seconds2 = 0, tempSeconds1, tempSeconds2, lapCount = 0;
+        int hours2 = 0, minutes2 = 0, seconds2 = 0, tempSeconds1, tempSeconds2, lapCount = 0, lapHours, lapMinutes, lapSeconds;
         bool stopwatchRunning = false, sixty = false;
 
         public async void startMs()
         {
             do
             {
+                if (lapCount == 0)
+                {
+                    lapSeconds = seconds2;
+                    lapMinutes = minutes2;
+                    lapHours = hours2;
+                }              
+
                 tempSeconds1 = DateTime.Now.Second;
 
                 if (tempSeconds1 == tempSeconds2)
                 {
                     seconds2++;
-                    tempSeconds2 = tempSeconds1 + 1;
+                    lapSeconds++;
+                    tempSeconds2 = tempSeconds1 + 1;                    
                 }               
 
                 if (tempSeconds1 == 0 && !sixty)
@@ -312,12 +320,14 @@ namespace stopwatch
                 {
                     seconds2 = 0;
                     minutes2++;
+                    lapMinutes++;
                 }
 
                 if (minutes > 59)
                 {
                     minutes2 = 0;
                     hours2++;
+                    lapHours++;
                 }
                 
                 msLbl.Text = System.Convert.ToString(DateTime.Now.Millisecond);
@@ -343,15 +353,19 @@ namespace stopwatch
             tempSeconds1 = DateTime.Now.Second;
             tempSeconds2 = tempSeconds1 + 1; 
             startMs();            
-        }        
+        }
+
 
         private void lapBtn_Click(object sender, EventArgs e)
         {
             listBox1.Visible = true;
+
             lapCount++;
 
-            if (lapCount < 10) listBox1.Items.Add("# 0" + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond);
-            else listBox1.Items.Add("# " + lapCount);
+            if (lapCount < 10) listBox1.Items.Add("# 0" + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds);
+            else listBox1.Items.Add("# " + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds);
+
+            lapSeconds = lapMinutes = lapHours = 0;  
         }
 
         private void close2Btn_Click(object sender, EventArgs e)
