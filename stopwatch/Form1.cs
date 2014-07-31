@@ -176,6 +176,10 @@ namespace stopwatch
                 btn9.Enabled = false;
                 btn0.Enabled = false;
                 startBtn.Enabled = false;
+                buttonAdd1.Enabled = true;
+                buttonAdd5.Enabled = true;
+                buttonAdd10.Enabled = true;
+                buttonAdd30.Enabled = true;
 
                 closeBtn.Text = "Stop";
 
@@ -199,9 +203,7 @@ namespace stopwatch
             else
             {
                 hoursLbl.Text = "00";
-            }
-
-            buttonAdd1.Enabled = true;            
+            }                       
         }
 
         private void btn1_Click_1(object sender, EventArgs e)
@@ -270,6 +272,36 @@ namespace stopwatch
             {                
                 time += 60;
                 minutes++;
+                progressBar1.Maximum = time;
+            }
+        }
+
+        private void buttonAdd5_Click(object sender, EventArgs e)
+        {
+            if (timeToSeconds())
+            {
+                time += 300;
+                minutes += 5;
+                progressBar1.Maximum = time;
+            }
+        }
+
+        private void buttonAdd10_Click(object sender, EventArgs e)
+        {
+            if (timeToSeconds())
+            {
+                time += 600;
+                minutes += 10;
+                progressBar1.Maximum = time;
+            }
+        }
+
+        private void buttonAdd30_Click(object sender, EventArgs e)
+        {
+            if (timeToSeconds())
+            {
+                time += 1800;
+                minutes += 30;
                 progressBar1.Maximum = time;
             }
         }

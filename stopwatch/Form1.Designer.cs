@@ -67,6 +67,9 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
+            this.buttonAdd5 = new System.Windows.Forms.Button();
+            this.buttonAdd10 = new System.Windows.Forms.Button();
+            this.buttonAdd30 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -79,12 +82,15 @@
             this.tabControl1.Location = new System.Drawing.Point(1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(296, 337);
+            this.tabControl1.Size = new System.Drawing.Size(296, 332);
             this.tabControl1.TabIndex = 20;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.buttonAdd30);
+            this.tabPage1.Controls.Add(this.buttonAdd10);
+            this.tabPage1.Controls.Add(this.buttonAdd5);
             this.tabPage1.Controls.Add(this.beepBox);
             this.tabPage1.Controls.Add(this.buttonAdd1);
             this.tabPage1.Controls.Add(this.progressBar1);
@@ -110,7 +116,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(288, 311);
+            this.tabPage1.Size = new System.Drawing.Size(288, 306);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Countdown timer";
             // 
@@ -119,7 +125,7 @@
             this.beepBox.AutoSize = true;
             this.beepBox.Checked = true;
             this.beepBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.beepBox.Location = new System.Drawing.Point(228, 171);
+            this.beepBox.Location = new System.Drawing.Point(84, 217);
             this.beepBox.Name = "beepBox";
             this.beepBox.Size = new System.Drawing.Size(51, 17);
             this.beepBox.TabIndex = 41;
@@ -133,7 +139,7 @@
             this.buttonAdd1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdd1.Location = new System.Drawing.Point(170, 158);
             this.buttonAdd1.Name = "buttonAdd1";
-            this.buttonAdd1.Size = new System.Drawing.Size(40, 40);
+            this.buttonAdd1.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd1.TabIndex = 40;
             this.buttonAdd1.Text = "+1\'";
             this.buttonAdd1.UseVisualStyleBackColor = true;
@@ -141,7 +147,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(9, 269);
+            this.progressBar1.Location = new System.Drawing.Point(9, 273);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(270, 23);
             this.progressBar1.Step = 1;
@@ -152,7 +158,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(236, 219);
+            this.label4.Location = new System.Drawing.Point(228, 246);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 24);
             this.label4.TabIndex = 38;
@@ -217,7 +223,7 @@
             // btn0
             // 
             this.btn0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn0.Location = new System.Drawing.Point(55, 203);
+            this.btn0.Location = new System.Drawing.Point(9, 203);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(40, 40);
             this.btn0.TabIndex = 32;
@@ -370,16 +376,16 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(288, 311);
+            this.tabPage2.Size = new System.Drawing.Size(288, 306);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stopwatch";
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 169);
+            this.listBox1.Location = new System.Drawing.Point(12, 151);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(267, 121);
+            this.listBox1.Size = new System.Drawing.Size(267, 147);
             this.listBox1.TabIndex = 44;
             this.listBox1.Visible = false;
             // 
@@ -508,11 +514,47 @@
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
             // 
+            // buttonAdd5
+            // 
+            this.buttonAdd5.Enabled = false;
+            this.buttonAdd5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd5.Location = new System.Drawing.Point(230, 158);
+            this.buttonAdd5.Name = "buttonAdd5";
+            this.buttonAdd5.Size = new System.Drawing.Size(49, 40);
+            this.buttonAdd5.TabIndex = 42;
+            this.buttonAdd5.Text = "+5\'";
+            this.buttonAdd5.UseVisualStyleBackColor = true;
+            this.buttonAdd5.Click += new System.EventHandler(this.buttonAdd5_Click);
+            // 
+            // buttonAdd10
+            // 
+            this.buttonAdd10.Enabled = false;
+            this.buttonAdd10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd10.Location = new System.Drawing.Point(170, 203);
+            this.buttonAdd10.Name = "buttonAdd10";
+            this.buttonAdd10.Size = new System.Drawing.Size(49, 40);
+            this.buttonAdd10.TabIndex = 43;
+            this.buttonAdd10.Text = "+10\'";
+            this.buttonAdd10.UseVisualStyleBackColor = true;
+            this.buttonAdd10.Click += new System.EventHandler(this.buttonAdd10_Click);
+            // 
+            // buttonAdd30
+            // 
+            this.buttonAdd30.Enabled = false;
+            this.buttonAdd30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd30.Location = new System.Drawing.Point(230, 203);
+            this.buttonAdd30.Name = "buttonAdd30";
+            this.buttonAdd30.Size = new System.Drawing.Size(49, 40);
+            this.buttonAdd30.TabIndex = 44;
+            this.buttonAdd30.Text = "+30\'";
+            this.buttonAdd30.UseVisualStyleBackColor = true;
+            this.buttonAdd30.Click += new System.EventHandler(this.buttonAdd30_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 338);
+            this.ClientSize = new System.Drawing.Size(296, 333);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -567,6 +609,9 @@
         private System.Windows.Forms.Label msLbl;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.CheckBox beepBox;
+        private System.Windows.Forms.Button buttonAdd30;
+        private System.Windows.Forms.Button buttonAdd10;
+        private System.Windows.Forms.Button buttonAdd5;
 
     }
 }
