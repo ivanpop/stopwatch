@@ -106,6 +106,24 @@ namespace stopwatch
             return true;
         }
 
+        public void addTime(int i)
+        {
+            if (timeToSeconds())
+            {
+                time += i * 60;
+                minutes += i;
+                progressBar1.Maximum = time;
+            }
+
+            if (minutes > 59)
+            {
+                minutes -= 60;
+                hours++;
+                hoursLbl.Visible = true;
+                label1.Visible = true;
+            }
+        }
+
         public async void startCountdown()
         {
             do
@@ -187,7 +205,7 @@ namespace stopwatch
                 {
                     hoursLbl.Visible = false;
                     label1.Visible = false;
-                }
+                }               
 
                 time += hours * 3600;
                 time += minutes * 60;
@@ -268,42 +286,22 @@ namespace stopwatch
 
         private void buttonAdd1_Click(object sender, EventArgs e)
         {
-            if (timeToSeconds())
-            {                
-                time += 60;
-                minutes++;
-                progressBar1.Maximum = time;
-            }
+            addTime(1);
         }
 
         private void buttonAdd5_Click(object sender, EventArgs e)
         {
-            if (timeToSeconds())
-            {
-                time += 300;
-                minutes += 5;
-                progressBar1.Maximum = time;
-            }
+            addTime(5);
         }
 
         private void buttonAdd10_Click(object sender, EventArgs e)
         {
-            if (timeToSeconds())
-            {
-                time += 600;
-                minutes += 10;
-                progressBar1.Maximum = time;
-            }
+            addTime(10);
         }
 
         private void buttonAdd30_Click(object sender, EventArgs e)
         {
-            if (timeToSeconds())
-            {
-                time += 1800;
-                minutes += 30;
-                progressBar1.Maximum = time;
-            }
+            addTime(30);
         }
 
         private void beepBox_CheckedChanged(object sender, EventArgs e)
