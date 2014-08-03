@@ -25,6 +25,7 @@ namespace stopwatch
         int hours = 0, minutes = 0, seconds = 0, time = 0;       
         int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
         bool mute = false;
+        bool CTstarted = false;
 
         public void shift(int number)
         {
@@ -223,7 +224,14 @@ namespace stopwatch
             else
             {
                 hoursLbl.Text = "00";
-            }                       
+            }
+
+            CTstarted = true;
+            closeBtn.Text = "Exit";
+            buttonAdd1.Text = "+1'";
+            buttonAdd5.Text = "+5'";
+            buttonAdd10.Text = "+10'";
+            buttonAdd30.Text = "+30'";
         }
 
         private void btn1_Click_1(object sender, EventArgs e)
@@ -288,22 +296,46 @@ namespace stopwatch
 
         private void buttonAdd1_Click(object sender, EventArgs e)
         {
-            addTime(1);
+            if (CTstarted) addTime(1);
+            else
+            {
+                timeArr[1, 0] = 1;
+                update();
+                startBtn.Enabled = true;
+            }
         }
 
         private void buttonAdd5_Click(object sender, EventArgs e)
         {
-            addTime(5);
+            if (CTstarted) addTime(5);
+            else
+            {
+                timeArr[1, 0] = 5;
+                update();
+                startBtn.Enabled = true;
+            }
         }
 
         private void buttonAdd10_Click(object sender, EventArgs e)
         {
-            addTime(10);
+            if (CTstarted) addTime(10);
+            else
+            {
+                timeArr[1, 1] = 1;
+                update();
+                startBtn.Enabled = true;
+            }
         }
 
         private void buttonAdd30_Click(object sender, EventArgs e)
         {
-            addTime(30);
+            if (CTstarted) addTime(30);
+            else
+            {
+                timeArr[1, 1] = 3;
+                update();
+                startBtn.Enabled = true;
+            }
         }
 
         private void beepBox_CheckedChanged(object sender, EventArgs e)
