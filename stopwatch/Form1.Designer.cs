@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.buttonAdd30 = new System.Windows.Forms.Button();
+            this.buttonAdd10 = new System.Windows.Forms.Button();
+            this.buttonAdd5 = new System.Windows.Forms.Button();
             this.beepBox = new System.Windows.Forms.CheckBox();
             this.buttonAdd1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -67,9 +70,6 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
-            this.buttonAdd5 = new System.Windows.Forms.Button();
-            this.buttonAdd10 = new System.Windows.Forms.Button();
-            this.buttonAdd30 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -119,6 +119,42 @@
             this.tabPage1.Size = new System.Drawing.Size(288, 306);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Countdown timer";
+            // 
+            // buttonAdd30
+            // 
+            this.buttonAdd30.Enabled = false;
+            this.buttonAdd30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd30.Location = new System.Drawing.Point(230, 203);
+            this.buttonAdd30.Name = "buttonAdd30";
+            this.buttonAdd30.Size = new System.Drawing.Size(49, 40);
+            this.buttonAdd30.TabIndex = 44;
+            this.buttonAdd30.Text = "+30\'";
+            this.buttonAdd30.UseVisualStyleBackColor = true;
+            this.buttonAdd30.Click += new System.EventHandler(this.buttonAdd30_Click);
+            // 
+            // buttonAdd10
+            // 
+            this.buttonAdd10.Enabled = false;
+            this.buttonAdd10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd10.Location = new System.Drawing.Point(170, 203);
+            this.buttonAdd10.Name = "buttonAdd10";
+            this.buttonAdd10.Size = new System.Drawing.Size(49, 40);
+            this.buttonAdd10.TabIndex = 43;
+            this.buttonAdd10.Text = "+10\'";
+            this.buttonAdd10.UseVisualStyleBackColor = true;
+            this.buttonAdd10.Click += new System.EventHandler(this.buttonAdd10_Click);
+            // 
+            // buttonAdd5
+            // 
+            this.buttonAdd5.Enabled = false;
+            this.buttonAdd5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd5.Location = new System.Drawing.Point(230, 158);
+            this.buttonAdd5.Name = "buttonAdd5";
+            this.buttonAdd5.Size = new System.Drawing.Size(49, 40);
+            this.buttonAdd5.TabIndex = 42;
+            this.buttonAdd5.Text = "+5\'";
+            this.buttonAdd5.UseVisualStyleBackColor = true;
+            this.buttonAdd5.Click += new System.EventHandler(this.buttonAdd5_Click);
             // 
             // beepBox
             // 
@@ -222,6 +258,7 @@
             // 
             // btn0
             // 
+            this.btn0.Enabled = false;
             this.btn0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn0.Location = new System.Drawing.Point(9, 203);
             this.btn0.Name = "btn0";
@@ -348,6 +385,7 @@
             // 
             // startBtn
             // 
+            this.startBtn.Enabled = false;
             this.startBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.startBtn.Location = new System.Drawing.Point(170, 65);
             this.startBtn.Name = "startBtn";
@@ -513,42 +551,6 @@
             this.hours2Lbl.Size = new System.Drawing.Size(51, 36);
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
-            // 
-            // buttonAdd5
-            // 
-            this.buttonAdd5.Enabled = false;
-            this.buttonAdd5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd5.Location = new System.Drawing.Point(230, 158);
-            this.buttonAdd5.Name = "buttonAdd5";
-            this.buttonAdd5.Size = new System.Drawing.Size(49, 40);
-            this.buttonAdd5.TabIndex = 42;
-            this.buttonAdd5.Text = "+5\'";
-            this.buttonAdd5.UseVisualStyleBackColor = true;
-            this.buttonAdd5.Click += new System.EventHandler(this.buttonAdd5_Click);
-            // 
-            // buttonAdd10
-            // 
-            this.buttonAdd10.Enabled = false;
-            this.buttonAdd10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd10.Location = new System.Drawing.Point(170, 203);
-            this.buttonAdd10.Name = "buttonAdd10";
-            this.buttonAdd10.Size = new System.Drawing.Size(49, 40);
-            this.buttonAdd10.TabIndex = 43;
-            this.buttonAdd10.Text = "+10\'";
-            this.buttonAdd10.UseVisualStyleBackColor = true;
-            this.buttonAdd10.Click += new System.EventHandler(this.buttonAdd10_Click);
-            // 
-            // buttonAdd30
-            // 
-            this.buttonAdd30.Enabled = false;
-            this.buttonAdd30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd30.Location = new System.Drawing.Point(230, 203);
-            this.buttonAdd30.Name = "buttonAdd30";
-            this.buttonAdd30.Size = new System.Drawing.Size(49, 40);
-            this.buttonAdd30.TabIndex = 44;
-            this.buttonAdd30.Text = "+30\'";
-            this.buttonAdd30.UseVisualStyleBackColor = true;
-            this.buttonAdd30.Click += new System.EventHandler(this.buttonAdd30_Click);
             // 
             // Form1
             // 

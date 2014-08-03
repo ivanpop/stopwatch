@@ -36,6 +36,8 @@ namespace stopwatch
             timeArr[0, 0] = number;
 
             update();
+            startBtn.Enabled = true;
+            btn0.Enabled = true;
         }
 
         public void update()
@@ -226,7 +228,7 @@ namespace stopwatch
 
         private void btn1_Click_1(object sender, EventArgs e)
         {
-            shift(1);
+            shift(1);            
         }
 
         private void btn0_Click(object sender, EventArgs e)
