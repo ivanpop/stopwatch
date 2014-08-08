@@ -412,7 +412,7 @@ namespace stopwatch
         {
             start2Btn.Enabled = false;
             lapBtn.Enabled = true;
-            resetBtn.Enabled = true;
+            pauseBtn.Enabled = true;
             stopwatchRunning = true;
             tempSeconds1 = DateTime.Now.Second;
             tempSeconds2 = tempSeconds1 + 1; 
@@ -445,7 +445,17 @@ namespace stopwatch
             Application.Exit();
         }
 
-        #endregion
+        private void pauseBtn_Click(object sender, EventArgs e)
+        {
+            if (stopwatchRunning) stopwatchRunning = false;
+            else
+            {
+                start2Btn.Enabled = true;
+                start2Btn.PerformClick();
+                start2Btn.Enabled = false;                
+            }
+        }
 
+        #endregion
     }
 }

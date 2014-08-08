@@ -63,7 +63,7 @@
             this.lapBtn = new System.Windows.Forms.Button();
             this.start2Btn = new System.Windows.Forms.Button();
             this.close2Btn = new System.Windows.Forms.Button();
-            this.resetBtn = new System.Windows.Forms.Button();
+            this.pauseBtn = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -400,7 +400,7 @@
             this.tabPage2.Controls.Add(this.lapBtn);
             this.tabPage2.Controls.Add(this.start2Btn);
             this.tabPage2.Controls.Add(this.close2Btn);
-            this.tabPage2.Controls.Add(this.resetBtn);
+            this.tabPage2.Controls.Add(this.pauseBtn);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.label7);
@@ -449,7 +449,7 @@
             this.lapBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lapBtn.Location = new System.Drawing.Point(103, 49);
             this.lapBtn.Name = "lapBtn";
-            this.lapBtn.Size = new System.Drawing.Size(85, 40);
+            this.lapBtn.Size = new System.Drawing.Size(74, 40);
             this.lapBtn.TabIndex = 41;
             this.lapBtn.Text = "Lap";
             this.lapBtn.UseVisualStyleBackColor = true;
@@ -477,16 +477,17 @@
             this.close2Btn.UseVisualStyleBackColor = true;
             this.close2Btn.Click += new System.EventHandler(this.close2Btn_Click);
             // 
-            // resetBtn
+            // pauseBtn
             // 
-            this.resetBtn.Enabled = false;
-            this.resetBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetBtn.Location = new System.Drawing.Point(194, 49);
-            this.resetBtn.Name = "resetBtn";
-            this.resetBtn.Size = new System.Drawing.Size(85, 40);
-            this.resetBtn.TabIndex = 38;
-            this.resetBtn.Text = "Reset";
-            this.resetBtn.UseVisualStyleBackColor = true;
+            this.pauseBtn.Enabled = false;
+            this.pauseBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pauseBtn.Location = new System.Drawing.Point(185, 49);
+            this.pauseBtn.Name = "pauseBtn";
+            this.pauseBtn.Size = new System.Drawing.Size(94, 40);
+            this.pauseBtn.TabIndex = 38;
+            this.pauseBtn.Text = "Pause";
+            this.pauseBtn.UseVisualStyleBackColor = true;
+            this.pauseBtn.Click += new System.EventHandler(this.pauseBtn_Click);
             // 
             // label5
             // 
@@ -602,7 +603,7 @@
         private System.Windows.Forms.Button lapBtn;
         private System.Windows.Forms.Button start2Btn;
         private System.Windows.Forms.Button close2Btn;
-        private System.Windows.Forms.Button resetBtn;
+        private System.Windows.Forms.Button pauseBtn;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label msLbl;
         private System.Windows.Forms.ListBox listBox1;
