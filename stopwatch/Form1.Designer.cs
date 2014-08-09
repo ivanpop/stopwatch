@@ -70,6 +70,7 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
+            this.saveBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -394,6 +395,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.Controls.Add(this.saveBtn);
             this.tabPage2.Controls.Add(this.listBox1);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.msLbl);
@@ -469,9 +471,9 @@
             // close2Btn
             // 
             this.close2Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.close2Btn.Location = new System.Drawing.Point(12, 96);
+            this.close2Btn.Location = new System.Drawing.Point(103, 96);
             this.close2Btn.Name = "close2Btn";
-            this.close2Btn.Size = new System.Drawing.Size(267, 40);
+            this.close2Btn.Size = new System.Drawing.Size(176, 40);
             this.close2Btn.TabIndex = 39;
             this.close2Btn.Text = "Close";
             this.close2Btn.UseVisualStyleBackColor = true;
@@ -549,6 +551,18 @@
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
             // 
+            // saveBtn
+            // 
+            this.saveBtn.Enabled = false;
+            this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveBtn.Location = new System.Drawing.Point(12, 95);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(85, 40);
+            this.saveBtn.TabIndex = 45;
+            this.saveBtn.Text = "Save";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -611,6 +625,7 @@
         private System.Windows.Forms.Button buttonAdd30;
         private System.Windows.Forms.Button buttonAdd10;
         private System.Windows.Forms.Button buttonAdd5;
+        private System.Windows.Forms.Button saveBtn;
 
     }
 }

@@ -350,6 +350,7 @@ namespace stopwatch
 
         int hours2 = 0, minutes2 = 0, seconds2 = 0, tempSeconds1, tempSeconds2, lapCount = 0, lapHours, lapMinutes, lapSeconds;
         bool stopwatchRunning = false, sixty = false;
+        String results;
 
         public async void startMs()
         {
@@ -426,22 +427,19 @@ namespace stopwatch
 
             lapCount++;
 
-            if (lapCount < 10)
-            {
-                listBox1.Items.Add("# 0" + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds);
-                listBox1.SelectedIndex = listBox1.Items.Count - 1;
-            }
-            else
-            {
-                listBox1.Items.Add("# " + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds);
-                listBox1.SelectedIndex = listBox1.Items.Count - 1;
-            }
+            if (lapCount < 10) listBox1.Items.Add("# 0" + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds);
+            else listBox1.Items.Add("# " + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds);
 
-            lapSeconds = lapMinutes = lapHours = 0;  
+            results += listBox1.GetItemText(listBox1.SelectedItem) + System.Environment.NewLine;
+            listBox1.SelectedIndex = listBox1.Items.Count - 1;
+
+            lapSeconds = lapMinutes = lapHours = 0;
+
+            saveBtn.Enabled = true;
         }
 
         private void close2Btn_Click(object sender, EventArgs e)
-        {
+        {            
             Application.Exit();
         }
 
@@ -456,6 +454,13 @@ namespace stopwatch
             }
         }
 
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            results += System.Environment.NewLine + System.DateTime.Now + System.Environment.NewLine + "Stopwatch by Ivanpop.";
+            System.IO.File.WriteAllText(@"C:\Results.txt", results);
+        }
+
         #endregion
+        
     }
 }
