@@ -57,6 +57,7 @@
             this.hoursLbl = new System.Windows.Forms.Label();
             this.startBtn = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.saveBtn = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.msLbl = new System.Windows.Forms.Label();
@@ -70,7 +71,6 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
-            this.saveBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -416,6 +416,18 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stopwatch";
             // 
+            // saveBtn
+            // 
+            this.saveBtn.Enabled = false;
+            this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveBtn.Location = new System.Drawing.Point(12, 95);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(85, 40);
+            this.saveBtn.TabIndex = 45;
+            this.saveBtn.Text = "Save";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
@@ -423,7 +435,6 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(267, 147);
             this.listBox1.TabIndex = 44;
-            this.listBox1.Visible = false;
             // 
             // label8
             // 
@@ -550,18 +561,6 @@
             this.hours2Lbl.Size = new System.Drawing.Size(51, 36);
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
-            // 
-            // saveBtn
-            // 
-            this.saveBtn.Enabled = false;
-            this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.Location = new System.Drawing.Point(12, 95);
-            this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(85, 40);
-            this.saveBtn.TabIndex = 45;
-            this.saveBtn.Text = "Save";
-            this.saveBtn.UseVisualStyleBackColor = true;
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
             // Form1
             // 

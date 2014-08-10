@@ -411,13 +411,31 @@ namespace stopwatch
 
         private void start2Btn_Click(object sender, EventArgs e)
         {
-            start2Btn.Enabled = false;
-            lapBtn.Enabled = true;
-            pauseBtn.Enabled = true;
-            stopwatchRunning = true;
-            tempSeconds1 = DateTime.Now.Second;
-            tempSeconds2 = tempSeconds1 + 1; 
-            startMs();            
+            if (start2Btn.Text == "Stop")
+            {
+                start2Btn.Text = "Start";
+                lapBtn.Enabled = false;
+                stopwatchRunning = false;
+                pauseBtn.Enabled = false; 
+                if (listBox1.Items.Count > 0) saveBtn.Enabled = true;
+                hours2 = minutes2 = seconds2 = 0;
+                lapSeconds = lapMinutes = lapHours = 0;
+                seconds2Lbl.Text = minutes2Lbl.Text = hours2Lbl.Text = "00";
+                msLbl.Text = "000";
+            }
+
+            else
+            {
+                start2Btn.Text = "Stop";
+                lapBtn.Enabled = true;
+                pauseBtn.Enabled = true;
+                stopwatchRunning = true;
+                saveBtn.Enabled = false;
+                listBox1.Items.Clear();
+                tempSeconds1 = DateTime.Now.Second;
+                tempSeconds2 = tempSeconds1 + 1;
+                startMs();
+            }
         }
 
 
@@ -433,9 +451,7 @@ namespace stopwatch
             results += listBox1.GetItemText(listBox1.SelectedItem) + System.Environment.NewLine;
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
 
-            lapSeconds = lapMinutes = lapHours = 0;
-
-            saveBtn.Enabled = true;
+            lapSeconds = lapMinutes = lapHours = 0;            
         }
 
         private void close2Btn_Click(object sender, EventArgs e)
@@ -455,12 +471,11 @@ namespace stopwatch
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
-        {
+        {            
             results += System.Environment.NewLine + System.DateTime.Now + System.Environment.NewLine + "Stopwatch by Ivanpop.";
             System.IO.File.WriteAllText(@"C:\Results.txt", results);
         }
 
-        #endregion
-        
+        #endregion        
     }
 }
