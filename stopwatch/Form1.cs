@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Taskbar;
+using System.IO;
 
 namespace stopwatch
 {
@@ -352,6 +353,8 @@ namespace stopwatch
         bool stopwatchRunning = false, sixty = false;
         String results;
 
+        SaveFileDialog sfd = new SaveFileDialog();
+
         public async void startMs()
         {
             do
@@ -472,8 +475,17 @@ namespace stopwatch
 
         private void saveBtn_Click(object sender, EventArgs e)
         {            
-            results += System.Environment.NewLine + System.DateTime.Now + System.Environment.NewLine + "Stopwatch by Ivanpop.";
-            System.IO.File.WriteAllText(@"C:\Results.txt", results);
+            results += System.Environment.NewLine + System.DateTime.Now + System.Environment.NewLine + "Stopwatch by Ivanpop.";            
+            sfd.Filter = "Text File|*.txt";
+            sfd.FileName = "Results";
+            sfd.Title = "Save Results File";
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                string path = sfd.FileName;
+                BinaryWriter bw = new BinaryWriter(File.Create(path));
+                bw.Write(results);
+                bw.Dispose();                
+            }
         }
 
         #endregion        
