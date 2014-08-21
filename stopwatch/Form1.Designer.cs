@@ -31,13 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.plusMinusBtn = new System.Windows.Forms.Button();
             this.buttonAdd30 = new System.Windows.Forms.Button();
             this.buttonAdd10 = new System.Windows.Forms.Button();
             this.buttonAdd5 = new System.Windows.Forms.Button();
             this.beepBox = new System.Windows.Forms.CheckBox();
             this.buttonAdd1 = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label4 = new System.Windows.Forms.Label();
             this.closeBtn = new System.Windows.Forms.Button();
             this.btn2 = new System.Windows.Forms.Button();
             this.btn3 = new System.Windows.Forms.Button();
@@ -83,19 +83,19 @@
             this.tabControl1.Location = new System.Drawing.Point(1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(296, 332);
+            this.tabControl1.Size = new System.Drawing.Size(296, 355);
             this.tabControl1.TabIndex = 20;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.plusMinusBtn);
             this.tabPage1.Controls.Add(this.buttonAdd30);
             this.tabPage1.Controls.Add(this.buttonAdd10);
             this.tabPage1.Controls.Add(this.buttonAdd5);
             this.tabPage1.Controls.Add(this.beepBox);
             this.tabPage1.Controls.Add(this.buttonAdd1);
             this.tabPage1.Controls.Add(this.progressBar1);
-            this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.closeBtn);
             this.tabPage1.Controls.Add(this.btn2);
             this.tabPage1.Controls.Add(this.btn3);
@@ -117,9 +117,21 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(288, 306);
+            this.tabPage1.Size = new System.Drawing.Size(288, 329);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Countdown timer";
+            // 
+            // plusMinusBtn
+            // 
+            this.plusMinusBtn.Enabled = false;
+            this.plusMinusBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.plusMinusBtn.Location = new System.Drawing.Point(170, 249);
+            this.plusMinusBtn.Name = "plusMinusBtn";
+            this.plusMinusBtn.Size = new System.Drawing.Size(49, 40);
+            this.plusMinusBtn.TabIndex = 45;
+            this.plusMinusBtn.Text = "+/-";
+            this.plusMinusBtn.UseVisualStyleBackColor = true;
+            this.plusMinusBtn.Click += new System.EventHandler(this.plusMinusBtn_Click);
             // 
             // buttonAdd30
             // 
@@ -128,7 +140,7 @@
             this.buttonAdd30.Name = "buttonAdd30";
             this.buttonAdd30.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd30.TabIndex = 44;
-            this.buttonAdd30.Text = "30\'";
+            this.buttonAdd30.Text = "+30\'";
             this.buttonAdd30.UseVisualStyleBackColor = true;
             this.buttonAdd30.Click += new System.EventHandler(this.buttonAdd30_Click);
             // 
@@ -139,7 +151,7 @@
             this.buttonAdd10.Name = "buttonAdd10";
             this.buttonAdd10.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd10.TabIndex = 43;
-            this.buttonAdd10.Text = "10\'";
+            this.buttonAdd10.Text = "+10\'";
             this.buttonAdd10.UseVisualStyleBackColor = true;
             this.buttonAdd10.Click += new System.EventHandler(this.buttonAdd10_Click);
             // 
@@ -150,7 +162,7 @@
             this.buttonAdd5.Name = "buttonAdd5";
             this.buttonAdd5.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd5.TabIndex = 42;
-            this.buttonAdd5.Text = "5\'";
+            this.buttonAdd5.Text = "+5\'";
             this.buttonAdd5.UseVisualStyleBackColor = true;
             this.buttonAdd5.Click += new System.EventHandler(this.buttonAdd5_Click);
             // 
@@ -159,7 +171,7 @@
             this.beepBox.AutoSize = true;
             this.beepBox.Checked = true;
             this.beepBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.beepBox.Location = new System.Drawing.Point(84, 217);
+            this.beepBox.Location = new System.Drawing.Point(230, 263);
             this.beepBox.Name = "beepBox";
             this.beepBox.Size = new System.Drawing.Size(51, 17);
             this.beepBox.TabIndex = 41;
@@ -174,29 +186,18 @@
             this.buttonAdd1.Name = "buttonAdd1";
             this.buttonAdd1.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd1.TabIndex = 40;
-            this.buttonAdd1.Text = "1\'";
+            this.buttonAdd1.Text = "+1\'";
             this.buttonAdd1.UseVisualStyleBackColor = true;
             this.buttonAdd1.Click += new System.EventHandler(this.buttonAdd1_Click);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(9, 273);
+            this.progressBar1.Location = new System.Drawing.Point(6, 295);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(270, 23);
+            this.progressBar1.Size = new System.Drawing.Size(273, 23);
             this.progressBar1.Step = 1;
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 39;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(228, 246);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 24);
-            this.label4.TabIndex = 38;
-            this.label4.Text = "21.05.2014\r\nivanpop\r\n";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // closeBtn
             // 
@@ -257,7 +258,7 @@
             // 
             this.btn0.Enabled = false;
             this.btn0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn0.Location = new System.Drawing.Point(9, 203);
+            this.btn0.Location = new System.Drawing.Point(55, 203);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(40, 40);
             this.btn0.TabIndex = 32;
@@ -412,7 +413,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(288, 306);
+            this.tabPage2.Size = new System.Drawing.Size(288, 329);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stopwatch";
             // 
@@ -431,9 +432,9 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 151);
+            this.listBox1.Location = new System.Drawing.Point(12, 150);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(267, 147);
+            this.listBox1.Size = new System.Drawing.Size(267, 173);
             this.listBox1.TabIndex = 44;
             // 
             // label8
@@ -566,7 +567,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(296, 333);
+            this.ClientSize = new System.Drawing.Size(296, 353);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -587,7 +588,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button closeBtn;
         private System.Windows.Forms.Button btn2;
         private System.Windows.Forms.Button btn3;
@@ -625,6 +625,7 @@
         private System.Windows.Forms.Button buttonAdd10;
         private System.Windows.Forms.Button buttonAdd5;
         private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.Button plusMinusBtn;
 
     }
 }
