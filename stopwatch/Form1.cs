@@ -130,12 +130,10 @@ namespace stopwatch
         }
 
         public void removeTime(int i)
-        {
-            
+        {            
                 time -= i * 60;
                 minutes -= i;
-                progressBar1.Maximum = time;
-            
+                progressBar1.Maximum = time;            
         }
 
         public async void startCountdown()
@@ -156,7 +154,7 @@ namespace stopwatch
 
         public void checkMinutes()
         {
-            if (minutes <= 1 && hours == 0 && minusMinutes)
+            if (minutes < 1 && hours == 0 && minusMinutes)
             {
                 buttonAdd1.Enabled = false;
             }
@@ -165,7 +163,7 @@ namespace stopwatch
                 buttonAdd1.Enabled = true;
             }
 
-            if (minutes <= 5 && hours == 0 && minusMinutes)
+            if (minutes < 5 && hours == 0 && minusMinutes)
             {
                 buttonAdd5.Enabled = false;
             }
@@ -174,7 +172,7 @@ namespace stopwatch
                 buttonAdd5.Enabled = true;
             }
 
-            if (minutes <= 10 && hours == 0 && minusMinutes)
+            if (minutes < 10 && hours == 0 && minusMinutes)
             {
                 buttonAdd10.Enabled = false;
             }
@@ -183,7 +181,7 @@ namespace stopwatch
                 buttonAdd10.Enabled = true;
             }
 
-            if (minutes <= 30 && hours == 0 && minusMinutes)
+            if (minutes < 30 && hours == 0 && minusMinutes)
             {
                 buttonAdd30.Enabled = false;
             }
@@ -348,29 +346,43 @@ namespace stopwatch
 
         private void buttonAdd1_Click(object sender, EventArgs e)
         {
-            if (CTstarted)
+            if (!minusMinutes)
             {
-                addTime(1);
+                if (CTstarted)
+                {
+                    addTime(1);
+                }
+                else
+                {
+                    timeArr[1, 0] = 1;
+                    update();
+                    startBtn.Enabled = true;
+                }
             }
             else
             {
-                timeArr[1, 0] = 1;
-                update();
-                startBtn.Enabled = true;
+                removeTime(1);
             }
         }
 
         private void buttonAdd5_Click(object sender, EventArgs e)
         {
-            if (CTstarted)
+            if (!minusMinutes)
             {
-                addTime(5);
+                if (CTstarted)
+                {
+                    addTime(5);
+                }
+                else
+                {
+                    timeArr[1, 0] = 5;
+                    update();
+                    startBtn.Enabled = true;
+                }
             }
             else
             {
-                timeArr[1, 0] = 5;
-                update();
-                startBtn.Enabled = true;
+                removeTime(5);
             }
         }
 
@@ -397,12 +409,22 @@ namespace stopwatch
 
         private void buttonAdd30_Click(object sender, EventArgs e)
         {
-            if (CTstarted) addTime(30);
+            if (!minusMinutes)
+            {
+                if (CTstarted)
+                {
+                    addTime(30);
+                }
+                else
+                {
+                    timeArr[1, 1] = 3;
+                    update();
+                    startBtn.Enabled = true;
+                }
+            }
             else
             {
-                timeArr[1, 1] = 3;
-                update();
-                startBtn.Enabled = true;
+                removeTime(30);
             }
         }
 
