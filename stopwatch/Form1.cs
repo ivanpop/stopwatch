@@ -361,7 +361,15 @@ namespace stopwatch
             }
             else
             {
-                removeTime(1);
+                if(hours > 0 && minutes == 0)
+                {
+                    hours--;
+                    minutes = 59;
+                }
+                else
+                {
+                    removeTime(1);
+                }
             }
         }
 
@@ -382,7 +390,22 @@ namespace stopwatch
             }
             else
             {
-                removeTime(5);
+                if (hours > 0 && minutes <= 4 && minutes >= 0)
+                {
+                    hours--;
+                    switch (minutes)
+                    {
+                        case 4: minutes = 59; break;
+                        case 3: minutes = 58; break;
+                        case 2: minutes = 57; break;
+                        case 1: minutes = 56; break;
+                        case 0: minutes = 55; break;
+                    }
+                }
+                else
+                {
+                    removeTime(5);
+                }
             }
         }
 
@@ -403,7 +426,27 @@ namespace stopwatch
             }
             else
             {
-                removeTime(10);
+                if (hours > 0 && minutes <= 9 && minutes >= 0)
+                {
+                    hours--;
+                    switch (minutes)
+                    {
+                        case 9: minutes = 59; break;
+                        case 8: minutes = 58; break;
+                        case 7: minutes = 57; break;
+                        case 6: minutes = 56; break;
+                        case 5: minutes = 55; break;
+                        case 4: minutes = 54; break;
+                        case 3: minutes = 53; break;
+                        case 2: minutes = 52; break;
+                        case 1: minutes = 51; break;
+                        case 0: minutes = 50; break;
+                    }
+                }
+                else
+                {
+                    removeTime(10);
+                }
             }
         }
 
@@ -424,7 +467,47 @@ namespace stopwatch
             }
             else
             {
-                removeTime(30);
+                if (hours > 0 && minutes <= 29 && minutes >= 0)
+                {
+                    hours--;
+                    switch (minutes)
+                    {
+                        case 29: minutes = 59; break;
+                        case 28: minutes = 58; break;
+                        case 27: minutes = 57; break;
+                        case 26: minutes = 56; break;
+                        case 25: minutes = 55; break;
+                        case 24: minutes = 54; break;
+                        case 23: minutes = 53; break;
+                        case 22: minutes = 52; break;
+                        case 21: minutes = 51; break;
+                        case 20: minutes = 50; break;
+                        case 19: minutes = 49; break;
+                        case 18: minutes = 48; break;
+                        case 17: minutes = 47; break;
+                        case 16: minutes = 46; break;
+                        case 15: minutes = 45; break;
+                        case 14: minutes = 44; break;
+                        case 13: minutes = 43; break;
+                        case 12: minutes = 42; break;
+                        case 11: minutes = 41; break;
+                        case 10: minutes = 40; break;
+                        case 9: minutes = 39; break;
+                        case 8: minutes = 38; break;
+                        case 7: minutes = 37; break;
+                        case 6: minutes = 36; break;
+                        case 5: minutes = 35; break;
+                        case 4: minutes = 34; break;
+                        case 3: minutes = 33; break;
+                        case 2: minutes = 32; break;
+                        case 1: minutes = 31; break;
+                        case 0: minutes = 30; break;
+                    }
+                }
+                else
+                {
+                    removeTime(30);
+                }
             }
         }
 
