@@ -28,6 +28,8 @@ namespace stopwatch
         bool mute = false;
         bool CTstarted = false;
         bool minusMinutes = false;
+        private System.Drawing.Graphics g;
+        private System.Drawing.Pen pen1 = new System.Drawing.Pen(Color.Green, 10F);        
 
         public void shift(int number)
         {
@@ -193,6 +195,21 @@ namespace stopwatch
 
         private void startBtn_Click_1(object sender, EventArgs e)
         {
+            Point point1 = new Point(4, 7);
+            Point point2 = new Point(305, 7);
+            Point point3 = new Point(310, 2);
+            Point point4 = new Point(310, 342);
+            Point point5 = new Point(315, 347);
+            Point point6 = new Point(4, 347);
+            Point point7 = new Point(9, 342);
+            Point point8 = new Point(9, 12);
+
+            g = tabPage1.CreateGraphics();
+            g.DrawLine(pen1, point1, point2);
+            g.DrawLine(pen1, point3, point4);
+            g.DrawLine(pen1, point5, point6);
+            g.DrawLine(pen1, point7, point8);
+            
             seconds = System.Convert.ToInt32(secondsLbl.Text);
             minutes = System.Convert.ToInt32(minutesLbl.Text);
             hours = System.Convert.ToInt32(hoursLbl.Text);
@@ -682,5 +699,5 @@ namespace stopwatch
 
         #endregion        
 
-    }
+       }
 }
