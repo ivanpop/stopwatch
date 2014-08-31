@@ -23,7 +23,8 @@ namespace stopwatch
 
         TaskbarManager taskbar = TaskbarManager.Instance;
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
-        int hours = 0, minutes = 0, seconds = 0, time = 0;       
+        int hours = 0, minutes = 0, seconds = 0, time = 0, sndL, sndLStep, trdL, trdLStep, frtL, frtLStep;
+        float frsLStep, frsL = 300;
         int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
         bool mute = false;
         bool CTstarted = false;
@@ -148,7 +149,19 @@ namespace stopwatch
                 addZero();
                 timeToSeconds();
                 taskbar.SetProgressValue(progressBar1.Value, time);
-                checkMinutes();                
+                checkMinutes();
+                label4.Text = progressBar1.Maximum.ToString();
+                label9.Text = frsL.ToString();
+                label10.Text = frsLStep.ToString("G");
+
+                frsL -= frsLStep;
+                
+                g = tabPage1.CreateGraphics();
+                g.Clear(Color.White);                
+                g.DrawLine(pen1, 5.0f, 7.0f, frsL + 5, 7.0f);
+                g.DrawLine(pen1, 310, 2, 310, 342);
+                g.DrawLine(pen1, 315, 347, 5, 347);
+                g.DrawLine(pen1, 10, 342, 10, 12);                 
                 await Task.Delay(1000);
                 
             } while (timeToSeconds());
@@ -195,21 +208,6 @@ namespace stopwatch
 
         private void startBtn_Click_1(object sender, EventArgs e)
         {
-            Point point1 = new Point(4, 7);
-            Point point2 = new Point(305, 7);
-            Point point3 = new Point(310, 2);
-            Point point4 = new Point(310, 342);
-            Point point5 = new Point(315, 347);
-            Point point6 = new Point(4, 347);
-            Point point7 = new Point(9, 342);
-            Point point8 = new Point(9, 12);
-
-            g = tabPage1.CreateGraphics();
-            g.DrawLine(pen1, point1, point2);
-            g.DrawLine(pen1, point3, point4);
-            g.DrawLine(pen1, point5, point6);
-            g.DrawLine(pen1, point7, point8);
-            
             seconds = System.Convert.ToInt32(secondsLbl.Text);
             minutes = System.Convert.ToInt32(minutesLbl.Text);
             hours = System.Convert.ToInt32(hoursLbl.Text);
@@ -299,6 +297,8 @@ namespace stopwatch
             buttonAdd5.Text = "+5'";
             buttonAdd10.Text = "+10'";
             buttonAdd30.Text = "+30'";
+
+            frsLStep = 300 / ((float) progressBar1.Maximum / 4);
         }
 
         private void btn1_Click_1(object sender, EventArgs e)
