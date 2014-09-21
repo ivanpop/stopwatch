@@ -154,10 +154,17 @@ namespace stopwatch
                 label9.Text = frsL.ToString();
                 label10.Text = frsLStep.ToString("G");
 
-                frsL -= frsLStep;
+                if (frsL > 0)
+                {
+                    frsL -= frsLStep;
+                }
+                else
+                {
+                    frsL = 0;
+                }
                 
                 g = tabPage1.CreateGraphics();
-                g.Clear(Color.White);                
+                g.Clear(Color.White);
                 g.DrawLine(pen1, 5.0f, 7.0f, frsL + 5, 7.0f);
                 g.DrawLine(pen1, 310, 2, 310, 342);
                 g.DrawLine(pen1, 315, 347, 5, 347);
