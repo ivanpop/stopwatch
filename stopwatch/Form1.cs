@@ -23,14 +23,11 @@ namespace stopwatch
 
         TaskbarManager taskbar = TaskbarManager.Instance;
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
-        int hours = 0, minutes = 0, seconds = 0, time = 0, sndL, sndLStep, trdL, trdLStep, frtL, frtLStep;
-        float frsLStep, frsL = 300;
+        int hours = 0, minutes = 0, seconds = 0, time = 0;
         int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
         bool mute = false;
         bool CTstarted = false;
-        bool minusMinutes = false;
-        private System.Drawing.Graphics g;
-        private System.Drawing.Pen pen1 = new System.Drawing.Pen(Color.Green, 10F);        
+        bool minusMinutes = false;        
 
         public void shift(int number)
         {
@@ -150,25 +147,7 @@ namespace stopwatch
                 timeToSeconds();
                 taskbar.SetProgressValue(progressBar1.Value, time);
                 checkMinutes();
-                label4.Text = progressBar1.Maximum.ToString();
-                label9.Text = frsL.ToString();
-                label10.Text = frsLStep.ToString("G");
-
-                if (frsL > 0)
-                {
-                    frsL -= frsLStep;
-                }
-                else
-                {
-                    frsL = 0;
-                }
-                
-                g = tabPage1.CreateGraphics();
-                g.Clear(Color.White);
-                g.DrawLine(pen1, 5.0f, 7.0f, frsL + 5, 7.0f);
-                g.DrawLine(pen1, 310, 2, 310, 342);
-                g.DrawLine(pen1, 315, 347, 5, 347);
-                g.DrawLine(pen1, 10, 342, 10, 12);                 
+                              
                 await Task.Delay(1000);
                 
             } while (timeToSeconds());
@@ -304,8 +283,6 @@ namespace stopwatch
             buttonAdd5.Text = "+5'";
             buttonAdd10.Text = "+10'";
             buttonAdd30.Text = "+30'";
-
-            frsLStep = 300 / ((float) progressBar1.Maximum / 4);
         }
 
         private void btn1_Click_1(object sender, EventArgs e)
