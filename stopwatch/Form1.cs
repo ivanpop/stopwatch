@@ -17,6 +17,7 @@ namespace stopwatch
         public Form1()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         #region Countdown Timer
@@ -455,6 +456,62 @@ namespace stopwatch
             }
         }
 
+        private void tabControl1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.NumPad1:                    
+                case Keys.D1:
+                    e.Handled = true;
+                    btn1.PerformClick();
+                    break;
+                case Keys.NumPad2:
+                case Keys.D2:
+                    e.Handled = true;
+                    btn2.PerformClick();
+                    break;
+                case Keys.NumPad3:
+                case Keys.D3:
+                    e.Handled = true;
+                    btn3.PerformClick();
+                    break;
+                case Keys.NumPad4:
+                case Keys.D4:
+                    e.Handled = true;
+                    btn4.PerformClick();
+                    break;
+                case Keys.NumPad5:
+                case Keys.D5:
+                    e.Handled = true;
+                    btn5.PerformClick();
+                    break;
+                case Keys.NumPad6:
+                case Keys.D6:
+                    e.Handled = true;
+                    btn6.PerformClick();
+                    break;
+                case Keys.NumPad7:
+                case Keys.D7:
+                    e.Handled = true;
+                    btn7.PerformClick();
+                    break;
+                case Keys.NumPad8:
+                case Keys.D8:
+                    e.Handled = true;
+                    btn8.PerformClick();
+                    break;
+                case Keys.NumPad9:
+                case Keys.D9:
+                    e.Handled = true;
+                    btn9.PerformClick();
+                    break;
+                case Keys.NumPad0:
+                case Keys.D0:
+                    e.Handled = true;
+                    btn0.PerformClick();
+                    break;
+            }
+        }
         #endregion
 
         #region Stopwatch
@@ -600,5 +657,5 @@ namespace stopwatch
 
         #endregion        
 
-       }
+        }
 }
