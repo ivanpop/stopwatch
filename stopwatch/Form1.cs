@@ -38,7 +38,6 @@ namespace stopwatch
             timeArr[1, 0] = timeArr[0, 1];
             timeArr[0, 1] = timeArr[0, 0];
             timeArr[0, 0] = number;
-
             update();
             startBtn.Enabled = true;
             btn0.Enabled = true;
@@ -101,14 +100,14 @@ namespace stopwatch
                     minutes = 59;                   
                 }
             }
-
-
             if (hours < 0)
             {
-                if (!mute) player.Play();                
+                if (!mute)
+                {
+                    player.Play();
+                }
                 return false;                
-            }            
-
+            }
             return true;
         }
 
@@ -120,7 +119,6 @@ namespace stopwatch
                 minutes += i;
                 progressBar1.Maximum = time;
             }
-
             if (minutes > 59)
             {
                 minutes -= 60;
@@ -147,10 +145,8 @@ namespace stopwatch
                 addZero();
                 timeToSeconds();
                 taskbar.SetProgressValue(progressBar1.Value, time);
-                checkMinutes();
-                              
-                await Task.Delay(1000);
-                
+                checkMinutes();                              
+                await Task.Delay(1000);                
             } while (timeToSeconds());
         }
 
@@ -164,7 +160,6 @@ namespace stopwatch
             {
                 buttonAdd1.Enabled = true;
             }
-
             if (minutes < 5 && hours == 0 && minusMinutes)
             {
                 buttonAdd5.Enabled = false;
@@ -173,7 +168,6 @@ namespace stopwatch
             {
                 buttonAdd5.Enabled = true;
             }
-
             if (minutes < 10 && hours == 0 && minusMinutes)
             {
                 buttonAdd10.Enabled = false;
@@ -182,7 +176,6 @@ namespace stopwatch
             {
                 buttonAdd10.Enabled = true;
             }
-
             if (minutes < 30 && hours == 0 && minusMinutes)
             {
                 buttonAdd30.Enabled = false;
@@ -198,43 +191,28 @@ namespace stopwatch
             seconds = System.Convert.ToInt32(secondsLbl.Text);
             minutes = System.Convert.ToInt32(minutesLbl.Text);
             hours = System.Convert.ToInt32(hoursLbl.Text);
-
             if (seconds > 59)
             {
                 minutes++;
                 seconds -= 59;
             }
-
             if (minutes > 59)
             {
                 hours++;
                 minutes -= 59;
-            }           
-            
+            }
             hoursLbl.Text = System.Convert.ToString(hours);
-
-            if (hours > 0)
-            {
-                if (minutes <= 0)
-                {
-                    if (seconds <= 0)
-                    {
-                        hours--;
-                        minutes = 59;
-                        seconds = 60;
-                    }
-                }
+            if (hours > 0 && minutes <= 0 && seconds <= 0)
+            {                
+                hours--;
+                minutes = 59;
+                seconds = 60;                
             }
-
-            if (minutes > 0)
-            {
-                if (seconds <= 0)
-                {
-                    minutes--;
-                    seconds = 60;
-                }
+            if (minutes > 0 && seconds <= 0)
+            {                
+                minutes--;
+                seconds = 60;                
             }
-
             if (seconds != 0 || minutes != 0 || hours != 0)
             {
                 btn1.Enabled = false;
@@ -253,31 +231,24 @@ namespace stopwatch
                 buttonAdd10.Enabled = true;
                 buttonAdd30.Enabled = true;
                 plusMinusBtn.Enabled = true;
-
                 closeBtn.Text = "Stop";
-
                 if (hours == 0)
                 {
                     hoursLbl.Visible = false;
                     label1.Visible = false;
-                }               
-
+                }
                 time += hours * 3600;
                 time += minutes * 60;
                 time += seconds;
-
                 progressBar1.Minimum = 0;
                 progressBar1.Maximum = time;
-                progressBar1.Step = 1;                
-                addZero();
+                progressBar1.Step = 1;
                 startCountdown();
             }
-
             else
             {
                 hoursLbl.Text = "00";
             }
-
             CTstarted = true;
             closeBtn.Text = "Exit";
             buttonAdd1.Text = "+1'";
@@ -461,53 +432,43 @@ namespace stopwatch
             switch (e.KeyCode)
             {
                 case Keys.NumPad1:                    
-                case Keys.D1:
-                    e.Handled = true;
+                case Keys.D1:                    
                     btn1.PerformClick();
                     break;
                 case Keys.NumPad2:
-                case Keys.D2:
-                    e.Handled = true;
+                case Keys.D2:                    
                     btn2.PerformClick();
                     break;
                 case Keys.NumPad3:
                 case Keys.D3:
-                    e.Handled = true;
                     btn3.PerformClick();
                     break;
                 case Keys.NumPad4:
-                case Keys.D4:
-                    e.Handled = true;
+                case Keys.D4:                    
                     btn4.PerformClick();
                     break;
                 case Keys.NumPad5:
-                case Keys.D5:
-                    e.Handled = true;
+                case Keys.D5:                    
                     btn5.PerformClick();
                     break;
                 case Keys.NumPad6:
-                case Keys.D6:
-                    e.Handled = true;
+                case Keys.D6:                    
                     btn6.PerformClick();
                     break;
                 case Keys.NumPad7:
-                case Keys.D7:
-                    e.Handled = true;
+                case Keys.D7:                    
                     btn7.PerformClick();
                     break;
                 case Keys.NumPad8:
                 case Keys.D8:
-                    e.Handled = true;
                     btn8.PerformClick();
                     break;
                 case Keys.NumPad9:
                 case Keys.D9:
-                    e.Handled = true;
                     btn9.PerformClick();
                     break;
                 case Keys.NumPad0:
                 case Keys.D0:
-                    e.Handled = true;
                     btn0.PerformClick();
                     break;
             }
