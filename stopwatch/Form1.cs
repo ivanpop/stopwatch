@@ -609,9 +609,8 @@ namespace stopwatch
             }
             else
             {
-                start2Btn.Enabled = true;
-                start2Btn.PerformClick();
-                start2Btn.Enabled = false;
+                stopwatchRunning = true;
+                startMs();
             }
         }
 
