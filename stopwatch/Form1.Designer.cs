@@ -50,25 +50,25 @@
             this.btn4 = new System.Windows.Forms.Button();
             this.btn5 = new System.Windows.Forms.Button();
             this.btn1 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.secondsLbl = new System.Windows.Forms.Label();
-            this.minutesLbl = new System.Windows.Forms.Label();
-            this.hoursLbl = new System.Windows.Forms.Label();
+            this.ctSLabel = new System.Windows.Forms.Label();
+            this.ctMLabel = new System.Windows.Forms.Label();
+            this.ctHLabel = new System.Windows.Forms.Label();
+            this.ctSecondsLbl = new System.Windows.Forms.Label();
+            this.ctMinutesLbl = new System.Windows.Forms.Label();
+            this.ctHoursLbl = new System.Windows.Forms.Label();
             this.startBtn = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.saveBtn = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.swMSLabel = new System.Windows.Forms.Label();
             this.msLbl = new System.Windows.Forms.Label();
             this.lapBtn = new System.Windows.Forms.Button();
             this.start2Btn = new System.Windows.Forms.Button();
             this.close2Btn = new System.Windows.Forms.Button();
             this.pauseBtn2 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.swSLabel = new System.Windows.Forms.Label();
+            this.swMLabel = new System.Windows.Forms.Label();
+            this.stHLabel = new System.Windows.Forms.Label();
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
@@ -110,12 +110,12 @@
             this.tabPage1.Controls.Add(this.btn4);
             this.tabPage1.Controls.Add(this.btn5);
             this.tabPage1.Controls.Add(this.btn1);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.secondsLbl);
-            this.tabPage1.Controls.Add(this.minutesLbl);
-            this.tabPage1.Controls.Add(this.hoursLbl);
+            this.tabPage1.Controls.Add(this.ctSLabel);
+            this.tabPage1.Controls.Add(this.ctMLabel);
+            this.tabPage1.Controls.Add(this.ctHLabel);
+            this.tabPage1.Controls.Add(this.ctSecondsLbl);
+            this.tabPage1.Controls.Add(this.ctMinutesLbl);
+            this.tabPage1.Controls.Add(this.ctHoursLbl);
             this.tabPage1.Controls.Add(this.startBtn);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -336,65 +336,65 @@
             this.btn1.UseVisualStyleBackColor = true;
             this.btn1.Click += new System.EventHandler(this.btn1_Click_1);
             // 
-            // label3
+            // ctSLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(257, 34);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(15, 13);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "S";
+            this.ctSLabel.AutoSize = true;
+            this.ctSLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctSLabel.Location = new System.Drawing.Point(257, 34);
+            this.ctSLabel.Name = "ctSLabel";
+            this.ctSLabel.Size = new System.Drawing.Size(15, 13);
+            this.ctSLabel.TabIndex = 26;
+            this.ctSLabel.Text = "S";
             // 
-            // label2
+            // ctMLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(171, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(17, 13);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "M";
+            this.ctMLabel.AutoSize = true;
+            this.ctMLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctMLabel.Location = new System.Drawing.Point(171, 34);
+            this.ctMLabel.Name = "ctMLabel";
+            this.ctMLabel.Size = new System.Drawing.Size(17, 13);
+            this.ctMLabel.TabIndex = 25;
+            this.ctMLabel.Text = "M";
             // 
-            // label1
+            // ctHLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(85, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "H";
+            this.ctHLabel.AutoSize = true;
+            this.ctHLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctHLabel.Location = new System.Drawing.Point(85, 34);
+            this.ctHLabel.Name = "ctHLabel";
+            this.ctHLabel.Size = new System.Drawing.Size(16, 13);
+            this.ctHLabel.TabIndex = 24;
+            this.ctHLabel.Text = "H";
             // 
-            // secondsLbl
+            // ctSecondsLbl
             // 
-            this.secondsLbl.AutoSize = true;
-            this.secondsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.secondsLbl.Location = new System.Drawing.Point(193, 1);
-            this.secondsLbl.Name = "secondsLbl";
-            this.secondsLbl.Size = new System.Drawing.Size(80, 55);
-            this.secondsLbl.TabIndex = 23;
-            this.secondsLbl.Text = "00";
+            this.ctSecondsLbl.AutoSize = true;
+            this.ctSecondsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctSecondsLbl.Location = new System.Drawing.Point(193, 1);
+            this.ctSecondsLbl.Name = "ctSecondsLbl";
+            this.ctSecondsLbl.Size = new System.Drawing.Size(80, 55);
+            this.ctSecondsLbl.TabIndex = 23;
+            this.ctSecondsLbl.Text = "00";
             // 
-            // minutesLbl
+            // ctMinutesLbl
             // 
-            this.minutesLbl.AutoSize = true;
-            this.minutesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minutesLbl.Location = new System.Drawing.Point(107, 1);
-            this.minutesLbl.Name = "minutesLbl";
-            this.minutesLbl.Size = new System.Drawing.Size(80, 55);
-            this.minutesLbl.TabIndex = 22;
-            this.minutesLbl.Text = "00";
+            this.ctMinutesLbl.AutoSize = true;
+            this.ctMinutesLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctMinutesLbl.Location = new System.Drawing.Point(107, 1);
+            this.ctMinutesLbl.Name = "ctMinutesLbl";
+            this.ctMinutesLbl.Size = new System.Drawing.Size(80, 55);
+            this.ctMinutesLbl.TabIndex = 22;
+            this.ctMinutesLbl.Text = "00";
             // 
-            // hoursLbl
+            // ctHoursLbl
             // 
-            this.hoursLbl.AutoSize = true;
-            this.hoursLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hoursLbl.Location = new System.Drawing.Point(21, 1);
-            this.hoursLbl.Name = "hoursLbl";
-            this.hoursLbl.Size = new System.Drawing.Size(80, 55);
-            this.hoursLbl.TabIndex = 21;
-            this.hoursLbl.Text = "00";
+            this.ctHoursLbl.AutoSize = true;
+            this.ctHoursLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctHoursLbl.Location = new System.Drawing.Point(21, 1);
+            this.ctHoursLbl.Name = "ctHoursLbl";
+            this.ctHoursLbl.Size = new System.Drawing.Size(80, 55);
+            this.ctHoursLbl.TabIndex = 21;
+            this.ctHoursLbl.Text = "00";
             // 
             // startBtn
             // 
@@ -413,15 +413,15 @@
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tabPage2.Controls.Add(this.saveBtn);
             this.tabPage2.Controls.Add(this.listBox1);
-            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.swMSLabel);
             this.tabPage2.Controls.Add(this.msLbl);
             this.tabPage2.Controls.Add(this.lapBtn);
             this.tabPage2.Controls.Add(this.start2Btn);
             this.tabPage2.Controls.Add(this.close2Btn);
             this.tabPage2.Controls.Add(this.pauseBtn2);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.swSLabel);
+            this.tabPage2.Controls.Add(this.swMLabel);
+            this.tabPage2.Controls.Add(this.stHLabel);
             this.tabPage2.Controls.Add(this.seconds2Lbl);
             this.tabPage2.Controls.Add(this.minutes2Lbl);
             this.tabPage2.Controls.Add(this.hours2Lbl);
@@ -452,15 +452,15 @@
             this.listBox1.Size = new System.Drawing.Size(273, 186);
             this.listBox1.TabIndex = 44;
             // 
-            // label8
+            // swMSLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(257, 20);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(25, 13);
-            this.label8.TabIndex = 43;
-            this.label8.Text = "MS";
+            this.swMSLabel.AutoSize = true;
+            this.swMSLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.swMSLabel.Location = new System.Drawing.Point(257, 20);
+            this.swMSLabel.Name = "swMSLabel";
+            this.swMSLabel.Size = new System.Drawing.Size(25, 13);
+            this.swMSLabel.TabIndex = 43;
+            this.swMSLabel.Text = "MS";
             // 
             // msLbl
             // 
@@ -518,35 +518,35 @@
             this.pauseBtn2.UseVisualStyleBackColor = true;
             this.pauseBtn2.Click += new System.EventHandler(this.pauseBtn2_Click);
             // 
-            // label5
+            // swSLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(182, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(15, 13);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "S";
+            this.swSLabel.AutoSize = true;
+            this.swSLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.swSLabel.Location = new System.Drawing.Point(182, 20);
+            this.swSLabel.Name = "swSLabel";
+            this.swSLabel.Size = new System.Drawing.Size(15, 13);
+            this.swSLabel.TabIndex = 32;
+            this.swSLabel.Text = "S";
             // 
-            // label6
+            // swMLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(118, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(17, 13);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "M";
+            this.swMLabel.AutoSize = true;
+            this.swMLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.swMLabel.Location = new System.Drawing.Point(118, 20);
+            this.swMLabel.Name = "swMLabel";
+            this.swMLabel.Size = new System.Drawing.Size(17, 13);
+            this.swMLabel.TabIndex = 31;
+            this.swMLabel.Text = "M";
             // 
-            // label7
+            // stHLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(55, 20);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(16, 13);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "H";
+            this.stHLabel.AutoSize = true;
+            this.stHLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stHLabel.Location = new System.Drawing.Point(55, 20);
+            this.stHLabel.Name = "stHLabel";
+            this.stHLabel.Size = new System.Drawing.Size(16, 13);
+            this.stHLabel.TabIndex = 30;
+            this.stHLabel.Text = "H";
             // 
             // seconds2Lbl
             // 
@@ -614,17 +614,17 @@
         private System.Windows.Forms.Button btn4;
         private System.Windows.Forms.Button btn5;
         private System.Windows.Forms.Button btn1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label secondsLbl;
-        private System.Windows.Forms.Label minutesLbl;
-        private System.Windows.Forms.Label hoursLbl;
+        private System.Windows.Forms.Label ctSLabel;
+        private System.Windows.Forms.Label ctMLabel;
+        private System.Windows.Forms.Label ctHLabel;
+        private System.Windows.Forms.Label ctSecondsLbl;
+        private System.Windows.Forms.Label ctMinutesLbl;
+        private System.Windows.Forms.Label ctHoursLbl;
         private System.Windows.Forms.Button startBtn;
         private System.Windows.Forms.Button buttonAdd1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label swSLabel;
+        private System.Windows.Forms.Label swMLabel;
+        private System.Windows.Forms.Label stHLabel;
         private System.Windows.Forms.Label seconds2Lbl;
         private System.Windows.Forms.Label minutes2Lbl;
         private System.Windows.Forms.Label hours2Lbl;
@@ -632,7 +632,7 @@
         private System.Windows.Forms.Button start2Btn;
         private System.Windows.Forms.Button close2Btn;
         private System.Windows.Forms.Button pauseBtn2;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label swMSLabel;
         private System.Windows.Forms.Label msLbl;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.CheckBox beepBox;

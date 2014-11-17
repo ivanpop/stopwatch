@@ -23,9 +23,9 @@ namespace stopwatch
 
         TaskbarManager taskbar = TaskbarManager.Instance;
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
-        int hours = 0, minutes = 0, seconds = 0, time = 0;
+        int hours = 0, minutes = 0, seconds = 0, time = 0, tempSeconds3, tempSeconds4;
         int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
-        bool mute = false, CTstarted = false, minusMinutes = false;        
+        bool mute = false, CTstarted = false, minusMinutes = false, sixty2 = false;        
 
         public void shift(int number)
         {
@@ -42,45 +42,45 @@ namespace stopwatch
 
         public void updateInput()
         {
-            secondsLbl.Text = System.Convert.ToString(timeArr[0, 1]) + System.Convert.ToString(timeArr[0, 0]);
-            minutesLbl.Text = System.Convert.ToString(timeArr[1, 1]) + System.Convert.ToString(timeArr[1, 0]);
-            hoursLbl.Text = System.Convert.ToString(timeArr[2, 1]) + System.Convert.ToString(timeArr[2, 0]);
+            ctSecondsLbl.Text = System.Convert.ToString(timeArr[0, 1]) + System.Convert.ToString(timeArr[0, 0]);
+            ctMinutesLbl.Text = System.Convert.ToString(timeArr[1, 1]) + System.Convert.ToString(timeArr[1, 0]);
+            ctHoursLbl.Text = System.Convert.ToString(timeArr[2, 1]) + System.Convert.ToString(timeArr[2, 0]);
         }
 
         public void updateTime()
         {
-            secondsLbl.Text = System.Convert.ToString(seconds);
-            minutesLbl.Text = System.Convert.ToString(minutes);
-            hoursLbl.Text = System.Convert.ToString(hours);
+            ctSecondsLbl.Text = System.Convert.ToString(seconds);
+            ctMinutesLbl.Text = System.Convert.ToString(minutes);
+            ctHoursLbl.Text = System.Convert.ToString(hours);
         }
 
         public void addZero()
         {
             if (seconds < 10)
             {
-                secondsLbl.Text = "0" + System.Convert.ToString(seconds);
+                ctSecondsLbl.Text = "0" + System.Convert.ToString(seconds);
             }
             else
             {
-                secondsLbl.Text = System.Convert.ToString(seconds);
+                ctSecondsLbl.Text = System.Convert.ToString(seconds);
             }
 
             if (minutes < 10)
             {
-                minutesLbl.Text = "0" + System.Convert.ToString(minutes);
+                ctMinutesLbl.Text = "0" + System.Convert.ToString(minutes);
             }
             else
             {
-                minutesLbl.Text = System.Convert.ToString(minutes);
+                ctMinutesLbl.Text = System.Convert.ToString(minutes);
             }
 
             if (hours < 10)
             {
-                hoursLbl.Text = "0" + System.Convert.ToString(hours);
+                ctHoursLbl.Text = "0" + System.Convert.ToString(hours);
             }
             else
             {
-                hoursLbl.Text = System.Convert.ToString(hours);
+                ctHoursLbl.Text = System.Convert.ToString(hours);
             }
         }        
 
@@ -102,6 +102,13 @@ namespace stopwatch
                 {
                     player.Play();
                 }
+                ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Red;
+                startBtn.Text = "Stop";
+                startBtn.Enabled = true;
+                CTstarted = false;
+                tempSeconds3 = DateTime.Now.Second;
+                tempSeconds4 = tempSeconds3 + 1;
+                timeFromEnd();
                 return false;                
             }
             return true;
@@ -119,8 +126,8 @@ namespace stopwatch
             {
                 minutes -= 60;
                 hours++;
-                hoursLbl.Visible = true;
-                label1.Visible = true;
+                ctHoursLbl.Visible = true;
+                ctHLabel.Visible = true;
             }
         }
 
@@ -183,10 +190,10 @@ namespace stopwatch
         }
 
         private void startBtn_Click_1(object sender, EventArgs e)
-        {
-            seconds = System.Convert.ToInt32(secondsLbl.Text);
-            minutes = System.Convert.ToInt32(minutesLbl.Text);
-            hours = System.Convert.ToInt32(hoursLbl.Text);
+        {            
+            seconds = System.Convert.ToInt32(ctSecondsLbl.Text);
+            minutes = System.Convert.ToInt32(ctMinutesLbl.Text);
+            hours = System.Convert.ToInt32(ctHoursLbl.Text);
             if (seconds > 59)
             {
                 minutes++;
@@ -197,7 +204,7 @@ namespace stopwatch
                 hours++;
                 minutes -= 59;
             }
-            hoursLbl.Text = System.Convert.ToString(hours);
+            ctHoursLbl.Text = System.Convert.ToString(hours);
             if (hours > 0 && minutes <= 0 && seconds <= 0)
             {                
                 hours--;
@@ -231,8 +238,8 @@ namespace stopwatch
                 closeBtn.Text = "Stop";
                 if (hours == 0)
                 {
-                    hoursLbl.Visible = false;
-                    label1.Visible = false;
+                    ctHoursLbl.Visible = false;
+                    ctHLabel.Visible = false;
                 }
                 time += hours * 3600;
                 time += minutes * 60;
@@ -244,7 +251,7 @@ namespace stopwatch
             }
             else
             {
-                hoursLbl.Text = "00";
+                ctHoursLbl.Text = "00";
             }
             CTstarted = true;
             closeBtn.Text = "Exit";
@@ -483,6 +490,66 @@ namespace stopwatch
                 startCountdown();
             }
         }
+
+        public async void timeFromEnd()
+        {
+            do
+            {
+                tempSeconds3 = DateTime.Now.Second;
+                if (tempSeconds3 == tempSeconds4)
+                {
+                    seconds++;                    
+                    tempSeconds4 = tempSeconds3 + 1;
+                }
+                if (tempSeconds3 == 0 && !sixty2)
+                {
+                    seconds++;
+                    tempSeconds4 = 1;
+                    sixty2 = true;
+                }
+                if (seconds == 10)
+                {
+                    sixty2 = false;
+                }
+                if (seconds > 59)
+                {
+                    seconds = 0;
+                    minutes++;                    
+                }
+                if (minutes > 59)
+                {
+                    minutes = 0;
+                    hours++;
+                    
+                }                
+                if (seconds < 10)
+                {
+                    ctSecondsLbl.Text = "0" + System.Convert.ToString(seconds);
+                }
+                else
+                {
+                    ctSecondsLbl.Text = System.Convert.ToString(seconds);
+                }
+                if (minutes < 10)
+                {
+                    ctMinutesLbl.Text = "0" + System.Convert.ToString(minutes);
+                }
+                else
+                {
+                    ctMinutesLbl.Text = System.Convert.ToString(minutes);
+                }
+                if (hours2 < 10)
+                {
+                    ctHoursLbl.Text = "0" + System.Convert.ToString(hours);
+                }
+                else
+                {
+                    ctHoursLbl.Text = System.Convert.ToString(hours);
+                }
+                await Task.Delay(1000);
+            } while (startBtn.Text == "Stop");
+        }
+
         #endregion
 
         #region Stopwatch
@@ -525,7 +592,7 @@ namespace stopwatch
                     minutes2++;
                     lapMinutes++;
                 }
-                if (minutes > 59)
+                if (minutes2 > 59)
                 {
                     minutes2 = 0;
                     hours2++;
