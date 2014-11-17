@@ -17,7 +17,6 @@ namespace stopwatch
         public Form1()
         {
             InitializeComponent();
-            this.KeyPreview = true;
         }
 
         #region Countdown Timer
@@ -26,9 +25,7 @@ namespace stopwatch
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
         int hours = 0, minutes = 0, seconds = 0, time = 0;
         int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
-        bool mute = false;
-        bool CTstarted = false;
-        bool minusMinutes = false;        
+        bool mute = false, CTstarted = false, minusMinutes = false;        
 
         public void shift(int number)
         {
@@ -38,16 +35,23 @@ namespace stopwatch
             timeArr[1, 0] = timeArr[0, 1];
             timeArr[0, 1] = timeArr[0, 0];
             timeArr[0, 0] = number;
-            update();
+            updateInput();
             startBtn.Enabled = true;
             btn0.Enabled = true;
         }
 
-        public void update()
+        public void updateInput()
         {
             secondsLbl.Text = System.Convert.ToString(timeArr[0, 1]) + System.Convert.ToString(timeArr[0, 0]);
             minutesLbl.Text = System.Convert.ToString(timeArr[1, 1]) + System.Convert.ToString(timeArr[1, 0]);
             hoursLbl.Text = System.Convert.ToString(timeArr[2, 1]) + System.Convert.ToString(timeArr[2, 0]);
+        }
+
+        public void updateTime()
+        {
+            secondsLbl.Text = System.Convert.ToString(seconds);
+            minutesLbl.Text = System.Convert.ToString(minutes);
+            hoursLbl.Text = System.Convert.ToString(hours);
         }
 
         public void addZero()
@@ -78,22 +82,14 @@ namespace stopwatch
             {
                 hoursLbl.Text = System.Convert.ToString(hours);
             }
-        }
-
-        public void updateTime()
-        {
-            secondsLbl.Text = System.Convert.ToString(seconds);
-            minutesLbl.Text = System.Convert.ToString(minutes);
-            hoursLbl.Text = System.Convert.ToString(hours);
-        }
+        }        
 
         public bool timeToSeconds()
         {
             if (seconds == 0)
             {
                 seconds = 60;
-                minutes--;                
-
+                minutes--;
                 if (minutes < 0)
                 {
                     hours--;
@@ -147,7 +143,7 @@ namespace stopwatch
                 taskbar.SetProgressValue(progressBar1.Value, time);
                 checkMinutes();                              
                 await Task.Delay(1000);                
-            } while (timeToSeconds());
+            } while (timeToSeconds() && CTstarted);
         }
 
         public void checkMinutes()
@@ -231,6 +227,7 @@ namespace stopwatch
                 buttonAdd10.Enabled = true;
                 buttonAdd30.Enabled = true;
                 plusMinusBtn.Enabled = true;
+                pauseBtn1.Enabled = true;
                 closeBtn.Text = "Stop";
                 if (hours == 0)
                 {
@@ -328,7 +325,7 @@ namespace stopwatch
                 else
                 {
                     timeArr[1, 0] = 1;
-                    update();
+                    updateInput();
                     startBtn.Enabled = true;
                 }
             }
@@ -349,7 +346,7 @@ namespace stopwatch
                 else
                 {
                     timeArr[1, 0] = 5;
-                    update();
+                    updateInput();
                     startBtn.Enabled = true;
                 }
             }
@@ -370,7 +367,7 @@ namespace stopwatch
                 else
                 {
                     timeArr[1, 1] = 1;
-                    update();
+                    updateInput();
                     startBtn.Enabled = true;
                 }
             }
@@ -391,7 +388,7 @@ namespace stopwatch
                 else
                 {
                     timeArr[1, 1] = 3;
-                    update();
+                    updateInput();
                     startBtn.Enabled = true;
                 }
             }
@@ -473,6 +470,19 @@ namespace stopwatch
                     break;
             }
         }
+
+        private void pauseBtn1_Click(object sender, EventArgs e)
+        {
+            if (CTstarted)
+            {
+                CTstarted = false;
+            }
+            else
+            {
+                CTstarted = true;
+                startCountdown();
+            }
+        }
         #endregion
 
         #region Stopwatch
@@ -487,9 +497,6 @@ namespace stopwatch
             do
             {
                 tempSeconds1 = DateTime.Now.Second;
-                msLbl.Text = System.Convert.ToString(DateTime.Now.Millisecond);
-                seconds2Lbl.Text = System.Convert.ToString(seconds2);
-                minutes2Lbl.Text = System.Convert.ToString(minutes2);
                 if (lapCount == 0)
                 {
                     lapSeconds = seconds2;
@@ -528,21 +535,37 @@ namespace stopwatch
                 {
                     msLbl.Text = "00" + System.Convert.ToString(DateTime.Now.Millisecond);
                 }
-                if (DateTime.Now.Millisecond > 10 && DateTime.Now.Millisecond < 100)
+                else if (DateTime.Now.Millisecond > 10 && DateTime.Now.Millisecond < 100)
                 {
                     msLbl.Text = "0" + System.Convert.ToString(DateTime.Now.Millisecond);
+                }
+                else
+                {
+                    msLbl.Text = System.Convert.ToString(DateTime.Now.Millisecond);
                 }
                 if (seconds2 < 10)
                 {
                     seconds2Lbl.Text = "0" + System.Convert.ToString(seconds2);
                 }
+                else 
+                {
+                    seconds2Lbl.Text = System.Convert.ToString(seconds2);
+                }
                 if (minutes2 < 10)
                 {
                     minutes2Lbl.Text = "0" + System.Convert.ToString(minutes2);
                 }
+                else
+                {
+                    minutes2Lbl.Text = System.Convert.ToString(minutes2);
+                }
                 if (hours2 < 10)
                 {
                     hours2Lbl.Text = "0" + System.Convert.ToString(hours2);
+                }
+                else
+                {
+                    hours2Lbl.Text = System.Convert.ToString(hours2);
                 }
                 await Task.Delay(33);
             } while (stopwatchRunning);
@@ -555,7 +578,9 @@ namespace stopwatch
                 start2Btn.Text = "Start";
                 lapBtn.Enabled = false;
                 stopwatchRunning = false;
-                pauseBtn.Enabled = false;                
+                pauseBtn2.Enabled = false;
+                hours2 = minutes2 = seconds2 = 0;
+                hours2 = minutes2 = seconds2 = 0;
                 hours2 = minutes2 = seconds2 = 0;
                 lapSeconds = lapMinutes = lapHours = 0;
                 seconds2Lbl.Text = minutes2Lbl.Text = hours2Lbl.Text = "00";
@@ -569,7 +594,7 @@ namespace stopwatch
             {
                 start2Btn.Text = "Stop";
                 lapBtn.Enabled = true;
-                pauseBtn.Enabled = true;
+                pauseBtn2.Enabled = true;
                 stopwatchRunning = true;
                 saveBtn.Enabled = false;
                 listBox1.Items.Clear();
@@ -601,7 +626,7 @@ namespace stopwatch
             Application.Exit();
         }
 
-        private void pauseBtn_Click(object sender, EventArgs e)
+        private void pauseBtn2_Click(object sender, EventArgs e)
         {
             if (stopwatchRunning)
             {
@@ -628,6 +653,6 @@ namespace stopwatch
                 bw.Dispose();                
             }
         }
-        #endregion 
+        #endregion       
         }
 }

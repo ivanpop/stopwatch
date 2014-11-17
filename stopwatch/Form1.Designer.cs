@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pauseBtn1 = new System.Windows.Forms.Button();
             this.plusMinusBtn = new System.Windows.Forms.Button();
             this.buttonAdd30 = new System.Windows.Forms.Button();
             this.buttonAdd10 = new System.Windows.Forms.Button();
@@ -64,7 +65,7 @@
             this.lapBtn = new System.Windows.Forms.Button();
             this.start2Btn = new System.Windows.Forms.Button();
             this.close2Btn = new System.Windows.Forms.Button();
-            this.pauseBtn = new System.Windows.Forms.Button();
+            this.pauseBtn2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -83,13 +84,14 @@
             this.tabControl1.Location = new System.Drawing.Point(-4, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(327, 382);
+            this.tabControl1.Size = new System.Drawing.Size(308, 367);
             this.tabControl1.TabIndex = 20;
             this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.pauseBtn1);
             this.tabPage1.Controls.Add(this.plusMinusBtn);
             this.tabPage1.Controls.Add(this.buttonAdd30);
             this.tabPage1.Controls.Add(this.buttonAdd10);
@@ -118,15 +120,27 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(319, 356);
+            this.tabPage1.Size = new System.Drawing.Size(300, 341);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Countdown timer";
+            // 
+            // pauseBtn1
+            // 
+            this.pauseBtn1.Enabled = false;
+            this.pauseBtn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pauseBtn1.Location = new System.Drawing.Point(107, 59);
+            this.pauseBtn1.Name = "pauseBtn1";
+            this.pauseBtn1.Size = new System.Drawing.Size(86, 40);
+            this.pauseBtn1.TabIndex = 46;
+            this.pauseBtn1.Text = "Pause";
+            this.pauseBtn1.UseVisualStyleBackColor = true;
+            this.pauseBtn1.Click += new System.EventHandler(this.pauseBtn1_Click);
             // 
             // plusMinusBtn
             // 
             this.plusMinusBtn.Enabled = false;
             this.plusMinusBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.plusMinusBtn.Location = new System.Drawing.Point(174, 253);
+            this.plusMinusBtn.Location = new System.Drawing.Point(176, 213);
             this.plusMinusBtn.Name = "plusMinusBtn";
             this.plusMinusBtn.Size = new System.Drawing.Size(49, 40);
             this.plusMinusBtn.TabIndex = 45;
@@ -137,7 +151,7 @@
             // buttonAdd30
             // 
             this.buttonAdd30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd30.Location = new System.Drawing.Point(234, 207);
+            this.buttonAdd30.Location = new System.Drawing.Point(236, 167);
             this.buttonAdd30.Name = "buttonAdd30";
             this.buttonAdd30.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd30.TabIndex = 44;
@@ -148,7 +162,7 @@
             // buttonAdd10
             // 
             this.buttonAdd10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd10.Location = new System.Drawing.Point(174, 207);
+            this.buttonAdd10.Location = new System.Drawing.Point(176, 167);
             this.buttonAdd10.Name = "buttonAdd10";
             this.buttonAdd10.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd10.TabIndex = 43;
@@ -159,7 +173,7 @@
             // buttonAdd5
             // 
             this.buttonAdd5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd5.Location = new System.Drawing.Point(234, 162);
+            this.buttonAdd5.Location = new System.Drawing.Point(236, 122);
             this.buttonAdd5.Name = "buttonAdd5";
             this.buttonAdd5.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd5.TabIndex = 42;
@@ -172,7 +186,7 @@
             this.beepBox.AutoSize = true;
             this.beepBox.Checked = true;
             this.beepBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.beepBox.Location = new System.Drawing.Point(234, 267);
+            this.beepBox.Location = new System.Drawing.Point(236, 227);
             this.beepBox.Name = "beepBox";
             this.beepBox.Size = new System.Drawing.Size(51, 17);
             this.beepBox.TabIndex = 41;
@@ -183,7 +197,7 @@
             // buttonAdd1
             // 
             this.buttonAdd1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd1.Location = new System.Drawing.Point(174, 162);
+            this.buttonAdd1.Location = new System.Drawing.Point(176, 122);
             this.buttonAdd1.Name = "buttonAdd1";
             this.buttonAdd1.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd1.TabIndex = 40;
@@ -193,9 +207,9 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(10, 299);
+            this.progressBar1.Location = new System.Drawing.Point(15, 305);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(273, 23);
+            this.progressBar1.Size = new System.Drawing.Size(270, 23);
             this.progressBar1.Step = 1;
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 39;
@@ -203,9 +217,9 @@
             // closeBtn
             // 
             this.closeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeBtn.Location = new System.Drawing.Point(174, 116);
+            this.closeBtn.Location = new System.Drawing.Point(199, 59);
             this.closeBtn.Name = "closeBtn";
-            this.closeBtn.Size = new System.Drawing.Size(109, 40);
+            this.closeBtn.Size = new System.Drawing.Size(86, 40);
             this.closeBtn.TabIndex = 37;
             this.closeBtn.Text = "Close";
             this.closeBtn.UseVisualStyleBackColor = true;
@@ -214,7 +228,7 @@
             // btn2
             // 
             this.btn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn2.Location = new System.Drawing.Point(59, 69);
+            this.btn2.Location = new System.Drawing.Point(61, 121);
             this.btn2.Name = "btn2";
             this.btn2.Size = new System.Drawing.Size(40, 40);
             this.btn2.TabIndex = 36;
@@ -225,7 +239,7 @@
             // btn3
             // 
             this.btn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn3.Location = new System.Drawing.Point(105, 69);
+            this.btn3.Location = new System.Drawing.Point(107, 121);
             this.btn3.Name = "btn3";
             this.btn3.Size = new System.Drawing.Size(40, 40);
             this.btn3.TabIndex = 35;
@@ -236,7 +250,7 @@
             // btn8
             // 
             this.btn8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn8.Location = new System.Drawing.Point(59, 161);
+            this.btn8.Location = new System.Drawing.Point(61, 213);
             this.btn8.Name = "btn8";
             this.btn8.Size = new System.Drawing.Size(40, 40);
             this.btn8.TabIndex = 34;
@@ -247,7 +261,7 @@
             // btn9
             // 
             this.btn9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn9.Location = new System.Drawing.Point(105, 161);
+            this.btn9.Location = new System.Drawing.Point(107, 213);
             this.btn9.Name = "btn9";
             this.btn9.Size = new System.Drawing.Size(40, 40);
             this.btn9.TabIndex = 33;
@@ -259,7 +273,7 @@
             // 
             this.btn0.Enabled = false;
             this.btn0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn0.Location = new System.Drawing.Point(59, 207);
+            this.btn0.Location = new System.Drawing.Point(61, 259);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(40, 40);
             this.btn0.TabIndex = 32;
@@ -270,7 +284,7 @@
             // btn7
             // 
             this.btn7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn7.Location = new System.Drawing.Point(13, 161);
+            this.btn7.Location = new System.Drawing.Point(15, 213);
             this.btn7.Name = "btn7";
             this.btn7.Size = new System.Drawing.Size(40, 40);
             this.btn7.TabIndex = 31;
@@ -281,7 +295,7 @@
             // btn6
             // 
             this.btn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn6.Location = new System.Drawing.Point(105, 116);
+            this.btn6.Location = new System.Drawing.Point(107, 168);
             this.btn6.Name = "btn6";
             this.btn6.Size = new System.Drawing.Size(40, 40);
             this.btn6.TabIndex = 30;
@@ -292,7 +306,7 @@
             // btn4
             // 
             this.btn4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn4.Location = new System.Drawing.Point(13, 116);
+            this.btn4.Location = new System.Drawing.Point(15, 168);
             this.btn4.Name = "btn4";
             this.btn4.Size = new System.Drawing.Size(40, 40);
             this.btn4.TabIndex = 29;
@@ -303,7 +317,7 @@
             // btn5
             // 
             this.btn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn5.Location = new System.Drawing.Point(59, 116);
+            this.btn5.Location = new System.Drawing.Point(61, 168);
             this.btn5.Name = "btn5";
             this.btn5.Size = new System.Drawing.Size(40, 40);
             this.btn5.TabIndex = 28;
@@ -314,7 +328,7 @@
             // btn1
             // 
             this.btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn1.Location = new System.Drawing.Point(13, 69);
+            this.btn1.Location = new System.Drawing.Point(15, 121);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(40, 40);
             this.btn1.TabIndex = 27;
@@ -386,9 +400,9 @@
             // 
             this.startBtn.Enabled = false;
             this.startBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startBtn.Location = new System.Drawing.Point(174, 69);
+            this.startBtn.Location = new System.Drawing.Point(15, 59);
             this.startBtn.Name = "startBtn";
-            this.startBtn.Size = new System.Drawing.Size(109, 40);
+            this.startBtn.Size = new System.Drawing.Size(86, 40);
             this.startBtn.TabIndex = 20;
             this.startBtn.Text = "Start";
             this.startBtn.UseVisualStyleBackColor = true;
@@ -404,7 +418,7 @@
             this.tabPage2.Controls.Add(this.lapBtn);
             this.tabPage2.Controls.Add(this.start2Btn);
             this.tabPage2.Controls.Add(this.close2Btn);
-            this.tabPage2.Controls.Add(this.pauseBtn);
+            this.tabPage2.Controls.Add(this.pauseBtn2);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.label7);
@@ -414,7 +428,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(319, 356);
+            this.tabPage2.Size = new System.Drawing.Size(300, 341);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stopwatch";
             // 
@@ -422,9 +436,9 @@
             // 
             this.saveBtn.Enabled = false;
             this.saveBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveBtn.Location = new System.Drawing.Point(12, 95);
+            this.saveBtn.Location = new System.Drawing.Point(13, 95);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(85, 40);
+            this.saveBtn.Size = new System.Drawing.Size(88, 40);
             this.saveBtn.TabIndex = 45;
             this.saveBtn.Text = "Save";
             this.saveBtn.UseVisualStyleBackColor = true;
@@ -433,9 +447,9 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 150);
+            this.listBox1.Location = new System.Drawing.Point(13, 144);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(267, 173);
+            this.listBox1.Size = new System.Drawing.Size(273, 186);
             this.listBox1.TabIndex = 44;
             // 
             // label8
@@ -462,9 +476,9 @@
             // 
             this.lapBtn.Enabled = false;
             this.lapBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lapBtn.Location = new System.Drawing.Point(103, 49);
+            this.lapBtn.Location = new System.Drawing.Point(107, 49);
             this.lapBtn.Name = "lapBtn";
-            this.lapBtn.Size = new System.Drawing.Size(74, 40);
+            this.lapBtn.Size = new System.Drawing.Size(85, 40);
             this.lapBtn.TabIndex = 41;
             this.lapBtn.Text = "Lap";
             this.lapBtn.UseVisualStyleBackColor = true;
@@ -473,9 +487,9 @@
             // start2Btn
             // 
             this.start2Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.start2Btn.Location = new System.Drawing.Point(12, 49);
+            this.start2Btn.Location = new System.Drawing.Point(13, 49);
             this.start2Btn.Name = "start2Btn";
-            this.start2Btn.Size = new System.Drawing.Size(85, 40);
+            this.start2Btn.Size = new System.Drawing.Size(88, 40);
             this.start2Btn.TabIndex = 40;
             this.start2Btn.Text = "Start";
             this.start2Btn.UseVisualStyleBackColor = true;
@@ -484,25 +498,25 @@
             // close2Btn
             // 
             this.close2Btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.close2Btn.Location = new System.Drawing.Point(103, 96);
+            this.close2Btn.Location = new System.Drawing.Point(107, 95);
             this.close2Btn.Name = "close2Btn";
-            this.close2Btn.Size = new System.Drawing.Size(176, 40);
+            this.close2Btn.Size = new System.Drawing.Size(179, 40);
             this.close2Btn.TabIndex = 39;
             this.close2Btn.Text = "Close";
             this.close2Btn.UseVisualStyleBackColor = true;
             this.close2Btn.Click += new System.EventHandler(this.close2Btn_Click);
             // 
-            // pauseBtn
+            // pauseBtn2
             // 
-            this.pauseBtn.Enabled = false;
-            this.pauseBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pauseBtn.Location = new System.Drawing.Point(185, 49);
-            this.pauseBtn.Name = "pauseBtn";
-            this.pauseBtn.Size = new System.Drawing.Size(94, 40);
-            this.pauseBtn.TabIndex = 38;
-            this.pauseBtn.Text = "Pause";
-            this.pauseBtn.UseVisualStyleBackColor = true;
-            this.pauseBtn.Click += new System.EventHandler(this.pauseBtn_Click);
+            this.pauseBtn2.Enabled = false;
+            this.pauseBtn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pauseBtn2.Location = new System.Drawing.Point(198, 49);
+            this.pauseBtn2.Name = "pauseBtn2";
+            this.pauseBtn2.Size = new System.Drawing.Size(88, 40);
+            this.pauseBtn2.TabIndex = 38;
+            this.pauseBtn2.Text = "Pause";
+            this.pauseBtn2.UseVisualStyleBackColor = true;
+            this.pauseBtn2.Click += new System.EventHandler(this.pauseBtn2_Click);
             // 
             // label5
             // 
@@ -568,7 +582,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 354);
+            this.ClientSize = new System.Drawing.Size(302, 363);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -617,7 +631,7 @@
         private System.Windows.Forms.Button lapBtn;
         private System.Windows.Forms.Button start2Btn;
         private System.Windows.Forms.Button close2Btn;
-        private System.Windows.Forms.Button pauseBtn;
+        private System.Windows.Forms.Button pauseBtn2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label msLbl;
         private System.Windows.Forms.ListBox listBox1;
@@ -627,6 +641,7 @@
         private System.Windows.Forms.Button buttonAdd5;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button plusMinusBtn;
+        private System.Windows.Forms.Button pauseBtn1;
 
     }
 }
