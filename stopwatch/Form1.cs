@@ -25,7 +25,7 @@ namespace stopwatch
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
         int hours = 0, minutes = 0, seconds = 0, time = 0, tempSeconds3, tempSeconds4;
         int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
-        bool mute = false, CTstarted = false, minusMinutes = false, sixty2 = false;        
+        bool mute = false, CTstarted = false, CTended = false, minusMinutes = false, sixty2 = false;        
 
         public void shift(int number)
         {
@@ -102,13 +102,19 @@ namespace stopwatch
                 {
                     player.Play();
                 }
-                ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Red;
-                startBtn.Text = "Stop";
-                startBtn.Enabled = true;
-                CTstarted = false;
-                tempSeconds3 = DateTime.Now.Second;
-                tempSeconds4 = tempSeconds3 + 1;
-                timeFromEnd();
+                if (!CTended)
+                {
+                    ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Red;
+                    startBtn.Text = "Stop";
+                    mute = true;
+                    startBtn.Enabled = true;
+                    pauseBtn1.Enabled = false;
+                    CTstarted = false;
+                    tempSeconds3 = DateTime.Now.Second;
+                    tempSeconds4 = tempSeconds3 + 1;
+                    timeFromEnd();
+                    CTended = true;
+                }
                 return false;                
             }
             return true;
@@ -190,75 +196,88 @@ namespace stopwatch
         }
 
         private void startBtn_Click_1(object sender, EventArgs e)
-        {            
-            seconds = System.Convert.ToInt32(ctSecondsLbl.Text);
-            minutes = System.Convert.ToInt32(ctMinutesLbl.Text);
-            hours = System.Convert.ToInt32(ctHoursLbl.Text);
-            if (seconds > 59)
+        {
+            if (startBtn.Text == "Start")
             {
-                minutes++;
-                seconds -= 59;
-            }
-            if (minutes > 59)
-            {
-                hours++;
-                minutes -= 59;
-            }
-            ctHoursLbl.Text = System.Convert.ToString(hours);
-            if (hours > 0 && minutes <= 0 && seconds <= 0)
-            {                
-                hours--;
-                minutes = 59;
-                seconds = 60;                
-            }
-            if (minutes > 0 && seconds <= 0)
-            {                
-                minutes--;
-                seconds = 60;                
-            }
-            if (seconds != 0 || minutes != 0 || hours != 0)
-            {
-                btn1.Enabled = false;
-                btn2.Enabled = false;
-                btn3.Enabled = false;
-                btn4.Enabled = false;
-                btn5.Enabled = false;
-                btn6.Enabled = false;
-                btn7.Enabled = false;
-                btn8.Enabled = false;
-                btn9.Enabled = false;
-                btn0.Enabled = false;
-                startBtn.Enabled = false;
-                buttonAdd1.Enabled = true;
-                buttonAdd5.Enabled = true;
-                buttonAdd10.Enabled = true;
-                buttonAdd30.Enabled = true;
-                plusMinusBtn.Enabled = true;
-                pauseBtn1.Enabled = true;
-                closeBtn.Text = "Stop";
-                if (hours == 0)
+                seconds = System.Convert.ToInt32(ctSecondsLbl.Text);
+                minutes = System.Convert.ToInt32(ctMinutesLbl.Text);
+                hours = System.Convert.ToInt32(ctHoursLbl.Text);
+                if (seconds > 59)
                 {
-                    ctHoursLbl.Visible = false;
-                    ctHLabel.Visible = false;
+                    minutes++;
+                    seconds -= 59;
                 }
-                time += hours * 3600;
-                time += minutes * 60;
-                time += seconds;
-                progressBar1.Minimum = 0;
-                progressBar1.Maximum = time;
-                progressBar1.Step = 1;
-                startCountdown();
+                if (minutes > 59)
+                {
+                    hours++;
+                    minutes -= 59;
+                }
+                ctHoursLbl.Text = System.Convert.ToString(hours);
+                if (hours > 0 && minutes <= 0 && seconds <= 0)
+                {
+                    hours--;
+                    minutes = 59;
+                    seconds = 60;
+                }
+                if (minutes > 0 && seconds <= 0)
+                {
+                    minutes--;
+                    seconds = 60;
+                }
+                if (seconds != 0 || minutes != 0 || hours != 0)
+                {
+                    btn1.Enabled = false;
+                    btn2.Enabled = false;
+                    btn3.Enabled = false;
+                    btn4.Enabled = false;
+                    btn5.Enabled = false;
+                    btn6.Enabled = false;
+                    btn7.Enabled = false;
+                    btn8.Enabled = false;
+                    btn9.Enabled = false;
+                    btn0.Enabled = false;
+                    startBtn.Enabled = false;
+                    buttonAdd1.Enabled = true;
+                    buttonAdd5.Enabled = true;
+                    buttonAdd10.Enabled = true;
+                    buttonAdd30.Enabled = true;
+                    plusMinusBtn.Enabled = true;
+                    pauseBtn1.Enabled = true;
+                    closeBtn.Text = "Stop";
+                    if (hours == 0)
+                    {
+                        ctHoursLbl.Visible = false;
+                        ctHLabel.Visible = false;
+                    }
+                    time += hours * 3600;
+                    time += minutes * 60;
+                    time += seconds;
+                    progressBar1.Minimum = 0;
+                    progressBar1.Maximum = time;
+                    progressBar1.Step = 1;
+                    startCountdown();
+                }
+                else
+                {
+                    ctHoursLbl.Text = "00";
+                }
+                CTstarted = true;
+                closeBtn.Text = "Exit";
+                buttonAdd1.Text = "+1'";
+                buttonAdd5.Text = "+5'";
+                buttonAdd10.Text = "+10'";
+                buttonAdd30.Text = "+30'";
             }
             else
             {
-                ctHoursLbl.Text = "00";
+                ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Black;
+                ctHoursLbl.Text = ctSecondsLbl.Text = ctMinutesLbl.Text = "00";
+                startBtn.Text = "Start";
+                ctHLabel.Visible = ctHoursLbl.Visible = true;
+                startBtn.Enabled = pauseBtn1.Enabled = false;
+                btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = true;
+                player.Stop();  
             }
-            CTstarted = true;
-            closeBtn.Text = "Exit";
-            buttonAdd1.Text = "+1'";
-            buttonAdd5.Text = "+5'";
-            buttonAdd10.Text = "+10'";
-            buttonAdd30.Text = "+30'";
         }
 
         private void btn1_Click_1(object sender, EventArgs e)
@@ -494,7 +513,7 @@ namespace stopwatch
         public async void timeFromEnd()
         {
             do
-            {
+            {                
                 tempSeconds3 = DateTime.Now.Second;
                 if (tempSeconds3 == tempSeconds4)
                 {
@@ -521,7 +540,11 @@ namespace stopwatch
                     minutes = 0;
                     hours++;
                     
-                }                
+                }
+                if(hours2 > 0)
+                {
+                    ctHoursLbl.Enabled = ctHLabel.Enabled = true;
+                }
                 if (seconds < 10)
                 {
                     ctSecondsLbl.Text = "0" + System.Convert.ToString(seconds);
