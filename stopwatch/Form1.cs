@@ -106,6 +106,11 @@ namespace stopwatch
                 {
                     ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Red;
                     startBtn.Text = "Stop";
+                    shift(0);
+                    shift(0);
+                    shift(0);
+                    shift(0);
+                    shift(0);
                     mute = true;
                     startBtn.Enabled = true;
                     pauseBtn1.Enabled = false;
@@ -114,6 +119,7 @@ namespace stopwatch
                     tempSeconds4 = tempSeconds3 + 1;
                     timeFromEnd();
                     CTended = true;
+                    time = 0;
                 }
                 return false;                
             }
@@ -252,10 +258,20 @@ namespace stopwatch
                     time += hours * 3600;
                     time += minutes * 60;
                     time += seconds;
+                    progressBar1.Value = 0;
                     progressBar1.Minimum = 0;
                     progressBar1.Maximum = time;
                     progressBar1.Step = 1;
                     startCountdown();
+                    CTended = false;
+                    if (beepBox.Checked)
+                    {
+                        mute = false;
+                    }
+                    else
+                    {
+                        mute = true;
+                    }
                 }
                 else
                 {
@@ -426,8 +442,14 @@ namespace stopwatch
 
         private void beepBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (beepBox.Checked) mute = false;
-            else mute = true;
+            if (beepBox.Checked)
+            {
+                mute = false;
+            }
+            else
+            {
+                mute = true;
+            }
         }
 
         private void plusMinusBtn_Click(object sender, EventArgs e)
