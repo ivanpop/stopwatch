@@ -36,8 +36,7 @@ namespace stopwatch
             timeArr[0, 1] = timeArr[0, 0];
             timeArr[0, 0] = number;
             updateInput();
-            startBtn.Enabled = true;
-            btn0.Enabled = true;
+            startBtn.Enabled = btn0.Enabled = true;            
         }
 
         public void updateInput()
@@ -106,19 +105,12 @@ namespace stopwatch
                 {
                     ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Red;
                     startBtn.Text = "Stop";
-                    shift(0);
-                    shift(0);
-                    shift(0);
-                    shift(0);
-                    shift(0);
-                    mute = true;
-                    startBtn.Enabled = true;
-                    pauseBtn1.Enabled = false;
-                    CTstarted = false;
+                    Array.Clear(timeArr, 0, timeArr.Length);                  
+                    startBtn.Enabled = mute = CTended = true;
+                    pauseBtn1.Enabled = CTstarted = false;                    
                     tempSeconds3 = DateTime.Now.Second;
                     tempSeconds4 = tempSeconds3 + 1;
-                    timeFromEnd();
-                    CTended = true;
+                    timeFromEnd();                    
                     time = 0;
                 }
                 return false;                
@@ -138,8 +130,7 @@ namespace stopwatch
             {
                 minutes -= 60;
                 hours++;
-                ctHoursLbl.Visible = true;
-                ctHLabel.Visible = true;
+                ctHoursLbl.Visible = ctHLabel.Visible = true;                
             }
         }
 
@@ -162,7 +153,7 @@ namespace stopwatch
                 taskbar.SetProgressValue(progressBar1.Value, time);
                 checkMinutes();                              
                 await Task.Delay(1000);                
-            } while (timeToSeconds() && CTstarted);
+            } while (CTstarted);
         }
 
         public void checkMinutes()
@@ -201,14 +192,48 @@ namespace stopwatch
             }
         }
 
+        public void buttonChangeTime(int i)
+        {
+            if (!minusMinutes)
+            {
+                if (CTstarted)
+                {
+                    addTime(1);
+                }
+                else
+                {
+                    if (i < 10)
+                    {
+                        timeArr[1, 0] = i;
+                    }
+                    else
+                    {
+                        timeArr[1, 1] = i / 10;
+                    }
+                    updateInput();
+                    startBtn.Enabled = true;
+                }
+            }
+            else
+            {
+                removeTime(i);
+            }
+        }
+
         private void startBtn_Click_1(object sender, EventArgs e)
         {
             if (startBtn.Text == "Start")
             {
                 startBtn.Text = "Stop";
+                closeBtn.Text = "Exit";
+                buttonAdd1.Text = "+1'";
+                buttonAdd5.Text = "+5'";
+                buttonAdd10.Text = "+10'";
+                buttonAdd30.Text = "+30'";
                 seconds = System.Convert.ToInt32(ctSecondsLbl.Text);
                 minutes = System.Convert.ToInt32(ctMinutesLbl.Text);
                 hours = System.Convert.ToInt32(ctHoursLbl.Text);
+                ctHoursLbl.Text = System.Convert.ToString(hours);
                 if (seconds > 59)
                 {
                     minutes++;
@@ -218,8 +243,7 @@ namespace stopwatch
                 {
                     hours++;
                     minutes -= 59;
-                }
-                ctHoursLbl.Text = System.Convert.ToString(hours);
+                }                
                 if (hours > 0 && minutes <= 0 && seconds <= 0)
                 {
                     hours--;
@@ -230,88 +254,44 @@ namespace stopwatch
                 {
                     minutes--;
                     seconds = 60;
-                }
-                if (seconds != 0 || minutes != 0 || hours != 0)
+                }                                   
+                buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = plusMinusBtn.Enabled = pauseBtn1.Enabled = CTstarted = true;
+                btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = btn0.Enabled = CTended = false;
+                time += (hours * 3600) + (minutes * 60) + seconds;
+                progressBar1.Value = progressBar1.Minimum = 0;                    
+                progressBar1.Maximum = time;
+                progressBar1.Step = 1;
+                startCountdown();                
+                if (hours == 0)
                 {
-                    btn1.Enabled = false;
-                    btn2.Enabled = false;
-                    btn3.Enabled = false;
-                    btn4.Enabled = false;
-                    btn5.Enabled = false;
-                    btn6.Enabled = false;
-                    btn7.Enabled = false;
-                    btn8.Enabled = false;
-                    btn9.Enabled = false;
-                    btn0.Enabled = false;                    
-                    buttonAdd1.Enabled = true;
-                    buttonAdd5.Enabled = true;
-                    buttonAdd10.Enabled = true;
-                    buttonAdd30.Enabled = true;
-                    plusMinusBtn.Enabled = true;
-                    pauseBtn1.Enabled = true;                    
-                    time += hours * 3600;
-                    time += minutes * 60;
-                    time += seconds;
-                    progressBar1.Value = 0;
-                    progressBar1.Minimum = 0;
-                    progressBar1.Maximum = time;
-                    progressBar1.Step = 1;
-                    startCountdown();
-                    CTended = false;
-                    if (hours == 0)
-                    {
-                        ctHoursLbl.Visible = false;
-                        ctHLabel.Visible = false;
-                    }
-                    if (beepBox.Checked)
-                    {
-                        mute = false;
-                    }
-                    else
-                    {
-                        mute = true;
-                    }
+                    ctHoursLbl.Visible = ctHLabel.Visible = false;                        
+                }
+                if (beepBox.Checked)
+                {
+                    mute = false;
                 }
                 else
                 {
-                    ctHoursLbl.Text = "00";
-                }
-                CTstarted = true;
-                closeBtn.Text = "Exit";
-                buttonAdd1.Text = "+1'";
-                buttonAdd5.Text = "+5'";
-                buttonAdd10.Text = "+10'";
-                buttonAdd30.Text = "+30'";
+                    mute = true;
+                }                              
             }
             else
-            {
+            {                
                 if (CTended)
                 {
-                    ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Black;
-                    ctHoursLbl.Text = ctSecondsLbl.Text = ctMinutesLbl.Text = "00";
-                    startBtn.Text = "Start";
-                    ctHLabel.Visible = ctHoursLbl.Visible = true;
-                    startBtn.Enabled = pauseBtn1.Enabled = false;
-                    btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = true;
+                    ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Black;                                        
                     player.Stop();
                 }
                 else
                 {
-                    CTstarted = false;
-                    startBtn.Text = "Start";                    
-                    ctHoursLbl.Text = ctSecondsLbl.Text = ctMinutesLbl.Text = "00";
-                    btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = true;
-                    ctHLabel.Visible = ctHoursLbl.Visible = true;                    
-                    progressBar1.Value = 0;
-                    time = 0;
-                    shift(0);
-                    shift(0);
-                    shift(0);
-                    shift(0);
-                    shift(0);
-                    shift(0);
-                    startBtn.Enabled = pauseBtn1.Enabled = plusMinusBtn.Enabled = btn0.Enabled = false;
+                    CTstarted = false;                                                         
+                    progressBar1.Value = time = 0;
+                    Array.Clear(timeArr, 0, timeArr.Length);
                 }
+                startBtn.Text = "Start";
+                ctHoursLbl.Text = ctSecondsLbl.Text = ctMinutesLbl.Text = "00";                
+                btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = ctHLabel.Visible = ctHoursLbl.Visible = true;
+                startBtn.Enabled = pauseBtn1.Enabled = plusMinusBtn.Enabled = btn0.Enabled = false;
             }
         }
 
@@ -365,98 +345,29 @@ namespace stopwatch
             shift(9);            
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
- 
-        }
-
         private void closeBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
+        }        
 
         private void buttonAdd1_Click(object sender, EventArgs e)
         {
-            if (!minusMinutes)
-            {
-                if (CTstarted)
-                {
-                    addTime(1);
-                }
-                else
-                {
-                    timeArr[1, 0] = 1;
-                    updateInput();
-                    startBtn.Enabled = true;
-                }
-            }
-            else
-            {
-                removeTime(1);
-            }
+            buttonChangeTime(1);
         }
 
         private void buttonAdd5_Click(object sender, EventArgs e)
         {
-            if (!minusMinutes)
-            {
-                if (CTstarted)
-                {
-                    addTime(5);
-                }
-                else
-                {
-                    timeArr[1, 0] = 5;
-                    updateInput();
-                    startBtn.Enabled = true;
-                }
-            }
-            else
-            {
-                removeTime(5);
-            }
+            buttonChangeTime(5);
         }
 
         private void buttonAdd10_Click(object sender, EventArgs e)
         {
-            if (!minusMinutes)
-            {
-                if (CTstarted)
-                {
-                    addTime(10);
-                }
-                else
-                {
-                    timeArr[1, 1] = 1;
-                    updateInput();
-                    startBtn.Enabled = true;
-                }
-            }
-            else
-            {
-                removeTime(10);
-            }
+            buttonChangeTime(10);
         }
 
         private void buttonAdd30_Click(object sender, EventArgs e)
         {
-            if (!minusMinutes)
-            {
-                if (CTstarted)
-                {
-                    addTime(30);
-                }
-                else
-                {
-                    timeArr[1, 1] = 3;
-                    updateInput();
-                    startBtn.Enabled = true;
-                }
-            }
-            else
-            {
-                removeTime(30);
-            }
+            buttonChangeTime(30);
         }
 
         private void beepBox_CheckedChanged(object sender, EventArgs e)
