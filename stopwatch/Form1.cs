@@ -205,6 +205,7 @@ namespace stopwatch
         {
             if (startBtn.Text == "Start")
             {
+                startBtn.Text = "Stop";
                 seconds = System.Convert.ToInt32(ctSecondsLbl.Text);
                 minutes = System.Convert.ToInt32(ctMinutesLbl.Text);
                 hours = System.Convert.ToInt32(ctHoursLbl.Text);
@@ -241,20 +242,13 @@ namespace stopwatch
                     btn7.Enabled = false;
                     btn8.Enabled = false;
                     btn9.Enabled = false;
-                    btn0.Enabled = false;
-                    startBtn.Enabled = false;
+                    btn0.Enabled = false;                    
                     buttonAdd1.Enabled = true;
                     buttonAdd5.Enabled = true;
                     buttonAdd10.Enabled = true;
                     buttonAdd30.Enabled = true;
                     plusMinusBtn.Enabled = true;
-                    pauseBtn1.Enabled = true;
-                    closeBtn.Text = "Stop";
-                    if (hours == 0)
-                    {
-                        ctHoursLbl.Visible = false;
-                        ctHLabel.Visible = false;
-                    }
+                    pauseBtn1.Enabled = true;                    
                     time += hours * 3600;
                     time += minutes * 60;
                     time += seconds;
@@ -264,6 +258,11 @@ namespace stopwatch
                     progressBar1.Step = 1;
                     startCountdown();
                     CTended = false;
+                    if (hours == 0)
+                    {
+                        ctHoursLbl.Visible = false;
+                        ctHLabel.Visible = false;
+                    }
                     if (beepBox.Checked)
                     {
                         mute = false;
@@ -286,13 +285,33 @@ namespace stopwatch
             }
             else
             {
-                ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Black;
-                ctHoursLbl.Text = ctSecondsLbl.Text = ctMinutesLbl.Text = "00";
-                startBtn.Text = "Start";
-                ctHLabel.Visible = ctHoursLbl.Visible = true;
-                startBtn.Enabled = pauseBtn1.Enabled = false;
-                btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = true;
-                player.Stop();  
+                if (CTended)
+                {
+                    ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Black;
+                    ctHoursLbl.Text = ctSecondsLbl.Text = ctMinutesLbl.Text = "00";
+                    startBtn.Text = "Start";
+                    ctHLabel.Visible = ctHoursLbl.Visible = true;
+                    startBtn.Enabled = pauseBtn1.Enabled = false;
+                    btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = true;
+                    player.Stop();
+                }
+                else
+                {
+                    CTstarted = false;
+                    startBtn.Text = "Start";                    
+                    ctHoursLbl.Text = ctSecondsLbl.Text = ctMinutesLbl.Text = "00";
+                    btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = true;
+                    ctHLabel.Visible = ctHoursLbl.Visible = true;                    
+                    progressBar1.Value = 0;
+                    time = 0;
+                    shift(0);
+                    shift(0);
+                    shift(0);
+                    shift(0);
+                    shift(0);
+                    shift(0);
+                    startBtn.Enabled = pauseBtn1.Enabled = plusMinusBtn.Enabled = btn0.Enabled = false;
+                }
             }
         }
 
