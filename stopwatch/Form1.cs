@@ -41,6 +41,11 @@ namespace stopwatch
 
         public void updateInput()
         {
+            if(timeArr[2, 0] == 10)
+            {
+                timeArr[2, 0] = 0;
+                timeArr[2, 1]++;
+            }
             ctSecondsLbl.Text = System.Convert.ToString(timeArr[0, 1]) + System.Convert.ToString(timeArr[0, 0]);
             ctMinutesLbl.Text = System.Convert.ToString(timeArr[1, 1]) + System.Convert.ToString(timeArr[1, 0]);
             ctHoursLbl.Text = System.Convert.ToString(timeArr[2, 1]) + System.Convert.ToString(timeArr[2, 0]);
@@ -134,13 +139,6 @@ namespace stopwatch
             }
         }
 
-        public void removeTime(int i)
-        {            
-                time -= i * 60;
-                minutes -= i;
-                progressBar1.Maximum = time;            
-        }
-
         public async void startCountdown()
         {
             do
@@ -194,6 +192,7 @@ namespace stopwatch
 
         public void buttonChangeTime(int i)
         {
+            plusMinusBtn.Enabled = true;
             if (!minusMinutes)
             {
                 if (CTstarted)
@@ -226,7 +225,91 @@ namespace stopwatch
             }
             else
             {
-                removeTime(i);
+                if (CTstarted)
+                {
+                    time -= i * 60;
+                    minutes -= i;
+                    progressBar1.Maximum = time;
+                }
+                else
+                {                    
+                    if (timeArr[2, 1] == 0 && timeArr[2, 0] == 0)
+                    {
+                        time = timeArr[1, 1] * 10 + timeArr[1, 0];
+                        if (time >= i)
+                        {
+                            time -= i;
+                        }
+                        if (time >= 10)
+                        {
+                            timeArr[1, 1] = time / 10;
+                            timeArr[1, 0] = time % 10;
+                        }
+                        else
+                        {
+                            timeArr[1, 1] = 0;
+                            timeArr[1, 0] = time;
+                        }
+                    }
+                    if (timeArr[2, 1] == 0 && timeArr[2, 0] > 0)
+                    {
+                        time = timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0];
+                        if (time >= i)
+                        {
+                            time -= i;
+                        }
+                        if (time >= 100)
+                        {
+                            timeArr[2, 0] = time / 100;                            
+                        }
+                        if (time >= 10 && time < 100)
+                        {
+                            timeArr[2, 0]--;                            
+                        }                        
+                    }
+                    if(timeArr[2, 1] > 0 )
+                    {
+                        time = timeArr[2, 1] * 1000 + timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0];
+                        if (time >= i)
+                        {
+                            time -= i;
+                        }
+                        if (time >= 1000)
+                        {
+                            timeArr[2, 1] = time / 1000;
+                            timeArr[2, 0] = (time - timeArr[2, 1] * 1000) / 100;
+                            timeArr[1, 1] = (time - timeArr[2, 1] * 1000 - timeArr[2, 0] * 100) / 10;
+                            timeArr[1, 0] = time - timeArr[2, 1] * 1000 - timeArr[2, 0] * 100 - timeArr[1, 1] * 10;
+                        }
+                        if (time >= 100 && time < 1000)
+                        {
+                            timeArr[2, 1]--;
+                            timeArr[2, 0] = 9;
+                            timeArr[1, 1] = 5;                            
+                        }
+                    }
+                    switch ((time / 10) % 10)
+                    {
+                        case 9: timeArr[1, 1] = 5;
+                            break;
+                        case 8: timeArr[1, 1] = 4;
+                            break;
+                        case 7: timeArr[1, 1] = 3;
+                            break;
+                        case 6: timeArr[1, 1] = 2;
+                            break;
+                        default: timeArr[1, 1] = (time / 10) % 10;
+                            break;
+                    }
+                    timeArr[1, 0] = time % 10;
+                    
+                    label1.Text = System.Convert.ToString(time);
+                    label2.Text = System.Convert.ToString(timeArr[2, 1]);
+                    label3.Text = System.Convert.ToString(timeArr[2, 0]);
+                    label4.Text = System.Convert.ToString(timeArr[1, 1]);
+                    label5.Text = System.Convert.ToString(timeArr[1, 0]);
+                    updateInput();
+                }
             }
         }
 
