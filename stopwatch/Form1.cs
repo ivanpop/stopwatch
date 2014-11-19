@@ -204,11 +204,21 @@ namespace stopwatch
                 {
                     if (i < 10)
                     {
-                        timeArr[1, 0] = i;
+                        timeArr[1, 0] += i;                        
                     }
                     else
                     {
-                        timeArr[1, 1] = i / 10;
+                        timeArr[1, 1] += i / 10;
+                    }
+                    if (timeArr[1, 0] > 9)
+                    {
+                        timeArr[1, 0] -= 10;
+                        timeArr[1, 1]++;
+                    }
+                    if (timeArr[1, 1] > 5)
+                    {
+                        timeArr[1, 1] -= 6;
+                        timeArr[2, 0]++;
                     }
                     updateInput();
                     startBtn.Enabled = true;
