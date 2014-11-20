@@ -41,8 +41,8 @@ namespace stopwatch
 
         public void updateMinusBtnStates()
         {
-            time = timeArr[2, 1] * 1000 + timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0];
-            if (time < 30)
+            time = timeArr[2, 1] * 100000 + timeArr[2, 0] * 10000 + timeArr[1, 1] * 1000 + timeArr[1, 0] * 100 + timeArr[0, 1] * 10 + timeArr[0, 0];
+            if (time < 3000)
             {
                 buttonAdd30.Enabled = false;
             }
@@ -50,7 +50,7 @@ namespace stopwatch
             {
                 buttonAdd30.Enabled = true;
             }
-            if (time < 10)
+            if (time < 1000)
             {
                 buttonAdd10.Enabled = false;
             }
@@ -58,7 +58,7 @@ namespace stopwatch
             {
                 buttonAdd10.Enabled = true;
             }
-            if (time < 5)
+            if (time < 500)
             {
                 buttonAdd5.Enabled = false;
             }
@@ -66,13 +66,19 @@ namespace stopwatch
             {
                 buttonAdd5.Enabled = true;
             } 
-            if (time < 1)
-            {
+            if (time < 100)
+            {                
                 buttonAdd1.Enabled = false;
+                plusMinusBtn.PerformClick();
+                plusMinusBtn.Enabled = false;                
             }
             else
             {
                 buttonAdd1.Enabled = true;
+            }
+            if (time == 0)
+            { 
+                btn0.Enabled = false;
             }
         }
 
@@ -229,12 +235,12 @@ namespace stopwatch
 
         public void buttonChangeTime(int i)
         {
-            plusMinusBtn.Enabled = true;
+            plusMinusBtn.Enabled = btn0.Enabled = true;
             if (!minusMinutes)
             {
                 if (CTstarted)
                 {
-                    addTime(1);
+                    addTime(i);
                 }
                 else
                 {
