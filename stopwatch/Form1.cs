@@ -35,8 +35,45 @@ namespace stopwatch
             timeArr[1, 0] = timeArr[0, 1];
             timeArr[0, 1] = timeArr[0, 0];
             timeArr[0, 0] = number;
-            updateInput();
+            updateInput();            
             startBtn.Enabled = btn0.Enabled = true;            
+        }
+
+        public void updateMinusBtnStates()
+        {
+            time = timeArr[2, 1] * 1000 + timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0];
+            if (time < 30)
+            {
+                buttonAdd30.Enabled = false;
+            }
+            else
+            {
+                buttonAdd30.Enabled = true;
+            }
+            if (time < 10)
+            {
+                buttonAdd10.Enabled = false;
+            }
+            else
+            {
+                buttonAdd10.Enabled = true;
+            }
+            if (time < 5)
+            {
+                buttonAdd5.Enabled = false;
+            }
+            else
+            {
+                buttonAdd5.Enabled = true;
+            } 
+            if (time < 1)
+            {
+                buttonAdd1.Enabled = false;
+            }
+            else
+            {
+                buttonAdd1.Enabled = true;
+            }
         }
 
         public void updateInput()
@@ -302,13 +339,8 @@ namespace stopwatch
                             break;
                     }
                     timeArr[1, 0] = time % 10;
-                    
-                    label1.Text = System.Convert.ToString(time);
-                    label2.Text = System.Convert.ToString(timeArr[2, 1]);
-                    label3.Text = System.Convert.ToString(timeArr[2, 0]);
-                    label4.Text = System.Convert.ToString(timeArr[1, 1]);
-                    label5.Text = System.Convert.ToString(timeArr[1, 0]);
                     updateInput();
+                    updateMinusBtnStates();
                 }
             }
         }
@@ -483,6 +515,7 @@ namespace stopwatch
                 buttonAdd5.Text = "-5'";
                 buttonAdd10.Text = "-10'";
                 buttonAdd30.Text = "-30'";
+                updateMinusBtnStates();
                 minusMinutes = true;
             }
             else
@@ -491,6 +524,7 @@ namespace stopwatch
                 buttonAdd5.Text = "+5'";
                 buttonAdd10.Text = "+10'";
                 buttonAdd30.Text = "+30'";
+                buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = true;
                 minusMinutes = false;
             }
         }
