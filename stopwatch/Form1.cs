@@ -23,7 +23,7 @@ namespace stopwatch
 
         TaskbarManager taskbar = TaskbarManager.Instance;
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
-        int hours = 0, minutes = 0, seconds = 0, time = 0, tempSeconds3, tempSeconds4;
+        public static int hours = 0, minutes = 0, seconds = 0, time = 0, tempSeconds3, tempSeconds4;
         public static int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
         bool CTstarted = false, CTended = false, minusMinutes = false, sixty2 = false;        
 
@@ -99,37 +99,7 @@ namespace stopwatch
             ctSecondsLbl.Text = System.Convert.ToString(seconds);
             ctMinutesLbl.Text = System.Convert.ToString(minutes);
             ctHoursLbl.Text = System.Convert.ToString(hours);
-        }
-
-        public void addZero()
-        {
-            if (seconds < 10)
-            {
-                ctSecondsLbl.Text = "0" + System.Convert.ToString(seconds);
-            }
-            else
-            {
-                ctSecondsLbl.Text = System.Convert.ToString(seconds);
-            }
-
-            if (minutes < 10)
-            {
-                ctMinutesLbl.Text = "0" + System.Convert.ToString(minutes);
-            }
-            else
-            {
-                ctMinutesLbl.Text = System.Convert.ToString(minutes);
-            }
-
-            if (hours < 10)
-            {
-                ctHoursLbl.Text = "0" + System.Convert.ToString(hours);
-            }
-            else
-            {
-                ctHoursLbl.Text = System.Convert.ToString(hours);
-            }
-        }        
+        }     
 
         public bool timeToSeconds()
         {
@@ -188,8 +158,9 @@ namespace stopwatch
             {
                 seconds--;
                 progressBar1.PerformStep();
-                updateTime();
-                addZero();
+                ctSecondsLbl.Text = CountdownTimer.addZero("seconds");
+                ctMinutesLbl.Text = CountdownTimer.addZero("minutes");
+                ctHoursLbl.Text = CountdownTimer.addZero("hours");
                 timeToSeconds();
                 taskbar.SetProgressValue(progressBar1.Value, time);
                 checkMinutes();                              
@@ -607,8 +578,7 @@ namespace stopwatch
                 if (minutes > 59)
                 {
                     minutes = 0;
-                    hours++;
-                    
+                    hours++;                    
                 }
                 if(hours2 > 0)
                 {
@@ -812,7 +782,7 @@ namespace stopwatch
                 bw.Dispose();                
             }
         }
-        #endregion       
-
+        
+        #endregion 
         }
 }
