@@ -13,7 +13,7 @@ using System.IO;
 namespace stopwatch
 {
     public partial class Form1 : Form
-    {
+    {        
         public Form1()
         {
             InitializeComponent();
@@ -24,8 +24,8 @@ namespace stopwatch
         TaskbarManager taskbar = TaskbarManager.Instance;
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
         int hours = 0, minutes = 0, seconds = 0, time = 0, tempSeconds3, tempSeconds4;
-        int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
-        bool mute = false, CTstarted = false, CTended = false, minusMinutes = false, sixty2 = false;        
+        public static int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
+        bool CTstarted = false, CTended = false, minusMinutes = false, sixty2 = false;        
 
         public void shift(int number)
         {
@@ -35,8 +35,8 @@ namespace stopwatch
             timeArr[1, 0] = timeArr[0, 1];
             timeArr[0, 1] = timeArr[0, 0];
             timeArr[0, 0] = number;
-            updateInput();            
-            startBtn.Enabled = btn0.Enabled = true;            
+            updateInput();
+            startBtn.Enabled = btn0.Enabled = true;
         }
 
         public void updateMinusBtnStates()
@@ -145,16 +145,16 @@ namespace stopwatch
             }
             if (hours < 0)
             {
-                if (!mute)
+                if (beepBox.Checked)
                 {
                     player.Play();
                 }
                 if (!CTended)
                 {
-                    ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Red;
+                    ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Red;
                     startBtn.Text = "Stop";
                     Array.Clear(timeArr, 0, timeArr.Length);                  
-                    startBtn.Enabled = mute = CTended = true;
+                    startBtn.Enabled = CTended = true;
                     pauseBtn1.Enabled = CTstarted = false;                    
                     tempSeconds3 = DateTime.Now.Second;
                     tempSeconds4 = tempSeconds3 + 1;
@@ -396,15 +396,7 @@ namespace stopwatch
                 if (hours == 0)
                 {
                     ctHoursLbl.Visible = ctHLabel.Visible = false;                        
-                }
-                if (beepBox.Checked)
-                {
-                    mute = false;
-                }
-                else
-                {
-                    mute = true;
-                }                              
+                }                                             
             }
             else
             {                
@@ -499,18 +491,6 @@ namespace stopwatch
         private void buttonAdd30_Click(object sender, EventArgs e)
         {
             buttonChangeTime(30);
-        }
-
-        private void beepBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (beepBox.Checked)
-            {
-                mute = false;
-            }
-            else
-            {
-                mute = true;
-            }
         }
 
         private void plusMinusBtn_Click(object sender, EventArgs e)
@@ -618,7 +598,11 @@ namespace stopwatch
                 if (seconds > 59)
                 {
                     seconds = 0;
-                    minutes++;                    
+                    minutes++;
+                    if (beepBox.Checked)
+                    {
+                        player.Play();
+                    }
                 }
                 if (minutes > 59)
                 {
@@ -829,5 +813,6 @@ namespace stopwatch
             }
         }
         #endregion       
+
         }
 }
