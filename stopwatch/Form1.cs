@@ -23,25 +23,24 @@ namespace stopwatch
 
         TaskbarManager taskbar = TaskbarManager.Instance;
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
-        public static int hours = 0, minutes = 0, seconds = 0, time = 0, tempSeconds3, tempSeconds4;
-        public static int[,] timeArr = { { 0,0 }, { 0,0 }, { 0,0 } };
+        public static int hours = 0, minutes = 0, seconds = 0, time = 0, tempSeconds3, tempSeconds4;        
         bool CTstarted = false, CTended = false, minusMinutes = false, sixty2 = false;        
 
         public void shift(int number)
         {
-            timeArr[2, 1] = timeArr[2, 0];
-            timeArr[2, 0] = timeArr[1, 1];
-            timeArr[1, 1] = timeArr[1, 0];
-            timeArr[1, 0] = timeArr[0, 1];
-            timeArr[0, 1] = timeArr[0, 0];
-            timeArr[0, 0] = number;
+            CountdownTimer.timeArr[2, 1] = CountdownTimer.timeArr[2, 0];
+            CountdownTimer.timeArr[2, 0] = CountdownTimer.timeArr[1, 1];
+            CountdownTimer.timeArr[1, 1] = CountdownTimer.timeArr[1, 0];
+            CountdownTimer.timeArr[1, 0] = CountdownTimer.timeArr[0, 1];
+            CountdownTimer.timeArr[0, 1] = CountdownTimer.timeArr[0, 0];
+            CountdownTimer.timeArr[0, 0] = number;
             updateInput();
             startBtn.Enabled = btn0.Enabled = true;
         }
 
         public void updateMinusBtnStates()
         {
-            time = timeArr[2, 1] * 100000 + timeArr[2, 0] * 10000 + timeArr[1, 1] * 1000 + timeArr[1, 0] * 100 + timeArr[0, 1] * 10 + timeArr[0, 0];
+            time = CountdownTimer.timeArr[2, 1] * 100000 + CountdownTimer.timeArr[2, 0] * 10000 + CountdownTimer.timeArr[1, 1] * 1000 + CountdownTimer.timeArr[1, 0] * 100 + CountdownTimer.timeArr[0, 1] * 10 + CountdownTimer.timeArr[0, 0];
             if (time < 3000)
             {
                 buttonAdd30.Enabled = false;
@@ -84,14 +83,14 @@ namespace stopwatch
 
         public void updateInput()
         {
-            if(timeArr[2, 0] == 10)
+            if (CountdownTimer.timeArr[2, 0] == 10)
             {
-                timeArr[2, 0] = 0;
-                timeArr[2, 1]++;
+                CountdownTimer.timeArr[2, 0] = 0;
+                CountdownTimer.timeArr[2, 1]++;
             }
-            ctSecondsLbl.Text = System.Convert.ToString(timeArr[0, 1]) + System.Convert.ToString(timeArr[0, 0]);
-            ctMinutesLbl.Text = System.Convert.ToString(timeArr[1, 1]) + System.Convert.ToString(timeArr[1, 0]);
-            ctHoursLbl.Text = System.Convert.ToString(timeArr[2, 1]) + System.Convert.ToString(timeArr[2, 0]);
+            ctSecondsLbl.Text = System.Convert.ToString(CountdownTimer.timeArr[0, 1]) + System.Convert.ToString(CountdownTimer.timeArr[0, 0]);
+            ctMinutesLbl.Text = System.Convert.ToString(CountdownTimer.timeArr[1, 1]) + System.Convert.ToString(CountdownTimer.timeArr[1, 0]);
+            ctHoursLbl.Text = System.Convert.ToString(CountdownTimer.timeArr[2, 1]) + System.Convert.ToString(CountdownTimer.timeArr[2, 0]);
         }
 
         public void updateTime()
@@ -123,7 +122,7 @@ namespace stopwatch
                 {
                     ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Red;
                     startBtn.Text = "Stop";
-                    Array.Clear(timeArr, 0, timeArr.Length);                  
+                    Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);                  
                     startBtn.Enabled = CTended = true;
                     pauseBtn1.Enabled = CTstarted = false;                    
                     tempSeconds3 = DateTime.Now.Second;
@@ -217,21 +216,21 @@ namespace stopwatch
                 {
                     if (i < 10)
                     {
-                        timeArr[1, 0] += i;                        
+                        CountdownTimer.timeArr[1, 0] += i;                        
                     }
                     else
                     {
-                        timeArr[1, 1] += i / 10;
+                        CountdownTimer.timeArr[1, 1] += i / 10;
                     }
-                    if (timeArr[1, 0] > 9)
+                    if (CountdownTimer.timeArr[1, 0] > 9)
                     {
-                        timeArr[1, 0] -= 10;
-                        timeArr[1, 1]++;
+                        CountdownTimer.timeArr[1, 0] -= 10;
+                        CountdownTimer.timeArr[1, 1]++;
                     }
-                    if (timeArr[1, 1] > 5)
+                    if (CountdownTimer.timeArr[1, 1] > 5)
                     {
-                        timeArr[1, 1] -= 6;
-                        timeArr[2, 0]++;
+                        CountdownTimer.timeArr[1, 1] -= 6;
+                        CountdownTimer.timeArr[2, 0]++;
                     }
                     updateInput();
                     startBtn.Enabled = true;
@@ -246,76 +245,76 @@ namespace stopwatch
                     progressBar1.Maximum = time;
                 }
                 else
-                {                    
-                    if (timeArr[2, 1] == 0 && timeArr[2, 0] == 0)
+                {
+                    if (CountdownTimer.timeArr[2, 1] == 0 && CountdownTimer.timeArr[2, 0] == 0)
                     {
-                        time = timeArr[1, 1] * 10 + timeArr[1, 0];
+                        time = CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
                         if (time >= i)
                         {
                             time -= i;
                         }
                         if (time >= 10)
                         {
-                            timeArr[1, 1] = time / 10;
-                            timeArr[1, 0] = time % 10;
+                            CountdownTimer.timeArr[1, 1] = time / 10;
+                            CountdownTimer.timeArr[1, 0] = time % 10;
                         }
                         else
                         {
-                            timeArr[1, 1] = 0;
-                            timeArr[1, 0] = time;
+                            CountdownTimer.timeArr[1, 1] = 0;
+                            CountdownTimer.timeArr[1, 0] = time;
                         }
                     }
-                    if (timeArr[2, 1] == 0 && timeArr[2, 0] > 0)
+                    if (CountdownTimer.timeArr[2, 1] == 0 && CountdownTimer.timeArr[2, 0] > 0)
                     {
-                        time = timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0];
+                        time = CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
                         if (time >= i)
                         {
                             time -= i;
                         }
                         if (time >= 100)
                         {
-                            timeArr[2, 0] = time / 100;                            
+                            CountdownTimer.timeArr[2, 0] = time / 100;                            
                         }
                         if (time >= 10 && time < 100)
                         {
-                            timeArr[2, 0]--;                            
+                            CountdownTimer.timeArr[2, 0]--;                            
                         }                        
                     }
-                    if(timeArr[2, 1] > 0 )
+                    if (CountdownTimer.timeArr[2, 1] > 0)
                     {
-                        time = timeArr[2, 1] * 1000 + timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0];
+                        time = CountdownTimer.timeArr[2, 1] * 1000 + CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
                         if (time >= i)
                         {
                             time -= i;
                         }
                         if (time >= 1000)
                         {
-                            timeArr[2, 1] = time / 1000;
-                            timeArr[2, 0] = (time - timeArr[2, 1] * 1000) / 100;
-                            timeArr[1, 1] = (time - timeArr[2, 1] * 1000 - timeArr[2, 0] * 100) / 10;
-                            timeArr[1, 0] = time - timeArr[2, 1] * 1000 - timeArr[2, 0] * 100 - timeArr[1, 1] * 10;
+                            CountdownTimer.timeArr[2, 1] = time / 1000;
+                            CountdownTimer.timeArr[2, 0] = (time - CountdownTimer.timeArr[2, 1] * 1000) / 100;
+                            CountdownTimer.timeArr[1, 1] = (time - CountdownTimer.timeArr[2, 1] * 1000 - CountdownTimer.timeArr[2, 0] * 100) / 10;
+                            CountdownTimer.timeArr[1, 0] = time - CountdownTimer.timeArr[2, 1] * 1000 - CountdownTimer.timeArr[2, 0] * 100 - CountdownTimer.timeArr[1, 1] * 10;
                         }
                         if (time >= 100 && time < 1000)
                         {
-                            timeArr[2, 1]--;
-                            timeArr[2, 0] = 9;
-                            timeArr[1, 1] = 5;                            
+                            CountdownTimer.timeArr[2, 1]--;
+                            CountdownTimer.timeArr[2, 0] = 9;
+                            CountdownTimer.timeArr[1, 1] = 5;                            
                         }
                     }
                     switch ((time / 10) % 10)
                     {
-                        case 9: timeArr[1, 1] = 5;
+                        case 9: CountdownTimer.timeArr[1, 1] = 5;
                             break;
-                        case 8: timeArr[1, 1] = 4;
+                        case 8: CountdownTimer.timeArr[1, 1] = 4;
                             break;
-                        case 7: timeArr[1, 1] = 3;
+                        case 7: CountdownTimer.timeArr[1, 1] = 3;
                             break;
-                        case 6: timeArr[1, 1] = 2;
+                        case 6: CountdownTimer.timeArr[1, 1] = 2;
                             break;
-                        default: timeArr[1, 1] = (time / 10) % 10;
+                        default: CountdownTimer.timeArr[1, 1] = (time / 10) % 10;
                             break;
                     }
-                    timeArr[1, 0] = time % 10;
+                    CountdownTimer.timeArr[1, 0] = time % 10;
                     updateInput();
                     updateMinusBtnStates();
                 }
@@ -380,7 +379,7 @@ namespace stopwatch
                 {
                     CTstarted = false;                                                         
                     progressBar1.Value = time = 0;
-                    Array.Clear(timeArr, 0, timeArr.Length);
+                    Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
                 }
                 startBtn.Text = "Start";
                 ctHoursLbl.Text = ctSecondsLbl.Text = ctMinutesLbl.Text = "00";                

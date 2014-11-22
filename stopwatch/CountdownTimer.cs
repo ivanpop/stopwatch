@@ -8,6 +8,8 @@ namespace stopwatch
 {
     class CountdownTimer
     {
+        public static int[,] timeArr = { { 0, 0 }, { 0, 0 }, { 0, 0 } };
+
         public static string addZero(string time)
         {
             if (time == "seconds")
@@ -45,5 +47,6 @@ namespace stopwatch
             }                       
             return "";
         }
+                
     }
 }
