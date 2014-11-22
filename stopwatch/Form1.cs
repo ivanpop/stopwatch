@@ -34,7 +34,9 @@ namespace stopwatch
             CountdownTimer.timeArr[1, 0] = CountdownTimer.timeArr[0, 1];
             CountdownTimer.timeArr[0, 1] = CountdownTimer.timeArr[0, 0];
             CountdownTimer.timeArr[0, 0] = number;
-            updateInput();
+            ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
+            ctMinutesLbl.Text = CountdownTimer.updateInput("minutes");
+            ctHoursLbl.Text = CountdownTimer.updateInput();
             startBtn.Enabled = btn0.Enabled = true;
         }
 
@@ -80,19 +82,7 @@ namespace stopwatch
                 btn0.Enabled = false;
             }
         }
-
-        public void updateInput()
-        {
-            if (CountdownTimer.timeArr[2, 0] == 10)
-            {
-                CountdownTimer.timeArr[2, 0] = 0;
-                CountdownTimer.timeArr[2, 1]++;
-            }
-            ctSecondsLbl.Text = System.Convert.ToString(CountdownTimer.timeArr[0, 1]) + System.Convert.ToString(CountdownTimer.timeArr[0, 0]);
-            ctMinutesLbl.Text = System.Convert.ToString(CountdownTimer.timeArr[1, 1]) + System.Convert.ToString(CountdownTimer.timeArr[1, 0]);
-            ctHoursLbl.Text = System.Convert.ToString(CountdownTimer.timeArr[2, 1]) + System.Convert.ToString(CountdownTimer.timeArr[2, 0]);
-        }
-
+        
         public void updateTime()
         {
             ctSecondsLbl.Text = System.Convert.ToString(seconds);
@@ -159,7 +149,7 @@ namespace stopwatch
                 progressBar1.PerformStep();
                 ctSecondsLbl.Text = CountdownTimer.addZero("seconds");
                 ctMinutesLbl.Text = CountdownTimer.addZero("minutes");
-                ctHoursLbl.Text = CountdownTimer.addZero("hours");
+                ctHoursLbl.Text = CountdownTimer.addZero();
                 timeToSeconds();
                 taskbar.SetProgressValue(progressBar1.Value, time);
                 checkMinutes();                              
@@ -232,7 +222,9 @@ namespace stopwatch
                         CountdownTimer.timeArr[1, 1] -= 6;
                         CountdownTimer.timeArr[2, 0]++;
                     }
-                    updateInput();
+                    ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
+                    ctMinutesLbl.Text =  CountdownTimer.updateInput("minutes");
+                    ctHoursLbl.Text = CountdownTimer.updateInput();
                     startBtn.Enabled = true;
                 }
             }
@@ -315,7 +307,9 @@ namespace stopwatch
                             break;
                     }
                     CountdownTimer.timeArr[1, 0] = time % 10;
-                    updateInput();
+                    ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
+                    ctMinutesLbl.Text = CountdownTimer.updateInput("minutes");
+                    ctHoursLbl.Text = CountdownTimer.updateInput();
                     updateMinusBtnStates();
                 }
             }

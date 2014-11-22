@@ -10,7 +10,7 @@ namespace stopwatch
     {
         public static int[,] timeArr = { { 0, 0 }, { 0, 0 }, { 0, 0 } };
 
-        public static string addZero(string time)
+        public static string addZero(string time = "hours")
         {
             if (time == "seconds")
             {
@@ -23,7 +23,7 @@ namespace stopwatch
                     return System.Convert.ToString(Form1.seconds);
                 }
             }
-            if (time == "minutes")
+            else if (time == "minutes")
             {
                 if (Form1.minutes < 10)
                 {
@@ -34,7 +34,7 @@ namespace stopwatch
                     return System.Convert.ToString(Form1.minutes);
                 }
             } 
-            if (time == "hours")
+            else
             {
                 if (Form1.hours < 10)
                 {
@@ -44,9 +44,28 @@ namespace stopwatch
                 {
                     return System.Convert.ToString(Form1.hours);
                 }
-            }                       
-            return "";
+            }
         }
                 
+        public static string updateInput(string time = "hours")
+        {
+            if (timeArr[2, 0] == 10)
+            {
+                timeArr[2, 0] = 0;
+                timeArr[2, 1]++;
+            }
+            if(time == "seconds")
+            {
+                return System.Convert.ToString(timeArr[0, 1]) + System.Convert.ToString(timeArr[0, 0]);
+            }
+            else if(time == "minutes")
+            {
+                return System.Convert.ToString(timeArr[1, 1]) + System.Convert.ToString(timeArr[1, 0]);
+            }
+            else
+            {
+               return System.Convert.ToString(timeArr[2, 1]) + System.Convert.ToString(timeArr[2, 0]);
+            }            
+        }        
     }
 }
