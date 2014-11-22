@@ -28,12 +28,7 @@ namespace stopwatch
 
         public void shift(int number)
         {
-            CountdownTimer.timeArr[2, 1] = CountdownTimer.timeArr[2, 0];
-            CountdownTimer.timeArr[2, 0] = CountdownTimer.timeArr[1, 1];
-            CountdownTimer.timeArr[1, 1] = CountdownTimer.timeArr[1, 0];
-            CountdownTimer.timeArr[1, 0] = CountdownTimer.timeArr[0, 1];
-            CountdownTimer.timeArr[0, 1] = CountdownTimer.timeArr[0, 0];
-            CountdownTimer.timeArr[0, 0] = number;
+            CountdownTimer.shift(number);
             ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
             ctMinutesLbl.Text = CountdownTimer.updateInput("minutes");
             ctHoursLbl.Text = CountdownTimer.updateInput();

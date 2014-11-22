@@ -67,5 +67,15 @@ namespace stopwatch
                return System.Convert.ToString(timeArr[2, 1]) + System.Convert.ToString(timeArr[2, 0]);
             }            
         }        
+
+        public static void shift(int number)
+        {
+            timeArr[2, 1] = timeArr[2, 0];
+            timeArr[2, 0] = timeArr[1, 1];
+            timeArr[1, 1] = timeArr[1, 0];
+            timeArr[1, 0] = timeArr[0, 1];
+            timeArr[0, 1] = timeArr[0, 0];
+            timeArr[0, 0] = number;
+        }
     }
 }
