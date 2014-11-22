@@ -23,7 +23,8 @@ namespace stopwatch
 
         TaskbarManager taskbar = TaskbarManager.Instance;
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
-        public static int hours = 0, minutes = 0, seconds = 0, time = 0, tempSeconds3, tempSeconds4;        
+        int tempSeconds3, tempSeconds4;
+       
         bool CTstarted = false, CTended = false, minusMinutes = false, sixty2 = false;        
 
         public void shift(int number)
@@ -37,8 +38,8 @@ namespace stopwatch
 
         public void updateMinusBtnStates()
         {
-            time = CountdownTimer.timeArr[2, 1] * 100000 + CountdownTimer.timeArr[2, 0] * 10000 + CountdownTimer.timeArr[1, 1] * 1000 + CountdownTimer.timeArr[1, 0] * 100 + CountdownTimer.timeArr[0, 1] * 10 + CountdownTimer.timeArr[0, 0];
-            if (time < 3000)
+            CountdownTimer.time = CountdownTimer.timeArr[2, 1] * 100000 + CountdownTimer.timeArr[2, 0] * 10000 + CountdownTimer.timeArr[1, 1] * 1000 + CountdownTimer.timeArr[1, 0] * 100 + CountdownTimer.timeArr[0, 1] * 10 + CountdownTimer.timeArr[0, 0];
+            if (CountdownTimer.time < 3000)
             {
                 buttonAdd30.Enabled = false;
             }
@@ -46,7 +47,7 @@ namespace stopwatch
             {
                 buttonAdd30.Enabled = true;
             }
-            if (time < 1000)
+            if (CountdownTimer.time < 1000)
             {
                 buttonAdd10.Enabled = false;
             }
@@ -54,15 +55,15 @@ namespace stopwatch
             {
                 buttonAdd10.Enabled = true;
             }
-            if (time < 500)
+            if (CountdownTimer.time < 500)
             {
                 buttonAdd5.Enabled = false;
             }
             else
             {
                 buttonAdd5.Enabled = true;
-            } 
-            if (time < 100)
+            }
+            if (CountdownTimer.time < 100)
             {                
                 buttonAdd1.Enabled = false;
                 plusMinusBtn.PerformClick();
@@ -72,7 +73,7 @@ namespace stopwatch
             {
                 buttonAdd1.Enabled = true;
             }
-            if (time == 0)
+            if (CountdownTimer.time == 0)
             { 
                 btn0.Enabled = false;
             }
@@ -80,24 +81,24 @@ namespace stopwatch
         
         public void updateTime()
         {
-            ctSecondsLbl.Text = System.Convert.ToString(seconds);
-            ctMinutesLbl.Text = System.Convert.ToString(minutes);
-            ctHoursLbl.Text = System.Convert.ToString(hours);
+            ctSecondsLbl.Text = System.Convert.ToString(CountdownTimer.seconds);
+            ctMinutesLbl.Text = System.Convert.ToString(CountdownTimer.minutes);
+            ctHoursLbl.Text = System.Convert.ToString(CountdownTimer.hours);
         }     
 
         public bool timeToSeconds()
         {
-            if (seconds == 0)
+            if (CountdownTimer.seconds == 0)
             {
-                seconds = 60;
-                minutes--;
-                if (minutes < 0)
+                CountdownTimer.seconds = 60;
+                CountdownTimer.minutes--;
+                if (CountdownTimer.minutes < 0)
                 {
-                    hours--;
-                    minutes = 59;                   
+                    CountdownTimer.hours--;
+                    CountdownTimer.minutes = 59;                   
                 }
             }
-            if (hours < 0)
+            if (CountdownTimer.hours < 0)
             {
                 if (beepBox.Checked)
                 {
@@ -112,8 +113,8 @@ namespace stopwatch
                     pauseBtn1.Enabled = CTstarted = false;                    
                     tempSeconds3 = DateTime.Now.Second;
                     tempSeconds4 = tempSeconds3 + 1;
-                    timeFromEnd();                    
-                    time = 0;
+                    timeFromEnd();
+                    CountdownTimer.time = 0;
                 }
                 return false;                
             }
@@ -124,14 +125,14 @@ namespace stopwatch
         {
             if (timeToSeconds())
             {
-                time += i * 60;
-                minutes += i;
-                progressBar1.Maximum = time;
+                CountdownTimer.time += i * 60;
+                CountdownTimer.minutes += i;
+                progressBar1.Maximum = CountdownTimer.time;
             }
-            if (minutes > 59)
+            if (CountdownTimer.minutes > 59)
             {
-                minutes -= 60;
-                hours++;
+                CountdownTimer.minutes -= 60;
+                CountdownTimer.hours++;
                 ctHoursLbl.Visible = ctHLabel.Visible = true;                
             }
         }
@@ -140,13 +141,13 @@ namespace stopwatch
         {
             do
             {
-                seconds--;
+                CountdownTimer.seconds--;
                 progressBar1.PerformStep();
                 ctSecondsLbl.Text = CountdownTimer.addZero("seconds");
                 ctMinutesLbl.Text = CountdownTimer.addZero("minutes");
                 ctHoursLbl.Text = CountdownTimer.addZero();
                 timeToSeconds();
-                taskbar.SetProgressValue(progressBar1.Value, time);
+                taskbar.SetProgressValue(progressBar1.Value, CountdownTimer.time);
                 checkMinutes();                              
                 await Task.Delay(1000);                
             } while (CTstarted);
@@ -154,7 +155,7 @@ namespace stopwatch
 
         public void checkMinutes()
         {
-            if (minutes < 1 && hours == 0 && minusMinutes)
+            if (CountdownTimer.minutes < 1 && CountdownTimer.hours == 0 && minusMinutes)
             {
                 buttonAdd1.Enabled = false;
             }
@@ -162,7 +163,7 @@ namespace stopwatch
             {
                 buttonAdd1.Enabled = true;
             }
-            if (minutes < 5 && hours == 0 && minusMinutes)
+            if (CountdownTimer.minutes < 5 && CountdownTimer.hours == 0 && minusMinutes)
             {
                 buttonAdd5.Enabled = false;
             }
@@ -170,7 +171,7 @@ namespace stopwatch
             {
                 buttonAdd5.Enabled = true;
             }
-            if (minutes < 10 && hours == 0 && minusMinutes)
+            if (CountdownTimer.minutes < 10 && CountdownTimer.hours == 0 && minusMinutes)
             {
                 buttonAdd10.Enabled = false;
             }
@@ -178,7 +179,7 @@ namespace stopwatch
             {
                 buttonAdd10.Enabled = true;
             }
-            if (minutes < 30 && hours == 0 && minusMinutes)
+            if (CountdownTimer.minutes < 30 && CountdownTimer.hours == 0 && minusMinutes)
             {
                 buttonAdd30.Enabled = false;
             }
@@ -227,68 +228,68 @@ namespace stopwatch
             {
                 if (CTstarted)
                 {
-                    time -= i * 60;
-                    minutes -= i;
-                    progressBar1.Maximum = time;
+                    CountdownTimer.time -= i * 60;
+                    CountdownTimer.minutes -= i;
+                    progressBar1.Maximum = CountdownTimer.time;
                 }
                 else
                 {
                     if (CountdownTimer.timeArr[2, 1] == 0 && CountdownTimer.timeArr[2, 0] == 0)
                     {
-                        time = CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
-                        if (time >= i)
+                        CountdownTimer.time = CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                        if (CountdownTimer.time >= i)
                         {
-                            time -= i;
+                            CountdownTimer.time -= i;
                         }
-                        if (time >= 10)
+                        if (CountdownTimer.time >= 10)
                         {
-                            CountdownTimer.timeArr[1, 1] = time / 10;
-                            CountdownTimer.timeArr[1, 0] = time % 10;
+                            CountdownTimer.timeArr[1, 1] = CountdownTimer.time / 10;
+                            CountdownTimer.timeArr[1, 0] = CountdownTimer.time % 10;
                         }
                         else
                         {
                             CountdownTimer.timeArr[1, 1] = 0;
-                            CountdownTimer.timeArr[1, 0] = time;
+                            CountdownTimer.timeArr[1, 0] = CountdownTimer.time;
                         }
                     }
                     if (CountdownTimer.timeArr[2, 1] == 0 && CountdownTimer.timeArr[2, 0] > 0)
                     {
-                        time = CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
-                        if (time >= i)
+                        CountdownTimer.time = CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                        if (CountdownTimer.time >= i)
                         {
-                            time -= i;
+                            CountdownTimer.time -= i;
                         }
-                        if (time >= 100)
+                        if (CountdownTimer.time >= 100)
                         {
-                            CountdownTimer.timeArr[2, 0] = time / 100;                            
+                            CountdownTimer.timeArr[2, 0] = CountdownTimer.time / 100;                            
                         }
-                        if (time >= 10 && time < 100)
+                        if (CountdownTimer.time >= 10 && CountdownTimer.time < 100)
                         {
                             CountdownTimer.timeArr[2, 0]--;                            
                         }                        
                     }
                     if (CountdownTimer.timeArr[2, 1] > 0)
                     {
-                        time = CountdownTimer.timeArr[2, 1] * 1000 + CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
-                        if (time >= i)
+                        CountdownTimer.time = CountdownTimer.timeArr[2, 1] * 1000 + CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                        if (CountdownTimer.time >= i)
                         {
-                            time -= i;
+                            CountdownTimer.time -= i;
                         }
-                        if (time >= 1000)
+                        if (CountdownTimer.time >= 1000)
                         {
-                            CountdownTimer.timeArr[2, 1] = time / 1000;
-                            CountdownTimer.timeArr[2, 0] = (time - CountdownTimer.timeArr[2, 1] * 1000) / 100;
-                            CountdownTimer.timeArr[1, 1] = (time - CountdownTimer.timeArr[2, 1] * 1000 - CountdownTimer.timeArr[2, 0] * 100) / 10;
-                            CountdownTimer.timeArr[1, 0] = time - CountdownTimer.timeArr[2, 1] * 1000 - CountdownTimer.timeArr[2, 0] * 100 - CountdownTimer.timeArr[1, 1] * 10;
+                            CountdownTimer.timeArr[2, 1] = CountdownTimer.time / 1000;
+                            CountdownTimer.timeArr[2, 0] = (CountdownTimer.time - CountdownTimer.timeArr[2, 1] * 1000) / 100;
+                            CountdownTimer.timeArr[1, 1] = (CountdownTimer.time - CountdownTimer.timeArr[2, 1] * 1000 - CountdownTimer.timeArr[2, 0] * 100) / 10;
+                            CountdownTimer.timeArr[1, 0] = CountdownTimer.time - CountdownTimer.timeArr[2, 1] * 1000 - CountdownTimer.timeArr[2, 0] * 100 - CountdownTimer.timeArr[1, 1] * 10;
                         }
-                        if (time >= 100 && time < 1000)
+                        if (CountdownTimer.time >= 100 && CountdownTimer.time < 1000)
                         {
                             CountdownTimer.timeArr[2, 1]--;
                             CountdownTimer.timeArr[2, 0] = 9;
                             CountdownTimer.timeArr[1, 1] = 5;                            
                         }
                     }
-                    switch ((time / 10) % 10)
+                    switch ((CountdownTimer.time / 10) % 10)
                     {
                         case 9: CountdownTimer.timeArr[1, 1] = 5;
                             break;
@@ -298,10 +299,10 @@ namespace stopwatch
                             break;
                         case 6: CountdownTimer.timeArr[1, 1] = 2;
                             break;
-                        default: CountdownTimer.timeArr[1, 1] = (time / 10) % 10;
+                        default: CountdownTimer.timeArr[1, 1] = (CountdownTimer.time / 10) % 10;
                             break;
                     }
-                    CountdownTimer.timeArr[1, 0] = time % 10;
+                    CountdownTimer.timeArr[1, 0] = CountdownTimer.time % 10;
                     ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
                     ctMinutesLbl.Text = CountdownTimer.updateInput("minutes");
                     ctHoursLbl.Text = CountdownTimer.updateInput();
@@ -320,39 +321,39 @@ namespace stopwatch
                 buttonAdd5.Text = "+5'";
                 buttonAdd10.Text = "+10'";
                 buttonAdd30.Text = "+30'";
-                seconds = System.Convert.ToInt32(ctSecondsLbl.Text);
-                minutes = System.Convert.ToInt32(ctMinutesLbl.Text);
-                hours = System.Convert.ToInt32(ctHoursLbl.Text);
-                ctHoursLbl.Text = System.Convert.ToString(hours);
-                if (seconds > 59)
+                CountdownTimer.seconds = System.Convert.ToInt32(ctSecondsLbl.Text);
+                CountdownTimer.minutes = System.Convert.ToInt32(ctMinutesLbl.Text);
+                CountdownTimer.hours = System.Convert.ToInt32(ctHoursLbl.Text);
+                ctHoursLbl.Text = System.Convert.ToString(CountdownTimer.hours);
+                if (CountdownTimer.seconds > 59)
                 {
-                    minutes++;
-                    seconds -= 59;
+                    CountdownTimer.minutes++;
+                    CountdownTimer.seconds -= 59;
                 }
-                if (minutes > 59)
+                if (CountdownTimer.minutes > 59)
                 {
-                    hours++;
-                    minutes -= 59;
-                }                
-                if (hours > 0 && minutes <= 0 && seconds <= 0)
-                {
-                    hours--;
-                    minutes = 59;
-                    seconds = 60;
+                    CountdownTimer.hours++;
+                    CountdownTimer.minutes -= 59;
                 }
-                if (minutes > 0 && seconds <= 0)
+                if (CountdownTimer.hours > 0 && CountdownTimer.minutes <= 0 && CountdownTimer.seconds <= 0)
                 {
-                    minutes--;
-                    seconds = 60;
+                    CountdownTimer.hours--;
+                    CountdownTimer.minutes = 59;
+                    CountdownTimer.seconds = 60;
+                }
+                if (CountdownTimer.minutes > 0 && CountdownTimer.seconds <= 0)
+                {
+                    CountdownTimer.minutes--;
+                    CountdownTimer.seconds = 60;
                 }                                   
                 buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = plusMinusBtn.Enabled = pauseBtn1.Enabled = CTstarted = true;
                 btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = btn0.Enabled = CTended = false;
-                time += (hours * 3600) + (minutes * 60) + seconds;
-                progressBar1.Value = progressBar1.Minimum = 0;                    
-                progressBar1.Maximum = time;
+                CountdownTimer.time += (CountdownTimer.hours * 3600) + (CountdownTimer.minutes * 60) + CountdownTimer.seconds;
+                progressBar1.Value = progressBar1.Minimum = 0;
+                progressBar1.Maximum = CountdownTimer.time;
                 progressBar1.Step = 1;
-                startCountdown();                
-                if (hours == 0)
+                startCountdown();
+                if (CountdownTimer.hours == 0)
                 {
                     ctHoursLbl.Visible = ctHLabel.Visible = false;                        
                 }                                             
@@ -366,8 +367,8 @@ namespace stopwatch
                 }
                 else
                 {
-                    CTstarted = false;                                                         
-                    progressBar1.Value = time = 0;
+                    CTstarted = false;
+                    progressBar1.Value = CountdownTimer.time = 0;
                     Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
                 }
                 startBtn.Text = "Start";
@@ -541,60 +542,60 @@ namespace stopwatch
                 tempSeconds3 = DateTime.Now.Second;
                 if (tempSeconds3 == tempSeconds4)
                 {
-                    seconds++;                    
+                    CountdownTimer.seconds++;                    
                     tempSeconds4 = tempSeconds3 + 1;
                 }
                 if (tempSeconds3 == 0 && !sixty2)
                 {
-                    seconds++;
+                    CountdownTimer.seconds++;
                     tempSeconds4 = 1;
                     sixty2 = true;
                 }
-                if (seconds == 10)
+                if (CountdownTimer.seconds == 10)
                 {
                     sixty2 = false;
                 }
-                if (seconds > 59)
+                if (CountdownTimer.seconds > 59)
                 {
-                    seconds = 0;
-                    minutes++;
+                    CountdownTimer.seconds = 0;
+                    CountdownTimer.minutes++;
                     if (beepBox.Checked)
                     {
                         player.Play();
                     }
                 }
-                if (minutes > 59)
+                if (CountdownTimer.minutes > 59)
                 {
-                    minutes = 0;
-                    hours++;                    
+                    CountdownTimer.minutes = 0;
+                    CountdownTimer.hours++;                    
                 }
                 if(hours2 > 0)
                 {
                     ctHoursLbl.Enabled = ctHLabel.Enabled = true;
                 }
-                if (seconds < 10)
+                if (CountdownTimer.seconds < 10)
                 {
-                    ctSecondsLbl.Text = "0" + System.Convert.ToString(seconds);
+                    ctSecondsLbl.Text = "0" + System.Convert.ToString(CountdownTimer.seconds);
                 }
                 else
                 {
-                    ctSecondsLbl.Text = System.Convert.ToString(seconds);
+                    ctSecondsLbl.Text = System.Convert.ToString(CountdownTimer.seconds);
                 }
-                if (minutes < 10)
+                if (CountdownTimer.minutes < 10)
                 {
-                    ctMinutesLbl.Text = "0" + System.Convert.ToString(minutes);
+                    ctMinutesLbl.Text = "0" + System.Convert.ToString(CountdownTimer.minutes);
                 }
                 else
                 {
-                    ctMinutesLbl.Text = System.Convert.ToString(minutes);
+                    ctMinutesLbl.Text = System.Convert.ToString(CountdownTimer.minutes);
                 }
                 if (hours2 < 10)
                 {
-                    ctHoursLbl.Text = "0" + System.Convert.ToString(hours);
+                    ctHoursLbl.Text = "0" + System.Convert.ToString(CountdownTimer.hours);
                 }
                 else
                 {
-                    ctHoursLbl.Text = System.Convert.ToString(hours);
+                    ctHoursLbl.Text = System.Convert.ToString(CountdownTimer.hours);
                 }
                 await Task.Delay(1000);
             } while (startBtn.Text == "Stop");

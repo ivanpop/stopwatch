@@ -8,41 +8,42 @@ namespace stopwatch
 {
     class CountdownTimer
     {
+        public static int hours = 0, minutes = 0, seconds = 0, time = 0;
         public static int[,] timeArr = { { 0, 0 }, { 0, 0 }, { 0, 0 } };
 
         public static string addZero(string time = "hours")
         {
             if (time == "seconds")
             {
-                if (Form1.seconds < 10)
+                if (seconds < 10)
                 {
-                    return "0" + System.Convert.ToString(Form1.seconds);
+                    return "0" + System.Convert.ToString(seconds);
                 }
                 else
                 {
-                    return System.Convert.ToString(Form1.seconds);
+                    return System.Convert.ToString(seconds);
                 }
             }
             else if (time == "minutes")
             {
-                if (Form1.minutes < 10)
+                if (minutes < 10)
                 {
-                    return "0" + System.Convert.ToString(Form1.minutes);
+                    return "0" + System.Convert.ToString(minutes);
                 }
                 else
                 {
-                    return System.Convert.ToString(Form1.minutes);
+                    return System.Convert.ToString(minutes);
                 }
             } 
             else
             {
-                if (Form1.hours < 10)
+                if (hours < 10)
                 {
-                    return "0" + System.Convert.ToString(Form1.hours);
+                    return "0" + System.Convert.ToString(hours);
                 }
                 else
                 {
-                    return System.Convert.ToString(Form1.hours);
+                    return System.Convert.ToString(hours);
                 }
             }
         }
