@@ -83,5 +83,20 @@ namespace stopwatch
             timeArr[0, 1] = timeArr[0, 0];
             timeArr[0, 0] = number;
         }
+
+        public static void setTime(int precision = 0)
+        {
+            switch (precision)
+            {
+                case 2: time = CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                    break;
+                case 3: time = CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                    break;
+                case 4: time = CountdownTimer.timeArr[2, 1] * 1000 + CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                    break;
+                case 6: time = CountdownTimer.timeArr[2, 1] * 100000 + CountdownTimer.timeArr[2, 0] * 10000 + CountdownTimer.timeArr[1, 1] * 1000 + CountdownTimer.timeArr[1, 0] * 100 + CountdownTimer.timeArr[0, 1] * 10 + CountdownTimer.timeArr[0, 0];
+                    break;
+            }            
+        }
     }
 }

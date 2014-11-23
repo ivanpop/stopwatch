@@ -31,7 +31,7 @@ namespace stopwatch
 
         public void updateMinusBtnStates()
         {
-            CountdownTimer.time = CountdownTimer.timeArr[2, 1] * 100000 + CountdownTimer.timeArr[2, 0] * 10000 + CountdownTimer.timeArr[1, 1] * 1000 + CountdownTimer.timeArr[1, 0] * 100 + CountdownTimer.timeArr[0, 1] * 10 + CountdownTimer.timeArr[0, 0];
+            CountdownTimer.setTime(6);
             if (CountdownTimer.time < 3000)
             {
                 buttonAdd30.Enabled = false;
@@ -229,7 +229,7 @@ namespace stopwatch
                 {
                     if (CountdownTimer.timeArr[2, 1] == 0 && CountdownTimer.timeArr[2, 0] == 0)
                     {
-                        CountdownTimer.time = CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                        CountdownTimer.setTime(2);
                         if (CountdownTimer.time >= i)
                         {
                             CountdownTimer.time -= i;
@@ -247,7 +247,7 @@ namespace stopwatch
                     }
                     if (CountdownTimer.timeArr[2, 1] == 0 && CountdownTimer.timeArr[2, 0] > 0)
                     {
-                        CountdownTimer.time = CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                        CountdownTimer.setTime(3);
                         if (CountdownTimer.time >= i)
                         {
                             CountdownTimer.time -= i;
@@ -263,7 +263,7 @@ namespace stopwatch
                     }
                     if (CountdownTimer.timeArr[2, 1] > 0)
                     {
-                        CountdownTimer.time = CountdownTimer.timeArr[2, 1] * 1000 + CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                        CountdownTimer.setTime(4);
                         if (CountdownTimer.time >= i)
                         {
                             CountdownTimer.time -= i;
