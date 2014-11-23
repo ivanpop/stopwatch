@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.WindowsAPICodePack.Taskbar;
 using System.IO;
 
 namespace stopwatch
@@ -20,12 +19,6 @@ namespace stopwatch
         }
 
         #region Countdown Timer
-
-        TaskbarManager taskbar = TaskbarManager.Instance;
-        System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
-        int tempSeconds3, tempSeconds4;
-       
-        bool CTstarted = false, CTended = false, minusMinutes = false, sixty2 = false;        
 
         public void shift(int number)
         {
@@ -102,17 +95,17 @@ namespace stopwatch
             {
                 if (beepBox.Checked)
                 {
-                    player.Play();
+                    CountdownTimer.player.Play();                    
                 }
-                if (!CTended)
+                if (!CountdownTimer.CTended)
                 {
                     ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Red;
                     startBtn.Text = "Stop";
-                    Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);                  
-                    startBtn.Enabled = CTended = true;
-                    pauseBtn1.Enabled = CTstarted = false;                    
-                    tempSeconds3 = DateTime.Now.Second;
-                    tempSeconds4 = tempSeconds3 + 1;
+                    Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
+                    startBtn.Enabled = CountdownTimer.CTended = true;
+                    pauseBtn1.Enabled = CountdownTimer.CTstarted = false;                    
+                    CountdownTimer.tempSeconds1 = DateTime.Now.Second;
+                    CountdownTimer.tempSeconds2 = CountdownTimer.tempSeconds1 + 1;
                     timeFromEnd();
                     CountdownTimer.time = 0;
                 }
@@ -147,15 +140,15 @@ namespace stopwatch
                 ctMinutesLbl.Text = CountdownTimer.addZero("minutes");
                 ctHoursLbl.Text = CountdownTimer.addZero();
                 timeToSeconds();
-                taskbar.SetProgressValue(progressBar1.Value, CountdownTimer.time);
+                CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, CountdownTimer.time);
                 checkMinutes();                              
-                await Task.Delay(1000);                
-            } while (CTstarted);
+                await Task.Delay(1000);
+            } while (CountdownTimer.CTstarted);
         }
 
         public void checkMinutes()
         {
-            if (CountdownTimer.minutes < 1 && CountdownTimer.hours == 0 && minusMinutes)
+            if (CountdownTimer.minutes < 1 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes)
             {
                 buttonAdd1.Enabled = false;
             }
@@ -163,7 +156,7 @@ namespace stopwatch
             {
                 buttonAdd1.Enabled = true;
             }
-            if (CountdownTimer.minutes < 5 && CountdownTimer.hours == 0 && minusMinutes)
+            if (CountdownTimer.minutes < 5 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes)
             {
                 buttonAdd5.Enabled = false;
             }
@@ -171,7 +164,7 @@ namespace stopwatch
             {
                 buttonAdd5.Enabled = true;
             }
-            if (CountdownTimer.minutes < 10 && CountdownTimer.hours == 0 && minusMinutes)
+            if (CountdownTimer.minutes < 10 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes)
             {
                 buttonAdd10.Enabled = false;
             }
@@ -179,7 +172,7 @@ namespace stopwatch
             {
                 buttonAdd10.Enabled = true;
             }
-            if (CountdownTimer.minutes < 30 && CountdownTimer.hours == 0 && minusMinutes)
+            if (CountdownTimer.minutes < 30 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes)
             {
                 buttonAdd30.Enabled = false;
             }
@@ -192,9 +185,9 @@ namespace stopwatch
         public void buttonChangeTime(int i)
         {
             plusMinusBtn.Enabled = btn0.Enabled = true;
-            if (!minusMinutes)
+            if (!CountdownTimer.minusMinutes)
             {
-                if (CTstarted)
+                if (CountdownTimer.CTstarted)
                 {
                     addTime(i);
                 }
@@ -226,7 +219,7 @@ namespace stopwatch
             }
             else
             {
-                if (CTstarted)
+                if (CountdownTimer.CTstarted)
                 {
                     CountdownTimer.time -= i * 60;
                     CountdownTimer.minutes -= i;
@@ -345,9 +338,9 @@ namespace stopwatch
                 {
                     CountdownTimer.minutes--;
                     CountdownTimer.seconds = 60;
-                }                                   
-                buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = plusMinusBtn.Enabled = pauseBtn1.Enabled = CTstarted = true;
-                btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = btn0.Enabled = CTended = false;
+                }
+                buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = plusMinusBtn.Enabled = pauseBtn1.Enabled = CountdownTimer.CTstarted = true;
+                btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = btn0.Enabled = CountdownTimer.CTended = false;
                 CountdownTimer.time += (CountdownTimer.hours * 3600) + (CountdownTimer.minutes * 60) + CountdownTimer.seconds;
                 progressBar1.Value = progressBar1.Minimum = 0;
                 progressBar1.Maximum = CountdownTimer.time;
@@ -359,15 +352,15 @@ namespace stopwatch
                 }                                             
             }
             else
-            {                
-                if (CTended)
+            {
+                if (CountdownTimer.CTended)
                 {
-                    ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Black;                                        
-                    player.Stop();
+                    ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Black;
+                    CountdownTimer.player.Play();
                 }
                 else
                 {
-                    CTstarted = false;
+                    CountdownTimer.CTstarted = false;
                     progressBar1.Value = CountdownTimer.time = 0;
                     Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
                 }
@@ -455,14 +448,14 @@ namespace stopwatch
 
         private void plusMinusBtn_Click(object sender, EventArgs e)
         {
-            if (!minusMinutes)
+            if (!CountdownTimer.minusMinutes)
             {
                 buttonAdd1.Text = "-1'";
                 buttonAdd5.Text = "-5'";
                 buttonAdd10.Text = "-10'";
                 buttonAdd30.Text = "-30'";
                 updateMinusBtnStates();
-                minusMinutes = true;
+                CountdownTimer.minusMinutes = true;
             }
             else
             {
@@ -471,7 +464,7 @@ namespace stopwatch
                 buttonAdd10.Text = "+10'";
                 buttonAdd30.Text = "+30'";
                 buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = true;
-                minusMinutes = false;
+                CountdownTimer.minusMinutes = false;
             }
         }
 
@@ -524,13 +517,13 @@ namespace stopwatch
 
         private void pauseBtn1_Click(object sender, EventArgs e)
         {
-            if (CTstarted)
+            if (CountdownTimer.CTstarted)
             {
-                CTstarted = false;
+                CountdownTimer.CTstarted = false;
             }
             else
             {
-                CTstarted = true;
+                CountdownTimer.CTstarted = true;
                 startCountdown();
             }
         }
@@ -538,22 +531,22 @@ namespace stopwatch
         public async void timeFromEnd()
         {
             do
-            {                
-                tempSeconds3 = DateTime.Now.Second;
-                if (tempSeconds3 == tempSeconds4)
-                {
-                    CountdownTimer.seconds++;                    
-                    tempSeconds4 = tempSeconds3 + 1;
-                }
-                if (tempSeconds3 == 0 && !sixty2)
+            {
+                CountdownTimer.tempSeconds1 = DateTime.Now.Second;
+                if (CountdownTimer.tempSeconds1 == CountdownTimer.tempSeconds2)
                 {
                     CountdownTimer.seconds++;
-                    tempSeconds4 = 1;
-                    sixty2 = true;
+                    CountdownTimer.tempSeconds2 = CountdownTimer.tempSeconds1 + 1;
+                }
+                if (CountdownTimer.tempSeconds1 == 0 && !CountdownTimer.sixty)
+                {
+                    CountdownTimer.seconds++;
+                    CountdownTimer.tempSeconds2 = 1;
+                    CountdownTimer.sixty = true;
                 }
                 if (CountdownTimer.seconds == 10)
                 {
-                    sixty2 = false;
+                    CountdownTimer.sixty = false;
                 }
                 if (CountdownTimer.seconds > 59)
                 {
@@ -561,7 +554,7 @@ namespace stopwatch
                     CountdownTimer.minutes++;
                     if (beepBox.Checked)
                     {
-                        player.Play();
+                        CountdownTimer.player.Play();
                     }
                 }
                 if (CountdownTimer.minutes > 59)
