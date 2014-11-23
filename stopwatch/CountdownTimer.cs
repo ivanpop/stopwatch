@@ -11,13 +11,12 @@ namespace stopwatch
     {
         public static TaskbarManager taskbar = TaskbarManager.Instance;
         public static System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
-        public static int hours = 0, minutes = 0, seconds = 0, time = 0;
+        public static int hours = 0, minutes = 0, seconds = 0, time = 0, tempSeconds1, tempSeconds2;
         public static int[,] timeArr = { { 0, 0 }, { 0, 0 }, { 0, 0 } };
-        public static int tempSeconds1, tempSeconds2;
         public static bool CTstarted = false, CTended = false, minusMinutes = false, sixty = false;
 
         public static string addZero(string time = "hours")
-        {
+        {            
             if (time == "seconds")
             {
                 if (seconds < 10)

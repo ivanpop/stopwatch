@@ -74,9 +74,9 @@ namespace stopwatch
         
         public void updateTime()
         {
-            ctSecondsLbl.Text = System.Convert.ToString(CountdownTimer.seconds);
-            ctMinutesLbl.Text = System.Convert.ToString(CountdownTimer.minutes);
-            ctHoursLbl.Text = System.Convert.ToString(CountdownTimer.hours);
+            ctSecondsLbl.Text = CountdownTimer.addZero("seconds");
+            ctMinutesLbl.Text = CountdownTimer.addZero("minutes");
+            ctHoursLbl.Text = CountdownTimer.addZero();
         }     
 
         public bool timeToSeconds()
@@ -136,9 +136,7 @@ namespace stopwatch
             {
                 CountdownTimer.seconds--;
                 progressBar1.PerformStep();
-                ctSecondsLbl.Text = CountdownTimer.addZero("seconds");
-                ctMinutesLbl.Text = CountdownTimer.addZero("minutes");
-                ctHoursLbl.Text = CountdownTimer.addZero();
+                updateTime();
                 timeToSeconds();
                 CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, CountdownTimer.time);
                 checkMinutes();                              
@@ -566,30 +564,7 @@ namespace stopwatch
                 {
                     ctHoursLbl.Enabled = ctHLabel.Enabled = true;
                 }
-                if (CountdownTimer.seconds < 10)
-                {
-                    ctSecondsLbl.Text = "0" + System.Convert.ToString(CountdownTimer.seconds);
-                }
-                else
-                {
-                    ctSecondsLbl.Text = System.Convert.ToString(CountdownTimer.seconds);
-                }
-                if (CountdownTimer.minutes < 10)
-                {
-                    ctMinutesLbl.Text = "0" + System.Convert.ToString(CountdownTimer.minutes);
-                }
-                else
-                {
-                    ctMinutesLbl.Text = System.Convert.ToString(CountdownTimer.minutes);
-                }
-                if (hours2 < 10)
-                {
-                    ctHoursLbl.Text = "0" + System.Convert.ToString(CountdownTimer.hours);
-                }
-                else
-                {
-                    ctHoursLbl.Text = System.Convert.ToString(CountdownTimer.hours);
-                }
+                updateTime();
                 await Task.Delay(1000);
             } while (startBtn.Text == "Stop");
         }
