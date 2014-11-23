@@ -87,15 +87,45 @@ namespace stopwatch
         {
             switch (precision)
             {
-                case 2: time = CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                case 2: time = timeArr[1, 1] * 10 + timeArr[1, 0];
                     break;
-                case 3: time = CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                case 3: time = timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0];
                     break;
-                case 4: time = CountdownTimer.timeArr[2, 1] * 1000 + CountdownTimer.timeArr[2, 0] * 100 + CountdownTimer.timeArr[1, 1] * 10 + CountdownTimer.timeArr[1, 0];
+                case 4: time = timeArr[2, 1] * 1000 + timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0];
                     break;
-                case 6: time = CountdownTimer.timeArr[2, 1] * 100000 + CountdownTimer.timeArr[2, 0] * 10000 + CountdownTimer.timeArr[1, 1] * 1000 + CountdownTimer.timeArr[1, 0] * 100 + CountdownTimer.timeArr[0, 1] * 10 + CountdownTimer.timeArr[0, 0];
+                case 6: time = timeArr[2, 1] * 100000 + timeArr[2, 0] * 10000 + timeArr[1, 1] * 1000 + timeArr[1, 0] * 100 + timeArr[0, 1] * 10 + timeArr[0, 0];
                     break;
             }            
+        }
+
+        public static void timeFromEnd()
+        {
+            tempSeconds1 = DateTime.Now.Second;
+            if (tempSeconds1 == tempSeconds2)
+            {
+                seconds++;
+                tempSeconds2 = tempSeconds1 + 1;
+            }
+            if (tempSeconds1 == 0 && !sixty)
+            {
+                seconds++;
+                tempSeconds2 = 1;
+                sixty = true;
+            }
+            if (seconds == 10)
+            {
+                sixty = false;
+            }
+            if (seconds > 59)
+            {
+                seconds = 0;
+                minutes++;
+            }
+            if (minutes > 59)
+            {
+                minutes = 0;
+                hours++;
+            }
         }
     }
 }

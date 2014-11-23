@@ -530,37 +530,12 @@ namespace stopwatch
         {
             do
             {
-                CountdownTimer.tempSeconds1 = DateTime.Now.Second;
-                if (CountdownTimer.tempSeconds1 == CountdownTimer.tempSeconds2)
+                CountdownTimer.timeFromEnd();
+                if (CountdownTimer.seconds > 59 && beepBox.Checked)
                 {
-                    CountdownTimer.seconds++;
-                    CountdownTimer.tempSeconds2 = CountdownTimer.tempSeconds1 + 1;
+                    CountdownTimer.player.Play();
                 }
-                if (CountdownTimer.tempSeconds1 == 0 && !CountdownTimer.sixty)
-                {
-                    CountdownTimer.seconds++;
-                    CountdownTimer.tempSeconds2 = 1;
-                    CountdownTimer.sixty = true;
-                }
-                if (CountdownTimer.seconds == 10)
-                {
-                    CountdownTimer.sixty = false;
-                }
-                if (CountdownTimer.seconds > 59)
-                {
-                    CountdownTimer.seconds = 0;
-                    CountdownTimer.minutes++;
-                    if (beepBox.Checked)
-                    {
-                        CountdownTimer.player.Play();
-                    }
-                }
-                if (CountdownTimer.minutes > 59)
-                {
-                    CountdownTimer.minutes = 0;
-                    CountdownTimer.hours++;                    
-                }
-                if(hours2 > 0)
+                if (CountdownTimer.hours > 0)
                 {
                     ctHoursLbl.Enabled = ctHLabel.Enabled = true;
                 }
