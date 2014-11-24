@@ -127,5 +127,19 @@ namespace stopwatch
                 hours++;
             }
         }
+
+        public static void timeToSeconds ()
+        {
+            if (seconds == 0)
+            {
+                seconds = 60;
+                minutes--;
+                if (minutes < 0)
+                {
+                    hours--;
+                    minutes = 59;
+                }
+            }            
+        }
     }
 }

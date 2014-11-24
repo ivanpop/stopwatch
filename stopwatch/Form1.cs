@@ -81,22 +81,13 @@ namespace stopwatch
 
         public bool timeToSeconds()
         {
-            if (CountdownTimer.seconds == 0)
+            CountdownTimer.timeToSeconds();
+            if (CountdownTimer.hours < 0 && beepBox.Checked)
             {
-                CountdownTimer.seconds = 60;
-                CountdownTimer.minutes--;
-                if (CountdownTimer.minutes < 0)
-                {
-                    CountdownTimer.hours--;
-                    CountdownTimer.minutes = 59;                   
-                }
+                CountdownTimer.player.Play();
             }
             if (CountdownTimer.hours < 0)
             {
-                if (beepBox.Checked)
-                {
-                    CountdownTimer.player.Play();                    
-                }
                 if (!CountdownTimer.CTended)
                 {
                     ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Red;
