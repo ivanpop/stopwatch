@@ -141,5 +141,16 @@ namespace stopwatch
                 }
             }            
         }
+
+        public static void addTime(int i)
+        {
+            time += i * 60;
+            minutes += i;
+            if (minutes > 59)
+            {
+                minutes -= 60;
+                hours++;
+            }
+        }
     }
 }

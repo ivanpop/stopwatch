@@ -86,20 +86,17 @@ namespace stopwatch
             {
                 CountdownTimer.player.Play();
             }
-            if (CountdownTimer.hours < 0)
-            {
-                if (!CountdownTimer.CTended)
-                {
-                    ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Red;
-                    startBtn.Text = "Stop";
-                    Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
-                    startBtn.Enabled = CountdownTimer.CTended = true;
-                    pauseBtn1.Enabled = CountdownTimer.CTstarted = false;                    
-                    CountdownTimer.tempSeconds1 = DateTime.Now.Second;
-                    CountdownTimer.tempSeconds2 = CountdownTimer.tempSeconds1 + 1;
-                    timeFromEnd();
-                    CountdownTimer.time = 0;
-                }
+            if (CountdownTimer.hours < 0 && !CountdownTimer.CTended)
+            {                
+                ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Red;
+                startBtn.Text = "Stop";
+                Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
+                startBtn.Enabled = CountdownTimer.CTended = true;
+                pauseBtn1.Enabled = CountdownTimer.CTstarted = false;                    
+                CountdownTimer.tempSeconds1 = DateTime.Now.Second;
+                CountdownTimer.tempSeconds2 = CountdownTimer.tempSeconds1 + 1;
+                timeFromEnd();
+                CountdownTimer.time = 0;                
                 return false;                
             }
             return true;
@@ -109,14 +106,11 @@ namespace stopwatch
         {
             if (timeToSeconds())
             {
-                CountdownTimer.time += i * 60;
-                CountdownTimer.minutes += i;
+                CountdownTimer.addTime(i);                
                 progressBar1.Maximum = CountdownTimer.time;
             }
             if (CountdownTimer.minutes > 59)
-            {
-                CountdownTimer.minutes -= 60;
-                CountdownTimer.hours++;
+            {                
                 ctHoursLbl.Visible = ctHLabel.Visible = true;                
             }
         }
@@ -704,8 +698,7 @@ namespace stopwatch
                 bw.Write(results);
                 bw.Dispose();                
             }
-        }
-        
+        }        
         #endregion 
         }
 }
