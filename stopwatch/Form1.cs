@@ -23,9 +23,7 @@ namespace stopwatch
         public void shift(int number)
         {
             CountdownTimer.shift(number);
-            ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
-            ctMinutesLbl.Text = CountdownTimer.updateInput("minutes");
-            ctHoursLbl.Text = CountdownTimer.updateInput();
+            updateInput();
             startBtn.Enabled = btn0.Enabled = true;
         }
 
@@ -78,6 +76,13 @@ namespace stopwatch
             ctMinutesLbl.Text = CountdownTimer.addZero("minutes");
             ctHoursLbl.Text = CountdownTimer.addZero();
         }     
+
+        public void updateInput()
+        {
+            ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
+            ctMinutesLbl.Text = CountdownTimer.updateInput("minutes");
+            ctHoursLbl.Text = CountdownTimer.updateInput();
+        }
 
         public bool timeToSeconds()
         {
@@ -285,6 +290,17 @@ namespace stopwatch
                     updateMinusBtnStates();
                 }
             }
+        }
+
+        public void clear()
+        {
+            CountdownTimer.timeArr[0, 0] = CountdownTimer.timeArr[0, 1];
+            CountdownTimer.timeArr[0, 1] = CountdownTimer.timeArr[1, 0];
+            CountdownTimer.timeArr[1, 0] = CountdownTimer.timeArr[1, 1];
+            CountdownTimer.timeArr[1, 1] = CountdownTimer.timeArr[2, 0];
+            CountdownTimer.timeArr[2, 0] = CountdownTimer.timeArr[2, 1];
+            CountdownTimer.timeArr[2, 1] = 0;
+            updateInput();
         }
 
         private void startBtn_Click_1(object sender, EventArgs e)
@@ -511,6 +527,11 @@ namespace stopwatch
             }
         }
 
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            clear();
+        }
+
         public async void timeFromEnd()
         {
             do
@@ -622,13 +643,8 @@ namespace stopwatch
             if (start2Btn.Text == "Stop")
             {
                 start2Btn.Text = "Start";
-                lapBtn.Enabled = false;
-                stopwatchRunning = false;
-                pauseBtn2.Enabled = false;
-                hours2 = minutes2 = seconds2 = 0;
-                hours2 = minutes2 = seconds2 = 0;
-                hours2 = minutes2 = seconds2 = 0;
-                lapSeconds = lapMinutes = lapHours = 0;
+                lapBtn.Enabled = stopwatchRunning = pauseBtn2.Enabled = false;
+                hours2 = minutes2 = seconds2 = lapSeconds = lapMinutes = lapHours = 0;
                 seconds2Lbl.Text = minutes2Lbl.Text = hours2Lbl.Text = "00";
                 msLbl.Text = "000";
                 if (listBox1.Items.Count > 0)
@@ -639,9 +655,7 @@ namespace stopwatch
             else
             {
                 start2Btn.Text = "Stop";
-                lapBtn.Enabled = true;
-                pauseBtn2.Enabled = true;
-                stopwatchRunning = true;
+                lapBtn.Enabled = pauseBtn2.Enabled = stopwatchRunning = true;
                 saveBtn.Enabled = false;
                 listBox1.Items.Clear();
                 tempSeconds1 = DateTime.Now.Second;

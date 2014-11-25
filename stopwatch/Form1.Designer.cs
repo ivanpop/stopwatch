@@ -72,6 +72,7 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
+            this.clearBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -91,6 +92,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.clearBtn);
             this.tabPage1.Controls.Add(this.pauseBtn1);
             this.tabPage1.Controls.Add(this.plusMinusBtn);
             this.tabPage1.Controls.Add(this.buttonAdd30);
@@ -142,7 +144,7 @@
             this.plusMinusBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.plusMinusBtn.Location = new System.Drawing.Point(176, 213);
             this.plusMinusBtn.Name = "plusMinusBtn";
-            this.plusMinusBtn.Size = new System.Drawing.Size(49, 40);
+            this.plusMinusBtn.Size = new System.Drawing.Size(109, 40);
             this.plusMinusBtn.TabIndex = 45;
             this.plusMinusBtn.Text = "+/-";
             this.plusMinusBtn.UseVisualStyleBackColor = true;
@@ -186,7 +188,7 @@
             this.beepBox.AutoSize = true;
             this.beepBox.Checked = true;
             this.beepBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.beepBox.Location = new System.Drawing.Point(236, 227);
+            this.beepBox.Location = new System.Drawing.Point(203, 273);
             this.beepBox.Name = "beepBox";
             this.beepBox.Size = new System.Drawing.Size(51, 17);
             this.beepBox.TabIndex = 41;
@@ -272,7 +274,7 @@
             // 
             this.btn0.Enabled = false;
             this.btn0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn0.Location = new System.Drawing.Point(61, 259);
+            this.btn0.Location = new System.Drawing.Point(15, 259);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(40, 40);
             this.btn0.TabIndex = 32;
@@ -577,6 +579,17 @@
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
             // 
+            // clearBtn
+            // 
+            this.clearBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearBtn.Location = new System.Drawing.Point(61, 259);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(86, 40);
+            this.clearBtn.TabIndex = 47;
+            this.clearBtn.Text = "C";
+            this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -640,6 +653,7 @@
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button plusMinusBtn;
         private System.Windows.Forms.Button pauseBtn1;
+        private System.Windows.Forms.Button clearBtn;
 
     }
 }
