@@ -140,7 +140,14 @@ namespace stopwatch
                     hours--;
                     minutes = 59;
                 }
-            }            
+            }
+            if (CountdownTimer.hours < 0 && !CountdownTimer.CTended)
+            {
+                Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
+                CountdownTimer.tempSeconds1 = (sbyte)(DateTime.Now.Second);
+                CountdownTimer.tempSeconds2 = (sbyte)(CountdownTimer.tempSeconds1 + 1);
+                CountdownTimer.time = 0;
+            }
         }
 
         public static void addTime(sbyte i)

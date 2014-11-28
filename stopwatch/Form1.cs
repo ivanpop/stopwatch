@@ -103,14 +103,10 @@ namespace stopwatch
             if (CountdownTimer.hours < 0 && !CountdownTimer.CTended)
             {                
                 ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Red;
-                startBtn.Text = "Stop";
-                Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
+                startBtn.Text = "Stop";                
                 startBtn.Enabled = CountdownTimer.CTended = true;
-                pauseBtn1.Enabled = CountdownTimer.CTstarted = false;                    
-                CountdownTimer.tempSeconds1 = (sbyte)(DateTime.Now.Second);
-                CountdownTimer.tempSeconds2 = (sbyte)(CountdownTimer.tempSeconds1 + 1);
-                timeFromEnd();
-                CountdownTimer.time = 0;                
+                pauseBtn1.Enabled = CountdownTimer.CTstarted = buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = false; 
+                timeFromEnd();                              
                 return false;                
             }
             return true;
@@ -137,10 +133,10 @@ namespace stopwatch
                 CountdownTimer.seconds--;
                 CountdownTimer.time--;
                 progressBar1.PerformStep();
-                updateTime();
-                timeToSeconds();
+                updateTime();                
                 CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, CountdownTimer.time);
-                checkMinutes();                              
+                checkMinutes();
+                timeToSeconds();              
                 await Task.Delay(1000);
             } while (CountdownTimer.CTstarted);
         }
@@ -369,7 +365,8 @@ namespace stopwatch
                 if (CountdownTimer.CTended)
                 {
                     ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = System.Drawing.Color.Black;
-                    CountdownTimer.player.Play();
+                    CountdownTimer.player.Stop();
+                    buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = true;
                 }
                 else
                 {
@@ -535,10 +532,12 @@ namespace stopwatch
             if (CountdownTimer.CTstarted)
             {
                 CountdownTimer.CTstarted = false;
+                pauseBtn1.ForeColor = System.Drawing.Color.Red;
             }
             else
             {
                 CountdownTimer.CTstarted = true;
+                pauseBtn1.ForeColor = System.Drawing.Color.Black;
                 startCountdown();
             }
         }
