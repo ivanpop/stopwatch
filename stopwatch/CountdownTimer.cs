@@ -81,10 +81,10 @@ namespace stopwatch
             timeArr[1, 1] = timeArr[1, 0];
             timeArr[1, 0] = timeArr[0, 1];
             timeArr[0, 1] = timeArr[0, 0];
-            timeArr[0, 0] = number;            
+            timeArr[0, 0] = number;
         }
 
-        public static void setTime(int precision = 0)
+        public static void setTime(byte precision = 0)
         {
             switch (precision)
             {

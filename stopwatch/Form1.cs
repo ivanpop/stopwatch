@@ -27,7 +27,7 @@ namespace stopwatch
         }
 
         public void updateMinusBtnStates()
-        {
+        {           
             CountdownTimer.setTime(6);
             if (CountdownTimer.time < 3000)
             {
@@ -55,9 +55,7 @@ namespace stopwatch
             }
             if (CountdownTimer.time < 100)
             {                
-                buttonAdd1.Enabled = false;
-                plusMinusBtn.PerformClick();
-                plusMinusBtn.Enabled = false;                
+                buttonAdd1.Enabled = false;                                
             }
             else
             {
@@ -124,6 +122,7 @@ namespace stopwatch
             {
                 CountdownTimer.addTime(i);                
                 progressBar1.Maximum = CountdownTimer.time;
+                progressBar1.Value = 0;
             }
             if (CountdownTimer.minutes > 59)
             {                
@@ -136,6 +135,7 @@ namespace stopwatch
             do
             {
                 CountdownTimer.seconds--;
+                CountdownTimer.time--;
                 progressBar1.PerformStep();
                 updateTime();
                 timeToSeconds();
@@ -150,6 +150,8 @@ namespace stopwatch
             if (CountdownTimer.minutes < 1 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes)
             {
                 buttonAdd1.Enabled = false;
+                plusMinusBtn.PerformClick();
+                plusMinusBtn.Enabled = false;
             }
             else
             {
@@ -183,7 +185,7 @@ namespace stopwatch
 
         public void buttonChangeTime(sbyte i)
         {
-            plusMinusBtn.Enabled = btn0.Enabled = true;
+            plusMinusBtn.Enabled = true;
             if (!CountdownTimer.minusMinutes)
             {
                 if (CountdownTimer.CTstarted)
@@ -213,7 +215,7 @@ namespace stopwatch
                     ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
                     ctMinutesLbl.Text =  CountdownTimer.updateInput("minutes");
                     ctHoursLbl.Text = CountdownTimer.updateInput();
-                    startBtn.Enabled = clearBtn.Enabled = true;
+                    startBtn.Enabled = clearBtn.Enabled = btn0.Enabled = true;
                 }
             }
             else
@@ -223,6 +225,7 @@ namespace stopwatch
                     CountdownTimer.time -= (short)(i * 60);
                     CountdownTimer.minutes -= i;
                     progressBar1.Maximum = CountdownTimer.time;
+                    progressBar1.Value = 0;
                 }
                 else
                 {
@@ -349,8 +352,8 @@ namespace stopwatch
                     CountdownTimer.minutes--;
                     CountdownTimer.seconds = 60;
                 }
-                buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = plusMinusBtn.Enabled = pauseBtn1.Enabled = CountdownTimer.CTstarted = true;
-                btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = btn0.Enabled = CountdownTimer.CTended = false;
+                buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = pauseBtn1.Enabled = CountdownTimer.CTstarted = true;
+                btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = btn0.Enabled = CountdownTimer.CTended = clearBtn.Enabled = false;
                 CountdownTimer.time += (short)((CountdownTimer.hours * 3600) + (CountdownTimer.minutes * 60) + CountdownTimer.seconds);
                 progressBar1.Value = progressBar1.Minimum = 0;
                 progressBar1.Maximum = CountdownTimer.time;
@@ -464,7 +467,6 @@ namespace stopwatch
                 buttonAdd5.Text = "-5'";
                 buttonAdd10.Text = "-10'";
                 buttonAdd30.Text = "-30'";
-                updateMinusBtnStates();
                 CountdownTimer.minusMinutes = true;
             }
             else
