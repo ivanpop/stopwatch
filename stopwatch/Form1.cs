@@ -98,8 +98,8 @@ namespace stopwatch
                 Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
                 startBtn.Enabled = CountdownTimer.CTended = true;
                 pauseBtn1.Enabled = CountdownTimer.CTstarted = false;                    
-                CountdownTimer.tempSeconds1 = DateTime.Now.Second;
-                CountdownTimer.tempSeconds2 = CountdownTimer.tempSeconds1 + 1;
+                CountdownTimer.tempSeconds1 = (sbyte)(DateTime.Now.Second);
+                CountdownTimer.tempSeconds2 = (sbyte)(CountdownTimer.tempSeconds1 + 1);
                 timeFromEnd();
                 CountdownTimer.time = 0;                
                 return false;                
@@ -107,7 +107,7 @@ namespace stopwatch
             return true;
         }
 
-        public void addTime(int i)
+        public void addTime(sbyte i)
         {
             if (timeToSeconds())
             {
@@ -170,7 +170,7 @@ namespace stopwatch
             }
         }
 
-        public void buttonChangeTime(int i)
+        public void buttonChangeTime(sbyte i)
         {
             plusMinusBtn.Enabled = btn0.Enabled = true;
             if (!CountdownTimer.minusMinutes)
@@ -209,7 +209,7 @@ namespace stopwatch
             {
                 if (CountdownTimer.CTstarted)
                 {
-                    CountdownTimer.time -= i * 60;
+                    CountdownTimer.time -= (short)(i * 60);
                     CountdownTimer.minutes -= i;
                     progressBar1.Maximum = CountdownTimer.time;
                 }
@@ -313,9 +313,9 @@ namespace stopwatch
                 buttonAdd5.Text = "+5'";
                 buttonAdd10.Text = "+10'";
                 buttonAdd30.Text = "+30'";
-                CountdownTimer.seconds = System.Convert.ToInt32(ctSecondsLbl.Text);
-                CountdownTimer.minutes = System.Convert.ToInt32(ctMinutesLbl.Text);
-                CountdownTimer.hours = System.Convert.ToInt32(ctHoursLbl.Text);
+                CountdownTimer.seconds = (sbyte)(System.Convert.ToInt32(ctSecondsLbl.Text));
+                CountdownTimer.minutes = (sbyte)(System.Convert.ToInt32(ctMinutesLbl.Text));
+                CountdownTimer.hours = (sbyte)(System.Convert.ToInt32(ctHoursLbl.Text));
                 ctHoursLbl.Text = System.Convert.ToString(CountdownTimer.hours);
                 if (CountdownTimer.seconds > 59)
                 {
@@ -340,7 +340,7 @@ namespace stopwatch
                 }
                 buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = plusMinusBtn.Enabled = pauseBtn1.Enabled = CountdownTimer.CTstarted = true;
                 btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = btn0.Enabled = CountdownTimer.CTended = false;
-                CountdownTimer.time += (CountdownTimer.hours * 3600) + (CountdownTimer.minutes * 60) + CountdownTimer.seconds;
+                CountdownTimer.time += (short)((CountdownTimer.hours * 3600) + (CountdownTimer.minutes * 60) + CountdownTimer.seconds);
                 progressBar1.Value = progressBar1.Minimum = 0;
                 progressBar1.Maximum = CountdownTimer.time;
                 progressBar1.Step = 1;

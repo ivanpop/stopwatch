@@ -11,7 +11,8 @@ namespace stopwatch
     {
         public static TaskbarManager taskbar = TaskbarManager.Instance;
         public static System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
-        public static int hours = 0, minutes = 0, seconds = 0, time = 0, tempSeconds1, tempSeconds2;
+        public static sbyte hours = 0, minutes = 0, seconds = 0, tempSeconds1, tempSeconds2;
+        public static short time = 0;
         public static int[,] timeArr = { { 0, 0 }, { 0, 0 }, { 0, 0 } };
         public static bool CTstarted = false, CTended = false, minusMinutes = false, sixty = false;
 
@@ -87,24 +88,24 @@ namespace stopwatch
         {
             switch (precision)
             {
-                case 2: time = timeArr[1, 1] * 10 + timeArr[1, 0];
+                case 2: time = (short)(timeArr[1, 1] * 10 + timeArr[1, 0]);
                     break;
-                case 3: time = timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0];
+                case 3: time = (short)(timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0]);
                     break;
-                case 4: time = timeArr[2, 1] * 1000 + timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0];
+                case 4: time = (short)(timeArr[2, 1] * 1000 + timeArr[2, 0] * 100 + timeArr[1, 1] * 10 + timeArr[1, 0]);
                     break;
-                case 6: time = timeArr[2, 1] * 100000 + timeArr[2, 0] * 10000 + timeArr[1, 1] * 1000 + timeArr[1, 0] * 100 + timeArr[0, 1] * 10 + timeArr[0, 0];
+                case 6: time = (short)(timeArr[2, 1] * 100000 + timeArr[2, 0] * 10000 + timeArr[1, 1] * 1000 + timeArr[1, 0] * 100 + timeArr[0, 1] * 10 + timeArr[0, 0]);
                     break;
             }            
         }
 
         public static void timeFromEnd()
         {
-            tempSeconds1 = DateTime.Now.Second;
+            tempSeconds1 = (sbyte)(DateTime.Now.Second);
             if (tempSeconds1 == tempSeconds2)
             {
                 seconds++;
-                tempSeconds2 = tempSeconds1 + 1;
+                tempSeconds2 = (sbyte)(tempSeconds1 + 1);
             }
             if (tempSeconds1 == 0 && !sixty)
             {
@@ -142,9 +143,9 @@ namespace stopwatch
             }            
         }
 
-        public static void addTime(int i)
+        public static void addTime(sbyte i)
         {
-            time += i * 60;
+            time += (short)(i * 60);
             minutes += i;
             if (minutes > 59)
             {
