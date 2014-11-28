@@ -13,7 +13,7 @@ namespace stopwatch
         public static System.Media.SoundPlayer player = new System.Media.SoundPlayer(stopwatch.Resource1.beep);
         public static sbyte hours = 0, minutes = 0, seconds = 0, tempSeconds1, tempSeconds2;
         public static short time = 0;
-        public static int[,] timeArr = { { 0, 0 }, { 0, 0 }, { 0, 0 } };
+        public static byte[,] timeArr = { { 0, 0 }, { 0, 0 }, { 0, 0 } };
         public static bool CTstarted = false, CTended = false, minusMinutes = false, sixty = false;
 
         public static string addZero(string time = "hours")
@@ -74,14 +74,14 @@ namespace stopwatch
             }            
         }        
 
-        public static void shift(int number)
+        public static void shift(byte number)
         {
             timeArr[2, 1] = timeArr[2, 0];
             timeArr[2, 0] = timeArr[1, 1];
             timeArr[1, 1] = timeArr[1, 0];
             timeArr[1, 0] = timeArr[0, 1];
             timeArr[0, 1] = timeArr[0, 0];
-            timeArr[0, 0] = number;
+            timeArr[0, 0] = number;            
         }
 
         public static void setTime(int precision = 0)

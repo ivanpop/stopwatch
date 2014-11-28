@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.clearBtn = new System.Windows.Forms.Button();
             this.pauseBtn1 = new System.Windows.Forms.Button();
             this.plusMinusBtn = new System.Windows.Forms.Button();
             this.buttonAdd30 = new System.Windows.Forms.Button();
@@ -72,7 +73,6 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
-            this.clearBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -125,6 +125,18 @@
             this.tabPage1.Size = new System.Drawing.Size(300, 341);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Countdown timer";
+            // 
+            // clearBtn
+            // 
+            this.clearBtn.Enabled = false;
+            this.clearBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearBtn.Location = new System.Drawing.Point(61, 259);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(86, 40);
+            this.clearBtn.TabIndex = 47;
+            this.clearBtn.Text = "C";
+            this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // pauseBtn1
             // 
@@ -578,17 +590,6 @@
             this.hours2Lbl.Size = new System.Drawing.Size(51, 36);
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
-            // 
-            // clearBtn
-            // 
-            this.clearBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearBtn.Location = new System.Drawing.Point(61, 259);
-            this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(86, 40);
-            this.clearBtn.TabIndex = 47;
-            this.clearBtn.Text = "C";
-            this.clearBtn.UseVisualStyleBackColor = true;
-            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // Form1
             // 
