@@ -89,6 +89,10 @@ namespace stopwatch
             {
                 startBtn.Enabled = btn0.Enabled = clearBtn.Enabled = true;
             }
+            if (ctHoursLbl.Text == "00" && ctMinutesLbl.Text == "00" && plusMinusBtn.Enabled)
+            {
+                plusMinusBtn.Enabled = false;
+            }
         }
 
         public bool timeToSeconds()
@@ -209,7 +213,7 @@ namespace stopwatch
                     ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
                     ctMinutesLbl.Text =  CountdownTimer.updateInput("minutes");
                     ctHoursLbl.Text = CountdownTimer.updateInput();
-                    startBtn.Enabled = true;
+                    startBtn.Enabled = clearBtn.Enabled = true;
                 }
             }
             else
