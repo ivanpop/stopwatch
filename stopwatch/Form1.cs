@@ -122,7 +122,7 @@ namespace stopwatch
             if (timeToSeconds())
             {
                 CountdownTimer.addTime(i);                
-                progressBar1.Maximum = CountdownTimer.time;
+                progressBar1.Maximum = (int)CountdownTimer.time;
                 progressBar1.Value = 0;
             }
             if (CountdownTimer.minutes > 59)
@@ -133,17 +133,26 @@ namespace stopwatch
 
         public async void startCountdown()
         {
+            doCountdownStep();
             do
             {
-                CountdownTimer.seconds--;
-                CountdownTimer.time--;
-                progressBar1.PerformStep();
-                updateTime();                
-                CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, CountdownTimer.time);
+                updateTime(); 
                 checkMinutes();
                 timeToSeconds();              
-                await Task.Delay(1000);
+                await Task.Delay(100);
                 label1.Text = System.Convert.ToString(CountdownTimer.time);
+            } while (CountdownTimer.CTstarted);
+        }
+
+        public async void doCountdownStep()
+        {
+            do
+            {
+                progressBar1.PerformStep();
+                CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, CountdownTimer.time);
+                CountdownTimer.seconds--;
+                CountdownTimer.time--;
+                await Task.Delay(1000);
             } while (CountdownTimer.CTstarted);
         }
 
@@ -226,7 +235,7 @@ namespace stopwatch
                 {
                     CountdownTimer.time -= (short)(i * 60);
                     CountdownTimer.minutes -= i;
-                    progressBar1.Maximum = CountdownTimer.time;
+                    progressBar1.Maximum = (int)CountdownTimer.time;
                     progressBar1.Value = 0;
                 }
                 else
@@ -286,7 +295,7 @@ namespace stopwatch
                             CountdownTimer.timeArr[1, 1] = 5;                            
                         }
                     }
-                    switch ((CountdownTimer.time / 10) % 10)
+                    switch (((int)CountdownTimer.time / 10) % 10)
                     {
                         case 9: CountdownTimer.timeArr[1, 1] = 5;
                             break;
@@ -378,7 +387,8 @@ namespace stopwatch
                 else
                 {
                     CountdownTimer.CTstarted = false;
-                    progressBar1.Value = CountdownTimer.time = 0;
+                    progressBar1.Value = 0;
+                    CountdownTimer.time = 0;
                     Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
                 }
                 startBtn.Text = "Start";
