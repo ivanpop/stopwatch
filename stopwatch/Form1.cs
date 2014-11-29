@@ -27,11 +27,8 @@ namespace stopwatch
         }
 
         public void updateMinusBtnStates()
-        {     
-            if (!CountdownTimer.CTstarted)
-            {
-                CountdownTimer.setTime(6);
-            }            
+        {
+            CountdownTimer.updateMinusBtnStates();            
             if (CountdownTimer.time < 3000)
             {
                 buttonAdd30.Enabled = false;
@@ -56,7 +53,7 @@ namespace stopwatch
             {
                 buttonAdd5.Enabled = true;
             }
-            if (CountdownTimer.time < 100)
+            if (CountdownTimer.time < 60)
             {
                 buttonAdd1.Enabled = clearBtn.Enabled = false;                
                 plusMinusBtn.PerformClick();
@@ -137,8 +134,7 @@ namespace stopwatch
             do
             {
                 updateTime(); 
-                checkMinutes();
-                timeToSeconds();              
+                checkMinutes();                              
                 await Task.Delay(100);                
             } while (CountdownTimer.CTstarted);
         }
@@ -148,6 +144,7 @@ namespace stopwatch
             do
             {
                 progressBar1.PerformStep();
+                timeToSeconds();
                 CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, progressBar1.Maximum);                
                 CountdownTimer.seconds--;
                 CountdownTimer.time--;
@@ -156,16 +153,20 @@ namespace stopwatch
         }
 
         public void checkMinutes()
-        {
+        {            
             if (CountdownTimer.minutes < 1 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes)
             {
                 buttonAdd1.Enabled = false;
                 plusMinusBtn.PerformClick();
                 plusMinusBtn.Enabled = false;
             }
+            else if (CountdownTimer.minutes < 1 && CountdownTimer.hours == 0 && !CountdownTimer.minusMinutes)
+            {
+                plusMinusBtn.Enabled = false;
+            }
             else
             {
-                buttonAdd1.Enabled = true;
+                buttonAdd1.Enabled = true;                
             }
             if (CountdownTimer.minutes < 5 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes)
             {

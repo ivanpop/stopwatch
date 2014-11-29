@@ -160,5 +160,13 @@ namespace stopwatch
                 hours++;
             }
         }
+
+        public static void updateMinusBtnStates()
+        {
+            if (!CTstarted)
+            {
+                setTime(6);
+            }
+        }
     }
 }
