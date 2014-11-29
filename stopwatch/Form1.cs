@@ -139,8 +139,7 @@ namespace stopwatch
                 updateTime(); 
                 checkMinutes();
                 timeToSeconds();              
-                await Task.Delay(100);
-                label1.Text = System.Convert.ToString(CountdownTimer.time);
+                await Task.Delay(100);                
             } while (CountdownTimer.CTstarted);
         }
 
