@@ -205,24 +205,7 @@ namespace stopwatch
                 }
                 else
                 {
-                    if (i < 10)
-                    {
-                        CountdownTimer.timeArr[1, 0] += (byte)i;                        
-                    }
-                    else
-                    {
-                        CountdownTimer.timeArr[1, 1] += (byte)(i / 10);
-                    }
-                    if (CountdownTimer.timeArr[1, 0] > 9)
-                    {
-                        CountdownTimer.timeArr[1, 0] -= 10;
-                        CountdownTimer.timeArr[1, 1]++;
-                    }
-                    if (CountdownTimer.timeArr[1, 1] > 5)
-                    {
-                        CountdownTimer.timeArr[1, 1] -= 6;
-                        CountdownTimer.timeArr[2, 0]++;
-                    }
+                    CountdownTimer.buttonChangeTime(i);
                     ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
                     ctMinutesLbl.Text =  CountdownTimer.updateInput("minutes");
                     ctHoursLbl.Text = CountdownTimer.updateInput();
@@ -231,84 +214,14 @@ namespace stopwatch
             }
             else
             {
+                CountdownTimer.buttonChangeTime(i);
                 if (CountdownTimer.CTstarted)
-                {
-                    CountdownTimer.time -= (short)(i * 60);
-                    CountdownTimer.minutes -= i;
-                    progressBar1.Maximum = (int)CountdownTimer.time;
+                {                    
+                    progressBar1.Maximum = CountdownTimer.time;
                     progressBar1.Value = 0;
                 }
                 else
-                {
-                    if (CountdownTimer.timeArr[2, 1] == 0 && CountdownTimer.timeArr[2, 0] == 0)
-                    {
-                        CountdownTimer.setTime(2);
-                        if (CountdownTimer.time >= i)
-                        {
-                            CountdownTimer.time -= i;
-                        }
-                        if (CountdownTimer.time >= 10)
-                        {
-                            CountdownTimer.timeArr[1, 1] = (byte)(CountdownTimer.time / 10);
-                            CountdownTimer.timeArr[1, 0] = (byte)(CountdownTimer.time % 10);
-                        }
-                        else
-                        {
-                            CountdownTimer.timeArr[1, 1] = 0;
-                            CountdownTimer.timeArr[1, 0] = (byte)CountdownTimer.time;
-                        }
-                    }
-                    if (CountdownTimer.timeArr[2, 1] == 0 && CountdownTimer.timeArr[2, 0] > 0)
-                    {
-                        CountdownTimer.setTime(3);
-                        if (CountdownTimer.time >= i)
-                        {
-                            CountdownTimer.time -= i;
-                        }
-                        if (CountdownTimer.time >= 100)
-                        {
-                            CountdownTimer.timeArr[2, 0] = (byte)(CountdownTimer.time / 100);                            
-                        }
-                        if (CountdownTimer.time >= 10 && CountdownTimer.time < 100)
-                        {
-                            CountdownTimer.timeArr[2, 0]--;                            
-                        }                        
-                    }
-                    if (CountdownTimer.timeArr[2, 1] > 0)
-                    {
-                        CountdownTimer.setTime(4);
-                        if (CountdownTimer.time >= i)
-                        {
-                            CountdownTimer.time -= i;
-                        }
-                        if (CountdownTimer.time >= 1000)
-                        {
-                            CountdownTimer.timeArr[2, 1] = (byte)(CountdownTimer.time / 1000);
-                            CountdownTimer.timeArr[2, 0] = (byte)((CountdownTimer.time - CountdownTimer.timeArr[2, 1] * 1000) / 100);
-                            CountdownTimer.timeArr[1, 1] = (byte)((CountdownTimer.time - CountdownTimer.timeArr[2, 1] * 1000 - CountdownTimer.timeArr[2, 0] * 100) / 10);
-                            CountdownTimer.timeArr[1, 0] = (byte)(CountdownTimer.time - CountdownTimer.timeArr[2, 1] * 1000 - CountdownTimer.timeArr[2, 0] * 100 - CountdownTimer.timeArr[1, 1] * 10);
-                        }
-                        if (CountdownTimer.time >= 100 && CountdownTimer.time < 1000)
-                        {
-                            CountdownTimer.timeArr[2, 1]--;
-                            CountdownTimer.timeArr[2, 0] = 9;
-                            CountdownTimer.timeArr[1, 1] = 5;                            
-                        }
-                    }
-                    switch (((int)CountdownTimer.time / 10) % 10)
-                    {
-                        case 9: CountdownTimer.timeArr[1, 1] = 5;
-                            break;
-                        case 8: CountdownTimer.timeArr[1, 1] = 4;
-                            break;
-                        case 7: CountdownTimer.timeArr[1, 1] = 3;
-                            break;
-                        case 6: CountdownTimer.timeArr[1, 1] = 2;
-                            break;
-                        default: CountdownTimer.timeArr[1, 1] = (byte)((CountdownTimer.time / 10) % 10);
-                            break;
-                    }
-                    CountdownTimer.timeArr[1, 0] = (byte)(CountdownTimer.time % 10);
+                {                    
                     ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
                     ctMinutesLbl.Text = CountdownTimer.updateInput("minutes");
                     ctHoursLbl.Text = CountdownTimer.updateInput();
