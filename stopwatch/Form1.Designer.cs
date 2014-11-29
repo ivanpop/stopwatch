@@ -73,6 +73,7 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -92,6 +93,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.clearBtn);
             this.tabPage1.Controls.Add(this.pauseBtn1);
             this.tabPage1.Controls.Add(this.plusMinusBtn);
@@ -591,6 +593,15 @@
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(154, 259);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -655,6 +666,7 @@
         private System.Windows.Forms.Button plusMinusBtn;
         private System.Windows.Forms.Button pauseBtn1;
         private System.Windows.Forms.Button clearBtn;
+        private System.Windows.Forms.Label label1;
 
     }
 }

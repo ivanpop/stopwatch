@@ -27,8 +27,11 @@ namespace stopwatch
         }
 
         public void updateMinusBtnStates()
-        {           
-            CountdownTimer.setTime(6);
+        {     
+            if (!CountdownTimer.CTstarted)
+            {
+                CountdownTimer.setTime(6);
+            }            
             if (CountdownTimer.time < 3000)
             {
                 buttonAdd30.Enabled = false;
@@ -54,8 +57,10 @@ namespace stopwatch
                 buttonAdd5.Enabled = true;
             }
             if (CountdownTimer.time < 100)
-            {                
-                buttonAdd1.Enabled = false;                                
+            {
+                buttonAdd1.Enabled = clearBtn.Enabled = false;                
+                plusMinusBtn.PerformClick();
+                plusMinusBtn.Enabled = false;
             }
             else
             {
@@ -138,6 +143,7 @@ namespace stopwatch
                 checkMinutes();
                 timeToSeconds();              
                 await Task.Delay(1000);
+                label1.Text = System.Convert.ToString(CountdownTimer.time);
             } while (CountdownTimer.CTstarted);
         }
 
@@ -348,13 +354,14 @@ namespace stopwatch
                     CountdownTimer.minutes--;
                     CountdownTimer.seconds = 60;
                 }
-                buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = pauseBtn1.Enabled = CountdownTimer.CTstarted = true;
+                buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = pauseBtn1.Enabled = CountdownTimer.CTstarted = plusMinusBtn.Enabled = true;
                 btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = btn0.Enabled = CountdownTimer.CTended = clearBtn.Enabled = false;
                 CountdownTimer.time += (short)((CountdownTimer.hours * 3600) + (CountdownTimer.minutes * 60) + CountdownTimer.seconds);
                 progressBar1.Value = progressBar1.Minimum = 0;
                 progressBar1.Maximum = CountdownTimer.time;
                 progressBar1.Step = 1;
                 startCountdown();
+                updateMinusBtnStates();
                 if (CountdownTimer.hours == 0)
                 {
                     ctHoursLbl.Visible = ctHLabel.Visible = false;                        
@@ -465,6 +472,7 @@ namespace stopwatch
                 buttonAdd10.Text = "-10'";
                 buttonAdd30.Text = "-30'";
                 CountdownTimer.minusMinutes = true;
+                updateMinusBtnStates();
             }
             else
             {
