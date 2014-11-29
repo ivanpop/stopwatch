@@ -149,7 +149,7 @@ namespace stopwatch
             do
             {
                 progressBar1.PerformStep();
-                CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, CountdownTimer.time);
+                CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, progressBar1.Maximum);                
                 CountdownTimer.seconds--;
                 CountdownTimer.time--;
                 await Task.Delay(1000);
