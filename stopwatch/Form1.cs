@@ -85,7 +85,7 @@ namespace stopwatch
                 progressBar1.Maximum = (int)CountdownTimer.time;
                 progressBar1.Value = 0;
             }
-            if (CountdownTimer.minutes > 59)
+            if (CountdownTimer.hours > 0)
                 ctHoursLbl.Visible = ctHLabel.Visible = true;
         }
 
