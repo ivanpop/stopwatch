@@ -53,9 +53,9 @@ namespace stopwatch
             {
                 buttonAdd5.Enabled = true;
             }
-            if (CountdownTimer.time < 60)
+            if (CountdownTimer.time < 60 && CountdownTimer.minusMinutes)
             {
-                buttonAdd1.Enabled = clearBtn.Enabled = false;                
+                buttonAdd1.Enabled = clearBtn.Enabled = false;
                 plusMinusBtn.PerformClick();
                 plusMinusBtn.Enabled = false;
             }
