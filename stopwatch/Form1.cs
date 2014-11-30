@@ -28,45 +28,16 @@ namespace stopwatch
 
         public void updateMinusBtnStates()
         {
-            CountdownTimer.updateMinusBtnStates();            
-            if (CountdownTimer.time < 3000)
-            {
-                buttonAdd30.Enabled = false;
-            }
-            else
-            {
-                buttonAdd30.Enabled = true;
-            }
-            if (CountdownTimer.time < 1000)
-            {
-                buttonAdd10.Enabled = false;
-            }
-            else
-            {
-                buttonAdd10.Enabled = true;
-            }
-            if (CountdownTimer.time < 500)
-            {
-                buttonAdd5.Enabled = false;
-            }
-            else
-            {
-                buttonAdd5.Enabled = true;
-            }
+            if (!CountdownTimer.CTstarted) 
+                CountdownTimer.setTime(6);                      
             if (CountdownTimer.time < 60 && CountdownTimer.minusMinutes)
             {
                 buttonAdd1.Enabled = clearBtn.Enabled = false;
                 plusMinusBtn.PerformClick();
                 plusMinusBtn.Enabled = false;
             }
-            else
-            {
-                buttonAdd1.Enabled = true;
-            }
             if (CountdownTimer.time == 0)
-            { 
                 btn0.Enabled = false;
-            }
         }
         
         public void updateTime()

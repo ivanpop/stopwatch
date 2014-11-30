@@ -161,14 +161,6 @@ namespace stopwatch
             }
         }
 
-        public static void updateMinusBtnStates()
-        {
-            if (!CTstarted)
-            {
-                setTime(6);
-            }
-        }
-
         public static void buttonChangeTime(sbyte i)
         {
             if (!minusMinutes && !CTstarted)
