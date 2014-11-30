@@ -53,26 +53,18 @@ namespace stopwatch
             ctMinutesLbl.Text = CountdownTimer.updateInput("minutes");
             ctHoursLbl.Text = CountdownTimer.updateInput();
             if (ctHoursLbl.Text == "00" && ctMinutesLbl.Text == "00" && ctSecondsLbl.Text == "00")
-            {
                 startBtn.Enabled = btn0.Enabled = clearBtn.Enabled = false;
-            }
             else
-            {
                 startBtn.Enabled = btn0.Enabled = clearBtn.Enabled = true;
-            }
             if (ctHoursLbl.Text == "00" && ctMinutesLbl.Text == "00" && plusMinusBtn.Enabled)
-            {
                 plusMinusBtn.Enabled = false;
-            }
         }
 
         public bool timeToSeconds()
         {
             CountdownTimer.timeToSeconds();
             if (CountdownTimer.hours < 0 && beepBox.Checked)
-            {
                 CountdownTimer.player.Play();
-            }
             if (CountdownTimer.hours < 0 && !CountdownTimer.CTended)
             {                
                 ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Red;
@@ -94,16 +86,13 @@ namespace stopwatch
                 progressBar1.Value = 0;
             }
             if (CountdownTimer.minutes > 59)
-            {                
-                ctHoursLbl.Visible = ctHLabel.Visible = true;                
-            }
+                ctHoursLbl.Visible = ctHLabel.Visible = true;
         }
 
         public async void startCountdown()
         {
             doCountdownStep();
-            do
-            {
+            do {
                 updateTime(); 
                 checkMinutes();                              
                 await Task.Delay(100);                
@@ -112,8 +101,7 @@ namespace stopwatch
 
         public async void doCountdownStep()
         {
-            do
-            {
+            do {
                 progressBar1.PerformStep();
                 timeToSeconds();
                 CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, progressBar1.Maximum);                
@@ -132,37 +120,12 @@ namespace stopwatch
                 plusMinusBtn.Enabled = false;
             }
             else if (CountdownTimer.minutes < 1 && CountdownTimer.hours == 0 && !CountdownTimer.minusMinutes)
-            {
                 plusMinusBtn.Enabled = false;
-            }
             else
-            {
-                buttonAdd1.Enabled = true;                
-            }
-            if (CountdownTimer.minutes < 5 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes)
-            {
-                buttonAdd5.Enabled = false;
-            }
-            else
-            {
-                buttonAdd5.Enabled = true;
-            }
-            if (CountdownTimer.minutes < 10 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes)
-            {
-                buttonAdd10.Enabled = false;
-            }
-            else
-            {
-                buttonAdd10.Enabled = true;
-            }
-            if (CountdownTimer.minutes < 30 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes)
-            {
-                buttonAdd30.Enabled = false;
-            }
-            else
-            {
-                buttonAdd30.Enabled = true;
-            }
+                buttonAdd1.Enabled = true;
+            buttonAdd5.Enabled = CountdownTimer.minutes < 5 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes ? false : true;
+            buttonAdd10.Enabled = CountdownTimer.minutes < 10 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes ? false : true;
+            buttonAdd30.Enabled = CountdownTimer.minutes < 30 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes ? false : true;
         }
 
         public void buttonChangeTime(sbyte i)
