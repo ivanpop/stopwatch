@@ -21,35 +21,23 @@ namespace stopwatch
             if (time == "seconds")
             {
                 if (seconds < 10)
-                {
                     return "0" + System.Convert.ToString(seconds);
-                }
                 else
-                {
                     return System.Convert.ToString(seconds);
-                }
             }
             else if (time == "minutes")
             {
                 if (minutes < 10)
-                {
                     return "0" + System.Convert.ToString(minutes);
-                }
                 else
-                {
                     return System.Convert.ToString(minutes);
-                }
             }
             else
             {
                 if (hours < 10)
-                {
                     return "0" + System.Convert.ToString(hours);
-                }
                 else
-                {
                     return System.Convert.ToString(hours);
-                }
             }
         }
 
@@ -61,17 +49,11 @@ namespace stopwatch
                 timeArr[2, 1]++;
             }
             if (time == "seconds")
-            {
                 return System.Convert.ToString(timeArr[0, 1]) + System.Convert.ToString(timeArr[0, 0]);
-            }
             else if (time == "minutes")
-            {
                 return System.Convert.ToString(timeArr[1, 1]) + System.Convert.ToString(timeArr[1, 0]);
-            }
             else
-            {
                 return System.Convert.ToString(timeArr[2, 1]) + System.Convert.ToString(timeArr[2, 0]);
-            }
         }
 
         public static void shift(byte number)
@@ -114,9 +96,7 @@ namespace stopwatch
                 sixty = true;
             }
             if (seconds == 10)
-            {
                 sixty = false;
-            }
             if (seconds > 59)
             {
                 seconds = 0;
@@ -166,13 +146,9 @@ namespace stopwatch
             if (!minusMinutes && !CTstarted)
             {
                 if (i < 10)
-                {
                     timeArr[1, 0] += (byte)i;
-                }
                 else
-                {
                     timeArr[1, 1] += (byte)(i / 10);
-                }
                 if (timeArr[1, 0] > 9)
                 {
                     timeArr[1, 0] -= 10;
@@ -197,9 +173,7 @@ namespace stopwatch
                     {
                         setTime(2);
                         if (time >= i)
-                        {
                             time -= i;
-                        }
                         if (time >= 10)
                         {
                             timeArr[1, 1] = (byte)(time / 10);
@@ -215,25 +189,17 @@ namespace stopwatch
                     {
                         setTime(3);
                         if (time >= i)
-                        {
                             time -= i;
-                        }
                         if (time >= 100)
-                        {
                             timeArr[2, 0] = (byte)(time / 100);
-                        }
                         if (time >= 10 && time < 100)
-                        {
                             timeArr[2, 0]--;
-                        }
                     }
                     if (timeArr[2, 1] > 0)
                     {
                         setTime(4);
                         if (time >= i)
-                        {
                             time -= i;
-                        }
                         if (time >= 1000)
                         {
                             timeArr[2, 1] = (byte)(time / 1000);
