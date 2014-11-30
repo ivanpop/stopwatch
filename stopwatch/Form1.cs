@@ -134,9 +134,7 @@ namespace stopwatch
             if (!CountdownTimer.minusMinutes)
             {
                 if (CountdownTimer.CTstarted)
-                {
                     addTime(i);
-                }
                 else
                 {
                     CountdownTimer.buttonChangeTime(i);
@@ -219,9 +217,7 @@ namespace stopwatch
                 startCountdown();
                 updateMinusBtnStates();
                 if (CountdownTimer.hours == 0)
-                {
-                    ctHoursLbl.Visible = ctHLabel.Visible = false;                        
-                }                                             
+                    ctHoursLbl.Visible = ctHLabel.Visible = false;
             }
             else
             {
@@ -414,24 +410,18 @@ namespace stopwatch
 
         public async void timeFromEnd()
         {
-            do
-            {
+            do {
                 CountdownTimer.timeFromEnd();
                 if (CountdownTimer.seconds > 59 && beepBox.Checked)
-                {
                     CountdownTimer.player.Play();
-                }
                 if (CountdownTimer.hours > 0)
-                {
                     ctHoursLbl.Enabled = ctHLabel.Enabled = true;
-                }
                 updateTime();
                 await Task.Delay(1000);
             } while (startBtn.Text == "Stop");
         }
 
         #endregion
-
         #region Stopwatch
 
         int hours2 = 0, minutes2 = 0, seconds2 = 0, tempSeconds1, tempSeconds2, lapCount = 0, lapHours, lapMinutes, lapSeconds;
@@ -441,8 +431,7 @@ namespace stopwatch
 
         public async void startMs()
         {
-            do
-            {
+            do {
                 tempSeconds1 = DateTime.Now.Second;
                 if (lapCount == 0)
                 {
@@ -463,9 +452,7 @@ namespace stopwatch
                     sixty = true;
                 }
                 if (seconds2 == 10)
-                {
                     sixty = false;
-                }
                 if (seconds2 > 59)
                 {
                     seconds2 = 0;
@@ -479,41 +466,23 @@ namespace stopwatch
                     lapHours++;
                 }
                 if (DateTime.Now.Millisecond < 10)
-                {
                     msLbl.Text = "00" + System.Convert.ToString(DateTime.Now.Millisecond);
-                }
                 else if (DateTime.Now.Millisecond > 10 && DateTime.Now.Millisecond < 100)
-                {
                     msLbl.Text = "0" + System.Convert.ToString(DateTime.Now.Millisecond);
-                }
                 else
-                {
                     msLbl.Text = System.Convert.ToString(DateTime.Now.Millisecond);
-                }
                 if (seconds2 < 10)
-                {
                     seconds2Lbl.Text = "0" + System.Convert.ToString(seconds2);
-                }
-                else 
-                {
+                else
                     seconds2Lbl.Text = System.Convert.ToString(seconds2);
-                }
                 if (minutes2 < 10)
-                {
                     minutes2Lbl.Text = "0" + System.Convert.ToString(minutes2);
-                }
                 else
-                {
                     minutes2Lbl.Text = System.Convert.ToString(minutes2);
-                }
                 if (hours2 < 10)
-                {
                     hours2Lbl.Text = "0" + System.Convert.ToString(hours2);
-                }
                 else
-                {
                     hours2Lbl.Text = System.Convert.ToString(hours2);
-                }
                 await Task.Delay(33);
             } while (stopwatchRunning);
         }
@@ -528,9 +497,7 @@ namespace stopwatch
                 seconds2Lbl.Text = minutes2Lbl.Text = hours2Lbl.Text = "00";
                 msLbl.Text = "000";
                 if (listBox1.Items.Count > 0)
-                {
                     saveBtn.Enabled = true;
-                }
             }
             else
             {
@@ -549,13 +516,9 @@ namespace stopwatch
             listBox1.Visible = true;
             lapCount++;
             if (lapCount < 10)
-            {
                 listBox1.Items.Add("# 0" + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds);
-            }
             else
-            {
                 listBox1.Items.Add("# " + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds);
-            }
             results += listBox1.GetItemText(listBox1.SelectedItem) + System.Environment.NewLine;
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
             lapSeconds = lapMinutes = lapHours = 0;            
@@ -569,9 +532,7 @@ namespace stopwatch
         private void pauseBtn2_Click(object sender, EventArgs e)
         {
             if (stopwatchRunning)
-            {
                 stopwatchRunning = false;
-            }
             else
             {
                 stopwatchRunning = true;
