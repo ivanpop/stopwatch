@@ -231,5 +231,15 @@ namespace stopwatch
                 }
             }
         }
+
+        public static void clear()
+        {
+            timeArr[0, 0] = timeArr[0, 1];
+            timeArr[0, 1] = timeArr[1, 0];
+            timeArr[1, 0] = timeArr[1, 1];
+            timeArr[1, 1] = timeArr[2, 0];
+            timeArr[2, 0] = timeArr[2, 1];
+            timeArr[2, 1] = 0;
+        }
     }
 }

@@ -170,12 +170,7 @@ namespace stopwatch
 
         public void clear()
         {
-            CountdownTimer.timeArr[0, 0] = CountdownTimer.timeArr[0, 1];
-            CountdownTimer.timeArr[0, 1] = CountdownTimer.timeArr[1, 0];
-            CountdownTimer.timeArr[1, 0] = CountdownTimer.timeArr[1, 1];
-            CountdownTimer.timeArr[1, 1] = CountdownTimer.timeArr[2, 0];
-            CountdownTimer.timeArr[2, 0] = CountdownTimer.timeArr[2, 1];
-            CountdownTimer.timeArr[2, 1] = 0;
+            CountdownTimer.clear();
             updateInput();
         }
 
