@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace stopwatch
 {
@@ -424,47 +418,41 @@ namespace stopwatch
 
         #endregion
         #region Stopwatch
-
-        int hours2 = 0, minutes2 = 0, seconds2 = 0, tempSeconds1, tempSeconds2, lapCount = 0, lapHours, lapMinutes, lapSeconds;
-        bool stopwatchRunning = false, sixty = false;
-        String results;
-        SaveFileDialog sfd = new SaveFileDialog();
-
         public async void startMs()
         {
             do {
-                tempSeconds1 = DateTime.Now.Second;
-                if (lapCount == 0)
+                Stopwatch.tempSeconds1 = DateTime.Now.Second;
+                if (Stopwatch.lapCount == 0)
                 {
-                    lapSeconds = seconds2;
-                    lapMinutes = minutes2;
-                    lapHours = hours2;
-                }                
-                if (tempSeconds1 == tempSeconds2)
-                {
-                    seconds2++;
-                    lapSeconds++;
-                    tempSeconds2 = tempSeconds1 + 1;                    
+                    Stopwatch.lapSeconds = Stopwatch.seconds2;
+                    Stopwatch.lapMinutes = Stopwatch.minutes2;
+                    Stopwatch.lapHours = Stopwatch.hours2;
                 }
-                if (tempSeconds1 == 0 && !sixty)
+                if (Stopwatch.tempSeconds1 == Stopwatch.tempSeconds2)
                 {
-                    seconds2++;
-                    tempSeconds2 = 1;
-                    sixty = true;
+                    Stopwatch.seconds2++;
+                    Stopwatch.lapSeconds++;
+                    Stopwatch.tempSeconds2 = Stopwatch.tempSeconds1 + 1;                    
                 }
-                if (seconds2 == 10)
-                    sixty = false;
-                if (seconds2 > 59)
+                if (Stopwatch.tempSeconds1 == 0 && !Stopwatch.sixty)
                 {
-                    seconds2 = 0;
-                    minutes2++;
-                    lapMinutes++;
+                    Stopwatch.seconds2++;
+                    Stopwatch.tempSeconds2 = 1;
+                    Stopwatch.sixty = true;
                 }
-                if (minutes2 > 59)
+                if (Stopwatch.seconds2 == 10)
+                    Stopwatch.sixty = false;
+                if (Stopwatch.seconds2 > 59)
                 {
-                    minutes2 = 0;
-                    hours2++;
-                    lapHours++;
+                    Stopwatch.seconds2 = 0;
+                    Stopwatch.minutes2++;
+                    Stopwatch.lapMinutes++;
+                }
+                if (Stopwatch.minutes2 > 59)
+                {
+                    Stopwatch.minutes2 = 0;
+                    Stopwatch.hours2++;
+                    Stopwatch.lapHours++;
                 }
                 if (DateTime.Now.Millisecond < 10)
                     msLbl.Text = "00" + System.Convert.ToString(DateTime.Now.Millisecond);
@@ -472,20 +460,20 @@ namespace stopwatch
                     msLbl.Text = "0" + System.Convert.ToString(DateTime.Now.Millisecond);
                 else
                     msLbl.Text = System.Convert.ToString(DateTime.Now.Millisecond);
-                if (seconds2 < 10)
-                    seconds2Lbl.Text = "0" + System.Convert.ToString(seconds2);
+                if (Stopwatch.seconds2 < 10)
+                    seconds2Lbl.Text = "0" + System.Convert.ToString(Stopwatch.seconds2);
                 else
-                    seconds2Lbl.Text = System.Convert.ToString(seconds2);
-                if (minutes2 < 10)
-                    minutes2Lbl.Text = "0" + System.Convert.ToString(minutes2);
+                    seconds2Lbl.Text = System.Convert.ToString(Stopwatch.seconds2);
+                if (Stopwatch.minutes2 < 10)
+                    minutes2Lbl.Text = "0" + System.Convert.ToString(Stopwatch.minutes2);
                 else
-                    minutes2Lbl.Text = System.Convert.ToString(minutes2);
-                if (hours2 < 10)
-                    hours2Lbl.Text = "0" + System.Convert.ToString(hours2);
+                    minutes2Lbl.Text = System.Convert.ToString(Stopwatch.minutes2);
+                if (Stopwatch.hours2 < 10)
+                    hours2Lbl.Text = "0" + System.Convert.ToString(Stopwatch.hours2);
                 else
-                    hours2Lbl.Text = System.Convert.ToString(hours2);
+                    hours2Lbl.Text = System.Convert.ToString(Stopwatch.hours2);
                 await Task.Delay(33);
-            } while (stopwatchRunning);
+            } while (Stopwatch.stopwatchRunning);
         }
 
         private void start2Btn_Click(object sender, EventArgs e)
@@ -493,8 +481,8 @@ namespace stopwatch
             if (start2Btn.Text == "Stop")
             {
                 start2Btn.Text = "Start";
-                lapBtn.Enabled = stopwatchRunning = pauseBtn2.Enabled = false;
-                hours2 = minutes2 = seconds2 = lapSeconds = lapMinutes = lapHours = 0;
+                lapBtn.Enabled = Stopwatch.stopwatchRunning = pauseBtn2.Enabled = false;
+                Stopwatch.hours2 = Stopwatch.minutes2 = Stopwatch.seconds2 = Stopwatch.lapSeconds = Stopwatch.lapMinutes = Stopwatch.lapHours = 0;
                 seconds2Lbl.Text = minutes2Lbl.Text = hours2Lbl.Text = "00";
                 msLbl.Text = "000";
                 if (listBox1.Items.Count > 0)
@@ -503,11 +491,11 @@ namespace stopwatch
             else
             {
                 start2Btn.Text = "Stop";
-                lapBtn.Enabled = pauseBtn2.Enabled = stopwatchRunning = true;
+                lapBtn.Enabled = pauseBtn2.Enabled = Stopwatch.stopwatchRunning = true;
                 saveBtn.Enabled = false;
                 listBox1.Items.Clear();
-                tempSeconds1 = DateTime.Now.Second;
-                tempSeconds2 = tempSeconds1 + 1;
+                Stopwatch.tempSeconds1 = DateTime.Now.Second;
+                Stopwatch.tempSeconds2 = Stopwatch.tempSeconds1 + 1;
                 startMs();
             }
         }
@@ -515,14 +503,14 @@ namespace stopwatch
         private void lapBtn_Click(object sender, EventArgs e)
         {
             listBox1.Visible = true;
-            lapCount++;
-            if (lapCount < 10)
-                listBox1.Items.Add("# 0" + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds);
+            Stopwatch.lapCount++;
+            if (Stopwatch.lapCount < 10)
+                listBox1.Items.Add("# 0" + Stopwatch.lapCount + "  " + Stopwatch.hours2 + ":" + Stopwatch.minutes2 + ":" + Stopwatch.seconds2 + "." + DateTime.Now.Millisecond + "   " + Stopwatch.lapHours + ":" + Stopwatch.lapMinutes + ":" + Stopwatch.lapSeconds);
             else
-                listBox1.Items.Add("# " + lapCount + "  " + hours2 + ":" + minutes2 + ":" + seconds2 + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds);
-            results += listBox1.GetItemText(listBox1.SelectedItem) + System.Environment.NewLine;
+                listBox1.Items.Add("# " + Stopwatch.lapCount + "  " + Stopwatch.hours2 + ":" + Stopwatch.minutes2 + ":" + Stopwatch.seconds2 + "." + DateTime.Now.Millisecond + "   " + Stopwatch.lapHours + ":" + Stopwatch.lapMinutes + ":" + Stopwatch.lapSeconds);
+            Stopwatch.results += listBox1.GetItemText(listBox1.SelectedItem) + System.Environment.NewLine;
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
-            lapSeconds = lapMinutes = lapHours = 0;            
+            Stopwatch.lapSeconds = Stopwatch.lapMinutes = Stopwatch.lapHours = 0;            
         }
 
         private void close2Btn_Click(object sender, EventArgs e)
@@ -532,26 +520,26 @@ namespace stopwatch
 
         private void pauseBtn2_Click(object sender, EventArgs e)
         {
-            if (stopwatchRunning)
-                stopwatchRunning = false;
+            if (Stopwatch.stopwatchRunning)
+                Stopwatch.stopwatchRunning = false;
             else
             {
-                stopwatchRunning = true;
+                Stopwatch.stopwatchRunning = true;
                 startMs();
             }
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
-        {            
-            results += System.Environment.NewLine + System.DateTime.Now + System.Environment.NewLine + "Stopwatch by Ivanpop.";            
-            sfd.Filter = "Text File|*.txt";
-            sfd.FileName = "Results";
-            sfd.Title = "Save Results File";
-            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        {
+            Stopwatch.results += System.Environment.NewLine + System.DateTime.Now + System.Environment.NewLine + "Stopwatch by Ivanpop.";
+            Stopwatch.sfd.Filter = "Text File|*.txt";
+            Stopwatch.sfd.FileName = "Results";
+            Stopwatch.sfd.Title = "Save Results File";
+            if (Stopwatch.sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                string path = sfd.FileName;
+                string path = Stopwatch.sfd.FileName;
                 BinaryWriter bw = new BinaryWriter(File.Create(path));
-                bw.Write(results);
+                bw.Write(Stopwatch.results);
                 bw.Dispose();                
             }
         }        
