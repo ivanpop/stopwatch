@@ -22,22 +22,27 @@ namespace stopwatch
 
         public void shift(byte number)
         {
-            CountdownTimer.shift(number);
+            CountdownTimer.shift(number);            
             updateInput();            
         }
 
         public void updateMinusBtnStates()
         {
-            if (!CountdownTimer.CTstarted) 
-                CountdownTimer.setTime(6);                      
+            if (!CountdownTimer.CTstarted)
+            {
+                CountdownTimer.setTime(6);
+                buttonAdd5.Enabled = CountdownTimer.time >= 500 && CountdownTimer.minusMinutes ? true : false;
+                buttonAdd10.Enabled = CountdownTimer.time >= 1000 && CountdownTimer.minusMinutes ? true : false;
+                buttonAdd30.Enabled = CountdownTimer.time >= 3000 && CountdownTimer.minusMinutes ? true : false;
+            }
             if (CountdownTimer.time < 60 && CountdownTimer.minusMinutes)
             {
                 buttonAdd1.Enabled = clearBtn.Enabled = false;
                 plusMinusBtn.PerformClick();
                 plusMinusBtn.Enabled = false;
-            }
+            }            
             if (CountdownTimer.time == 0)
-                btn0.Enabled = false;
+                btn0.Enabled = startBtn.Enabled = false;
         }
         
         public void updateTime()
@@ -57,7 +62,8 @@ namespace stopwatch
             else
                 startBtn.Enabled = btn0.Enabled = clearBtn.Enabled = true;
             if (ctHoursLbl.Text == "00" && ctMinutesLbl.Text == "00" && plusMinusBtn.Enabled)
-                plusMinusBtn.Enabled = false;
+                plusMinusBtn.Enabled = false;            
+            plusMinusBtn.Enabled = ctHoursLbl.Text != "00" || ctMinutesLbl.Text != "00" ? true : false;                          
         }
 
         public bool timeToSeconds()
@@ -317,7 +323,7 @@ namespace stopwatch
         }
 
         private void plusMinusBtn_Click(object sender, EventArgs e)
-        {
+        {            
             if (!CountdownTimer.minusMinutes)
             {
                 buttonAdd1.Text = "-1'";
@@ -335,7 +341,7 @@ namespace stopwatch
                 buttonAdd30.Text = "+30'";
                 buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = true;
                 CountdownTimer.minusMinutes = false;
-            }
+            }            
         }
 
         private void tabControl1_KeyDown(object sender, KeyEventArgs e)
