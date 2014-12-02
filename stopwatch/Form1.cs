@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -485,18 +484,9 @@ namespace stopwatch
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            Stopwatch.results += System.Environment.NewLine + System.DateTime.Now + System.Environment.NewLine + "Stopwatch by Ivanpop.";
-            Stopwatch.sfd.Filter = "Text File|*.txt";
-            Stopwatch.sfd.FileName = "Results";
-            Stopwatch.sfd.Title = "Save Results File";
-            if (Stopwatch.sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                string path = Stopwatch.sfd.FileName;
-                BinaryWriter bw = new BinaryWriter(File.Create(path));
-                bw.Write(Stopwatch.results);
-                bw.Dispose();                
-            }
-        }        
+            Stopwatch.saveResults();
+        }
+
         #endregion 
         }
 }

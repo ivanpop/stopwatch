@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
+
 class Stopwatch
 {
     public static int hours = 0, minutes = 0, seconds = 0, tempSeconds1, tempSeconds2, lapCount = 0, lapHours, lapMinutes, lapSeconds;
@@ -76,5 +78,20 @@ class Stopwatch
             return "# 0" + lapCount + "  " + hours + ":" + minutes + ":" + seconds + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds;
         else 
             return "# " + lapCount + "  " + hours + ":" + minutes + ":" + seconds + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds;
+    }
+
+    public static void saveResults()
+    {
+        results += System.Environment.NewLine + System.DateTime.Now + System.Environment.NewLine + "Stopwatch by Ivanpop.";
+        sfd.Filter = "Text File|*.txt";
+        sfd.FileName = "Results";
+        sfd.Title = "Save Results File";
+        if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        {
+            string path = sfd.FileName;
+            BinaryWriter bw = new BinaryWriter(File.Create(path));
+            bw.Write(results);
+            bw.Dispose();
+        }
     }
 }
