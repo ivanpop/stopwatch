@@ -422,24 +422,10 @@ namespace stopwatch
         {
             do {
                 Stopwatch.startMs();
-                if (DateTime.Now.Millisecond < 10)
-                    msLbl.Text = "00" + System.Convert.ToString(DateTime.Now.Millisecond);
-                else if (DateTime.Now.Millisecond > 10 && DateTime.Now.Millisecond < 100)
-                    msLbl.Text = "0" + System.Convert.ToString(DateTime.Now.Millisecond);
-                else
-                    msLbl.Text = System.Convert.ToString(DateTime.Now.Millisecond);
-                if (Stopwatch.seconds2 < 10)
-                    seconds2Lbl.Text = "0" + System.Convert.ToString(Stopwatch.seconds2);
-                else
-                    seconds2Lbl.Text = System.Convert.ToString(Stopwatch.seconds2);
-                if (Stopwatch.minutes2 < 10)
-                    minutes2Lbl.Text = "0" + System.Convert.ToString(Stopwatch.minutes2);
-                else
-                    minutes2Lbl.Text = System.Convert.ToString(Stopwatch.minutes2);
-                if (Stopwatch.hours2 < 10)
-                    hours2Lbl.Text = "0" + System.Convert.ToString(Stopwatch.hours2);
-                else
-                    hours2Lbl.Text = System.Convert.ToString(Stopwatch.hours2);
+                msLbl.Text = Stopwatch.updateDisplay("ms");
+                seconds2Lbl.Text = Stopwatch.updateDisplay("seconds");
+                minutes2Lbl.Text = Stopwatch.updateDisplay("minutes");
+                hours2Lbl.Text = Stopwatch.updateDisplay("hours");                
                 await Task.Delay(33);
             } while (Stopwatch.stopwatchRunning);
         }

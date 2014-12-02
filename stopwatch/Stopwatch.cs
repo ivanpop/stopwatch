@@ -43,4 +43,30 @@ class Stopwatch
             lapHours++;
         }
     }
+
+    public static string updateDisplay(string time)
+    {
+        if (time == "ms")
+            if (DateTime.Now.Millisecond < 10)
+                return "00" + System.Convert.ToString(DateTime.Now.Millisecond);
+            else if (DateTime.Now.Millisecond > 10 && DateTime.Now.Millisecond < 100)
+                return "0" + System.Convert.ToString(DateTime.Now.Millisecond);
+            else
+                return System.Convert.ToString(DateTime.Now.Millisecond);
+        else if (time == "seconds")
+            if (Stopwatch.seconds2 < 10)
+                return "0" + System.Convert.ToString(Stopwatch.seconds2);
+            else
+                return System.Convert.ToString(Stopwatch.seconds2);
+        else if (time == "minutes")
+            if (Stopwatch.minutes2 < 10)
+                return "0" + System.Convert.ToString(Stopwatch.minutes2);
+            else
+                return System.Convert.ToString(Stopwatch.minutes2);
+        else
+            if (Stopwatch.hours2 < 10)
+                return "0" + System.Convert.ToString(Stopwatch.hours2);
+            else
+                return System.Convert.ToString(Stopwatch.hours2);
+    }
 }
