@@ -421,39 +421,7 @@ namespace stopwatch
         public async void startMs()
         {
             do {
-                Stopwatch.tempSeconds1 = DateTime.Now.Second;
-                if (Stopwatch.lapCount == 0)
-                {
-                    Stopwatch.lapSeconds = Stopwatch.seconds2;
-                    Stopwatch.lapMinutes = Stopwatch.minutes2;
-                    Stopwatch.lapHours = Stopwatch.hours2;
-                }
-                if (Stopwatch.tempSeconds1 == Stopwatch.tempSeconds2)
-                {
-                    Stopwatch.seconds2++;
-                    Stopwatch.lapSeconds++;
-                    Stopwatch.tempSeconds2 = Stopwatch.tempSeconds1 + 1;                    
-                }
-                if (Stopwatch.tempSeconds1 == 0 && !Stopwatch.sixty)
-                {
-                    Stopwatch.seconds2++;
-                    Stopwatch.tempSeconds2 = 1;
-                    Stopwatch.sixty = true;
-                }
-                if (Stopwatch.seconds2 == 10)
-                    Stopwatch.sixty = false;
-                if (Stopwatch.seconds2 > 59)
-                {
-                    Stopwatch.seconds2 = 0;
-                    Stopwatch.minutes2++;
-                    Stopwatch.lapMinutes++;
-                }
-                if (Stopwatch.minutes2 > 59)
-                {
-                    Stopwatch.minutes2 = 0;
-                    Stopwatch.hours2++;
-                    Stopwatch.lapHours++;
-                }
+                Stopwatch.startMs();
                 if (DateTime.Now.Millisecond < 10)
                     msLbl.Text = "00" + System.Convert.ToString(DateTime.Now.Millisecond);
                 else if (DateTime.Now.Millisecond > 10 && DateTime.Now.Millisecond < 100)
