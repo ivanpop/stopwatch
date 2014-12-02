@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 class Stopwatch
 {
-    public static int hours2 = 0, minutes2 = 0, seconds2 = 0, tempSeconds1, tempSeconds2, lapCount = 0, lapHours, lapMinutes, lapSeconds;
+    public static int hours = 0, minutes = 0, seconds = 0, tempSeconds1, tempSeconds2, lapCount = 0, lapHours, lapMinutes, lapSeconds;
     public static bool stopwatchRunning = false, sixty = false;
     public static String results;
     public static SaveFileDialog sfd = new SaveFileDialog();
@@ -12,34 +12,34 @@ class Stopwatch
         tempSeconds1 = DateTime.Now.Second;
         if (lapCount == 0)
         {
-            lapSeconds = seconds2;
-            lapMinutes = minutes2;
-            lapHours = hours2;
+            lapSeconds = seconds;
+            lapMinutes = minutes;
+            lapHours = hours;
         }
         if (tempSeconds1 == tempSeconds2)
         {
-            seconds2++;
+            seconds++;
             lapSeconds++;
             tempSeconds2 = tempSeconds1 + 1;
         }
         if (tempSeconds1 == 0 && !sixty)
         {
-            seconds2++;
+            seconds++;
             tempSeconds2 = 1;
             sixty = true;
         }
-        if (seconds2 == 10)
+        if (seconds == 10)
             sixty = false;
-        if (seconds2 > 59)
+        if (seconds > 59)
         {
-            seconds2 = 0;
-            minutes2++;
+            seconds = 0;
+            minutes++;
             lapMinutes++;
         }
-        if (minutes2 > 59)
+        if (minutes > 59)
         {
-            minutes2 = 0;
-            hours2++;
+            minutes = 0;
+            hours++;
             lapHours++;
         }
     }
@@ -54,19 +54,27 @@ class Stopwatch
             else
                 return System.Convert.ToString(DateTime.Now.Millisecond);
         else if (time == "seconds")
-            if (Stopwatch.seconds2 < 10)
-                return "0" + System.Convert.ToString(Stopwatch.seconds2);
+            if (Stopwatch.seconds < 10)
+                return "0" + System.Convert.ToString(Stopwatch.seconds);
             else
-                return System.Convert.ToString(Stopwatch.seconds2);
+                return System.Convert.ToString(Stopwatch.seconds);
         else if (time == "minutes")
-            if (Stopwatch.minutes2 < 10)
-                return "0" + System.Convert.ToString(Stopwatch.minutes2);
+            if (Stopwatch.minutes < 10)
+                return "0" + System.Convert.ToString(Stopwatch.minutes);
             else
-                return System.Convert.ToString(Stopwatch.minutes2);
+                return System.Convert.ToString(Stopwatch.minutes);
         else
-            if (Stopwatch.hours2 < 10)
-                return "0" + System.Convert.ToString(Stopwatch.hours2);
+            if (Stopwatch.hours < 10)
+                return "0" + System.Convert.ToString(Stopwatch.hours);
             else
-                return System.Convert.ToString(Stopwatch.hours2);
+                return System.Convert.ToString(Stopwatch.hours);
+    }
+
+    public static string getLapText(byte lapCount = 0)
+    {
+        if (lapCount == 0)
+            return "# 0" + lapCount + "  " + hours + ":" + minutes + ":" + seconds + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds;
+        else 
+            return "# " + lapCount + "  " + hours + ":" + minutes + ":" + seconds + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds;
     }
 }

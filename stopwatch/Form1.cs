@@ -436,7 +436,7 @@ namespace stopwatch
             {
                 start2Btn.Text = "Start";
                 lapBtn.Enabled = Stopwatch.stopwatchRunning = pauseBtn2.Enabled = false;
-                Stopwatch.hours2 = Stopwatch.minutes2 = Stopwatch.seconds2 = Stopwatch.lapSeconds = Stopwatch.lapMinutes = Stopwatch.lapHours = 0;
+                Stopwatch.hours = Stopwatch.minutes = Stopwatch.seconds = Stopwatch.lapSeconds = Stopwatch.lapMinutes = Stopwatch.lapHours = 0;
                 seconds2Lbl.Text = minutes2Lbl.Text = hours2Lbl.Text = "00";
                 msLbl.Text = "000";
                 if (listBox1.Items.Count > 0)
@@ -459,12 +459,12 @@ namespace stopwatch
             listBox1.Visible = true;
             Stopwatch.lapCount++;
             if (Stopwatch.lapCount < 10)
-                listBox1.Items.Add("# 0" + Stopwatch.lapCount + "  " + Stopwatch.hours2 + ":" + Stopwatch.minutes2 + ":" + Stopwatch.seconds2 + "." + DateTime.Now.Millisecond + "   " + Stopwatch.lapHours + ":" + Stopwatch.lapMinutes + ":" + Stopwatch.lapSeconds);
+                listBox1.Items.Add(Stopwatch.getLapText());
             else
-                listBox1.Items.Add("# " + Stopwatch.lapCount + "  " + Stopwatch.hours2 + ":" + Stopwatch.minutes2 + ":" + Stopwatch.seconds2 + "." + DateTime.Now.Millisecond + "   " + Stopwatch.lapHours + ":" + Stopwatch.lapMinutes + ":" + Stopwatch.lapSeconds);
+                listBox1.Items.Add(Stopwatch.getLapText(1));
             Stopwatch.results += listBox1.GetItemText(listBox1.SelectedItem) + System.Environment.NewLine;
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
-            Stopwatch.lapSeconds = Stopwatch.lapMinutes = Stopwatch.lapHours = 0;            
+            Stopwatch.lapSeconds = Stopwatch.lapMinutes = Stopwatch.lapHours = 0;
         }
 
         private void close2Btn_Click(object sender, EventArgs e)
