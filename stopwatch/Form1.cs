@@ -379,6 +379,11 @@ namespace stopwatch
                 case Keys.Back:
                     clearBtn.PerformClick();
                     break;
+                case Keys.Enter:
+                    if (tabControl1.SelectedIndex == 0)
+                        startBtn.PerformClick();
+                    else start2Btn.PerformClick();                    
+                    break;
             }
         }
 
