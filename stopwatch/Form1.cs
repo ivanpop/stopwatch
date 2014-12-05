@@ -103,7 +103,7 @@ namespace stopwatch
             do {
                 progressBar1.PerformStep();
                 timeToSeconds();
-                CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, progressBar1.Maximum);                
+                CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, progressBar1.Maximum);
                 CountdownTimer.seconds--;
                 CountdownTimer.time--;
                 await Task.Delay(1000);
@@ -219,15 +219,15 @@ namespace stopwatch
                 {
                     ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Black;
                     CountdownTimer.player.Stop();
-                    buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = true;
+                    buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = true;                    
                 }
                 else
                 {
-                    CountdownTimer.CTstarted = false;
-                    progressBar1.Value = 0;
-                    CountdownTimer.time = 0;
+                    CountdownTimer.CTstarted = false;                    
                     Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
                 }
+                progressBar1.Value = CountdownTimer.time = 0;
+                CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, progressBar1.Maximum);                
                 startBtn.Text = "Start";
                 ctHoursLbl.Text = ctSecondsLbl.Text = ctMinutesLbl.Text = "00";                
                 btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = ctHLabel.Visible = ctHoursLbl.Visible = true;
