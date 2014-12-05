@@ -235,4 +235,30 @@ class CountdownTimer
         timeArr[2, 0] = timeArr[2, 1];
         timeArr[2, 1] = 0;
     }
+
+    public static void startBtn()
+    {        
+        if (seconds > 59)
+        {
+            minutes++;
+            seconds -= 59;
+        }
+        if (minutes > 59)
+        {
+            hours++;
+            minutes -= 59;
+        }
+        if (hours > 0 && minutes <= 0 && seconds <= 0)
+        {
+            hours--;
+            minutes = 59;
+            seconds = 60;
+        }
+        if (minutes > 0 && seconds <= 0)
+        {
+            minutes--;
+            seconds = 60;
+        }
+        time += (short)((hours * 3600) + (minutes * 60) + seconds);
+    }
 }
