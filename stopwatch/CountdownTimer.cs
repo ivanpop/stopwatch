@@ -8,7 +8,7 @@ class CountdownTimer
     public static sbyte hours = 0, minutes = 0, seconds = 0, tempSeconds1, tempSeconds2;
     public static short time = 0;
     public static byte[,] timeArr = { { 0, 0 }, { 0, 0 }, { 0, 0 } };
-    public static bool CTstarted = false, CTended = false, minusMinutes = false, sixty = false;
+    public static bool CTstarted = false, CTended = false, minusMinutes = false, sixty = false, beepBoxChecked;
 
     public static string addZero(string time = "hours")
     {
@@ -95,6 +95,7 @@ class CountdownTimer
         {
             seconds = 0;
             minutes++;
+            if (beepBoxChecked) player.Play();
         }
         if (minutes > 59)
         {
