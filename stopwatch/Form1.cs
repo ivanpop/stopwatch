@@ -404,8 +404,8 @@ namespace stopwatch
                 lapBtn.Enabled = pauseBtn2.Enabled = Stopwatch.stopwatchRunning = true;
                 saveBtn.Enabled = false;
                 listBox1.Items.Clear();
-                Stopwatch.tempSeconds1 = DateTime.Now.Second;
-                Stopwatch.tempSeconds2 = Stopwatch.tempSeconds1 + 1;
+                Stopwatch.tempSeconds1 = (byte)DateTime.Now.Second;
+                Stopwatch.tempSeconds2 = (byte)(Stopwatch.tempSeconds1 + 1);
                 startMs();
             }
         }

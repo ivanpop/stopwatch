@@ -4,14 +4,14 @@ using System.Windows.Forms;
 
 class Stopwatch
 {
-    public static int hours = 0, minutes = 0, seconds = 0, tempSeconds1, tempSeconds2, lapCount = 0, lapHours, lapMinutes, lapSeconds;
+    public static byte hours = 0, minutes = 0, seconds = 0, tempSeconds1, tempSeconds2, lapCount = 0, lapHours, lapMinutes, lapSeconds;
     public static bool stopwatchRunning = false, sixty = false;
     public static String results;
     public static SaveFileDialog sfd = new SaveFileDialog();
 
     public static void startMs()
     {
-        tempSeconds1 = DateTime.Now.Second;
+        tempSeconds1 = (byte)DateTime.Now.Second;
         if (lapCount == 0)
         {
             lapSeconds = seconds;
@@ -22,7 +22,7 @@ class Stopwatch
         {
             seconds++;
             lapSeconds++;
-            tempSeconds2 = tempSeconds1 + 1;
+            tempSeconds2 = (byte)(tempSeconds1 + 1);
         }
         if (tempSeconds1 == 0 && !sixty)
         {
