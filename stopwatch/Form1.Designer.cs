@@ -206,6 +206,7 @@
             this.beepBox.TabIndex = 41;
             this.beepBox.Text = "Beep";
             this.beepBox.UseVisualStyleBackColor = true;
+            this.beepBox.CheckedChanged += new System.EventHandler(this.beepBox_CheckedChanged);
             // 
             // buttonAdd1
             // 

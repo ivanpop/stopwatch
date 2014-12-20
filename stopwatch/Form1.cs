@@ -156,6 +156,18 @@ namespace stopwatch
             updateInput();
         }
 
+        public async void timeFromEnd()
+        {
+            do
+            {
+                CountdownTimer.timeFromEnd();
+                if (CountdownTimer.hours > 0) ctHoursLbl.Enabled = ctHLabel.Enabled = true;
+                CountdownTimer.beepBoxChecked = beepBox.Checked ? true : false;
+                updateTime();
+                await Task.Delay(1000);
+            } while (startBtn.Text == "Stop");
+        }
+
         private void startBtn_Click_1(object sender, EventArgs e)
         {
             if (startBtn.Text == "Start")
@@ -362,16 +374,10 @@ namespace stopwatch
             clear();
         }
 
-        public async void timeFromEnd()
+        private void beepBox_CheckedChanged(object sender, EventArgs e)
         {
-            do {
-                CountdownTimer.timeFromEnd();                
-                if (CountdownTimer.hours > 0) ctHoursLbl.Enabled = ctHLabel.Enabled = true;
-                CountdownTimer.beepBoxChecked = beepBox.Checked ? true : false;
-                updateTime();
-                await Task.Delay(1000);
-            } while (startBtn.Text == "Stop");
-        }
+            CountdownTimer.player.Stop();
+        }        
 
         #endregion
         #region Stopwatch
