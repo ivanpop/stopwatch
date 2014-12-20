@@ -76,8 +76,7 @@ class CountdownTimer
             tempSeconds2 = 1;
             sixty = true;
         }
-        if (seconds == 10)
-            sixty = false;
+        if (seconds == 10) sixty = false;
         if (seconds > 59)
         {
             seconds = 0;
@@ -103,12 +102,12 @@ class CountdownTimer
                 minutes = 59;
             }
         }
-        if (CountdownTimer.hours < 0 && !CountdownTimer.CTended)
+        if (hours < 0 && !CTended)
         {
-            Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
-            CountdownTimer.tempSeconds1 = (sbyte)(DateTime.Now.Second);
-            CountdownTimer.tempSeconds2 = (sbyte)(CountdownTimer.tempSeconds1 + 1);
-            CountdownTimer.time = 0;
+            Array.Clear(timeArr, 0, timeArr.Length);
+            tempSeconds1 = (sbyte)(DateTime.Now.Second);
+            tempSeconds2 = (sbyte)(tempSeconds1 + 1);
+            time = 0;
         }
     }
 

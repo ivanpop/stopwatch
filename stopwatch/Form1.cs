@@ -412,7 +412,7 @@ namespace stopwatch
 
         private void lapBtn_Click(object sender, EventArgs e)
         {
-            listBox1.Visible = true;
+            if (!listBox1.Visible) listBox1.Visible = true;
             Stopwatch.lapCount++;
             if (Stopwatch.lapCount < 10) listBox1.Items.Add(Stopwatch.getLapText());
             else listBox1.Items.Add(Stopwatch.getLapText(1));
@@ -427,13 +427,9 @@ namespace stopwatch
         }
 
         private void pauseBtn2_Click(object sender, EventArgs e)
-        {
-            if (Stopwatch.stopwatchRunning) Stopwatch.stopwatchRunning = false;
-            else
-            {
-                Stopwatch.stopwatchRunning = true;
-                startMs();
-            }
+        {            
+            Stopwatch.stopwatchRunning = Stopwatch.stopwatchRunning ? false : true;
+            if (!Stopwatch.stopwatchRunning) startMs();
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
