@@ -388,9 +388,29 @@ namespace stopwatch
                 msLbl.Text = Stopwatch.updateDisplay("ms");
                 seconds2Lbl.Text = Stopwatch.updateDisplay("seconds");
                 minutes2Lbl.Text = Stopwatch.updateDisplay("minutes");
-                hours2Lbl.Text = Stopwatch.updateDisplay("hours");                
+                hours2Lbl.Text = Stopwatch.updateDisplay("hours");
+                label1.Text = Stopwatch.beepInterval.ToString();
+                
+                if (Stopwatch.readInterval && stpBeep.Checked)
+                {
+                    
+
+                    if (Stopwatch.beepInterval == 0)
+                    {
+                        CountdownTimer.player.Play();
+                        Stopwatch.beepInterval = byte.Parse(stpBeepInterval.Text) * 60;
+                    }
+                }
                 await Task.Delay(33);
             } while (Stopwatch.stopwatchRunning);
+        }        
+
+        public async void startBeepInterval()
+        {
+            do{
+                Stopwatch.beepInterval--;
+            await Task.Delay(1000);
+            }while (Stopwatch.beepInterval != 0);
         }
 
         private void start2Btn_Click(object sender, EventArgs e)
@@ -413,6 +433,14 @@ namespace stopwatch
                 Stopwatch.tempSeconds1 = (byte)DateTime.Now.Second;
                 Stopwatch.tempSeconds2 = (byte)(Stopwatch.tempSeconds1 + 1);
                 startMs();
+
+                Stopwatch.readInterval = Int32.TryParse(stpBeepInterval.Text, out Stopwatch.beepInterval);
+                if (!Stopwatch.readInterval && stpBeep.Checked) MessageBox.Show("Wrong beep interval!", "Stopwatch", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    Stopwatch.beepInterval *= 60;
+                    startBeepInterval();
+                }
             }
         }
 
@@ -443,6 +471,21 @@ namespace stopwatch
             Stopwatch.saveResults();
         }
 
+        private void stpBeep_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Stopwatch.stopwatchRunning && stpBeep.Checked)
+            {
+                Stopwatch.readInterval = Int32.TryParse(stpBeepInterval.Text, out Stopwatch.beepInterval);
+                if (!Stopwatch.readInterval) MessageBox.Show("Wrong beep interval!", "Stopwatch", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    Stopwatch.beepInterval *= 60;
+                    startBeepInterval();
+                }
+            }
+        }
+
         #endregion 
+        
         }
 }

@@ -73,6 +73,9 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
+            this.stpBeep = new System.Windows.Forms.CheckBox();
+            this.stpBeepInterval = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -425,6 +428,9 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.stpBeepInterval);
+            this.tabPage2.Controls.Add(this.stpBeep);
             this.tabPage2.Controls.Add(this.saveBtn);
             this.tabPage2.Controls.Add(this.listBox1);
             this.tabPage2.Controls.Add(this.swMSLabel);
@@ -461,9 +467,9 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(13, 144);
+            this.listBox1.Location = new System.Drawing.Point(13, 169);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(273, 186);
+            this.listBox1.Size = new System.Drawing.Size(273, 160);
             this.listBox1.TabIndex = 44;
             // 
             // swMSLabel
@@ -592,6 +598,35 @@
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
             // 
+            // stpBeep
+            // 
+            this.stpBeep.AutoSize = true;
+            this.stpBeep.Location = new System.Drawing.Point(13, 146);
+            this.stpBeep.Name = "stpBeep";
+            this.stpBeep.Size = new System.Drawing.Size(143, 17);
+            this.stpBeep.TabIndex = 46;
+            this.stpBeep.Text = "Beep every         minutes";
+            this.stpBeep.UseVisualStyleBackColor = true;
+            this.stpBeep.CheckedChanged += new System.EventHandler(this.stpBeep_CheckedChanged);
+            // 
+            // stpBeepInterval
+            // 
+            this.stpBeepInterval.Location = new System.Drawing.Point(90, 144);
+            this.stpBeepInterval.MaxLength = 2;
+            this.stpBeepInterval.Name = "stpBeepInterval";
+            this.stpBeepInterval.Size = new System.Drawing.Size(19, 20);
+            this.stpBeepInterval.TabIndex = 47;
+            this.stpBeepInterval.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(185, 146);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -656,6 +691,9 @@
         private System.Windows.Forms.Button plusMinusBtn;
         private System.Windows.Forms.Button pauseBtn1;
         private System.Windows.Forms.Button clearBtn;
+        private System.Windows.Forms.CheckBox stpBeep;
+        private System.Windows.Forms.TextBox stpBeepInterval;
+        private System.Windows.Forms.Label label1;
 
     }
 }
