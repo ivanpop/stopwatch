@@ -6,7 +6,7 @@ class Stopwatch
 {
     public static byte hours = 0, minutes = 0, seconds = 0, tempSeconds1, tempSeconds2, lapCount = 0, lapHours, lapMinutes, lapSeconds;
     public static int beepInterval;
-    public static bool stopwatchRunning = false, sixty = false, readInterval, startInterval = false;
+    public static bool stopwatchRunning = false, sixty = false, readInterval, startInterval = false, startIntervalRunning = false;
     public static String results;
     public static SaveFileDialog sfd = new SaveFileDialog();
 

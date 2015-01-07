@@ -390,17 +390,6 @@ namespace stopwatch
                 minutes2Lbl.Text = Stopwatch.updateDisplay("minutes");
                 hours2Lbl.Text = Stopwatch.updateDisplay("hours");
                 label1.Text = Stopwatch.beepInterval.ToString();
-                
-                if (Stopwatch.readInterval && stpBeep.Checked)
-                {
-                    
-
-                    if (Stopwatch.beepInterval == 0)
-                    {
-                        CountdownTimer.player.Play();
-                        Stopwatch.beepInterval = byte.Parse(stpBeepInterval.Text) * 60;
-                    }
-                }
                 await Task.Delay(33);
             } while (Stopwatch.stopwatchRunning);
         }        
@@ -409,8 +398,12 @@ namespace stopwatch
         {
             do{
                 Stopwatch.beepInterval--;
-            await Task.Delay(1000);
-            }while (Stopwatch.beepInterval != 0);
+                await Task.Delay(1000);
+            }while (Stopwatch.startIntervalRunning);
+
+            if (Stopwatch.startIntervalRunning) CountdownTimer.player.Play();
+            Stopwatch.beepInterval = byte.Parse(stpBeepInterval.Text) * 10;
+            startBeepInterval();
         }
 
         private void start2Btn_Click(object sender, EventArgs e)
@@ -423,6 +416,9 @@ namespace stopwatch
                 seconds2Lbl.Text = minutes2Lbl.Text = hours2Lbl.Text = "00";
                 msLbl.Text = "000";
                 if (listBox1.Items.Count > 0) saveBtn.Enabled = true;
+                if (!stpBeep.Checked) stpBeep.Enabled = true;
+                stpBeepInterval.Enabled = true;
+                Stopwatch.startIntervalRunning = false;
             }
             else
             {
@@ -434,13 +430,17 @@ namespace stopwatch
                 Stopwatch.tempSeconds2 = (byte)(Stopwatch.tempSeconds1 + 1);
                 startMs();
 
+                if (!stpBeep.Checked) stpBeep.Enabled = false;
+                stpBeepInterval.Enabled = false;
                 Stopwatch.readInterval = Int32.TryParse(stpBeepInterval.Text, out Stopwatch.beepInterval);
-                if (!Stopwatch.readInterval && stpBeep.Checked) MessageBox.Show("Wrong beep interval!", "Stopwatch", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
+                if (!Stopwatch.readInterval || Stopwatch.beepInterval <= 0 && stpBeep.Checked) MessageBox.Show("Wrong beep interval!", "Stopwatch", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                if (Stopwatch.beepInterval > 0 && stpBeep.Checked && !Stopwatch.startIntervalRunning)
                 {
-                    Stopwatch.beepInterval *= 60;
+                    Stopwatch.beepInterval *= 10;
+                    Stopwatch.startIntervalRunning = true;
                     startBeepInterval();
-                }
+                }                
             }
         }
 
@@ -475,13 +475,7 @@ namespace stopwatch
         {
             if (Stopwatch.stopwatchRunning && stpBeep.Checked)
             {
-                Stopwatch.readInterval = Int32.TryParse(stpBeepInterval.Text, out Stopwatch.beepInterval);
-                if (!Stopwatch.readInterval) MessageBox.Show("Wrong beep interval!", "Stopwatch", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
-                {
-                    Stopwatch.beepInterval *= 60;
-                    startBeepInterval();
-                }
+                
             }
         }
 
