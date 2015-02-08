@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -58,16 +59,20 @@ namespace stopwatch
         public bool timeToSeconds()
         {
             CountdownTimer.timeToSeconds();
-            if (CountdownTimer.hours < 0 && beepBox.Checked) CountdownTimer.player.Play();
-            if (CountdownTimer.hours < 0 && !CountdownTimer.CTended)
-            {                
-                ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Red;
-                startBtn.Text = "Stop";                
-                startBtn.Enabled = CountdownTimer.CTended = true;
-                pauseBtn1.Enabled = CountdownTimer.CTstarted = buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = false; 
-                timeFromEnd();                              
-                return false;                
+            if (CountdownTimer.hours < 0)
+            {
+                if (beepBox.Checked) CountdownTimer.player.Play();                
+                if (!CountdownTimer.CTended)
+                {
+                    ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Red;
+                    startBtn.Text = "Stop";
+                    startBtn.Enabled = CountdownTimer.CTended = true;
+                    pauseBtn1.Enabled = CountdownTimer.CTstarted = buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = false;
+                    timeFromEnd();
+                    return false;
+                }
             }
+            
             return true;
         }
 
@@ -164,6 +169,12 @@ namespace stopwatch
                 if (CountdownTimer.hours > 0) ctHoursLbl.Enabled = ctHLabel.Enabled = true;
                 CountdownTimer.beepBoxChecked = beepBox.Checked ? true : false;
                 updateTime();
+                if (shutdownBox.Checked)
+                {
+                    shutdownBox.ForeColor = System.Drawing.Color.Red;
+                    shutdownBox.Text = CTShutdown.callShutdown();
+                    if (CTShutdown.interval == 0) Process.Start("shutdown", "/s /t 0");                        
+                }                
                 await Task.Delay(1000);
             } while (startBtn.Text == "Stop");
         }
