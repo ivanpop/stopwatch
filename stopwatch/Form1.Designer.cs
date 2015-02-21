@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.shutdownBox = new System.Windows.Forms.CheckBox();
             this.clearBtn = new System.Windows.Forms.Button();
             this.pauseBtn1 = new System.Windows.Forms.Button();
             this.plusMinusBtn = new System.Windows.Forms.Button();
@@ -59,7 +60,6 @@
             this.ctHoursLbl = new System.Windows.Forms.Label();
             this.startBtn = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
             this.stpBeepInterval = new System.Windows.Forms.TextBox();
             this.stpBeep = new System.Windows.Forms.CheckBox();
             this.saveBtn = new System.Windows.Forms.Button();
@@ -76,7 +76,6 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
-            this.shutdownBox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -130,6 +129,16 @@
             this.tabPage1.Size = new System.Drawing.Size(300, 341);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Countdown timer";
+            // 
+            // shutdownBox
+            // 
+            this.shutdownBox.AutoSize = true;
+            this.shutdownBox.Location = new System.Drawing.Point(167, 282);
+            this.shutdownBox.Name = "shutdownBox";
+            this.shutdownBox.Size = new System.Drawing.Size(130, 17);
+            this.shutdownBox.TabIndex = 48;
+            this.shutdownBox.Text = "Shutdown when done";
+            this.shutdownBox.UseVisualStyleBackColor = true;
             // 
             // clearBtn
             // 
@@ -430,7 +439,6 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.stpBeepInterval);
             this.tabPage2.Controls.Add(this.stpBeep);
             this.tabPage2.Controls.Add(this.saveBtn);
@@ -454,15 +462,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stopwatch";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(185, 146);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 48;
-            this.label1.Text = "label1";
-            // 
             // stpBeepInterval
             // 
             this.stpBeepInterval.Location = new System.Drawing.Point(90, 144);
@@ -470,7 +469,7 @@
             this.stpBeepInterval.Name = "stpBeepInterval";
             this.stpBeepInterval.Size = new System.Drawing.Size(19, 20);
             this.stpBeepInterval.TabIndex = 47;
-            this.stpBeepInterval.Text = "0";
+            this.stpBeepInterval.Text = "1";
             // 
             // stpBeep
             // 
@@ -629,16 +628,6 @@
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
             // 
-            // shutdownBox
-            // 
-            this.shutdownBox.AutoSize = true;
-            this.shutdownBox.Location = new System.Drawing.Point(167, 282);
-            this.shutdownBox.Name = "shutdownBox";
-            this.shutdownBox.Size = new System.Drawing.Size(130, 17);
-            this.shutdownBox.TabIndex = 48;
-            this.shutdownBox.Text = "Shutdown when done";
-            this.shutdownBox.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -705,7 +694,6 @@
         private System.Windows.Forms.Button clearBtn;
         private System.Windows.Forms.CheckBox stpBeep;
         private System.Windows.Forms.TextBox stpBeepInterval;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox shutdownBox;
 
     }

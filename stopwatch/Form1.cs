@@ -400,7 +400,6 @@ namespace stopwatch
                 seconds2Lbl.Text = Stopwatch.updateDisplay("seconds");
                 minutes2Lbl.Text = Stopwatch.updateDisplay("minutes");
                 hours2Lbl.Text = Stopwatch.updateDisplay("hours");
-                label1.Text = Stopwatch.beepInterval.ToString();
                 await Task.Delay(33);
             } while (Stopwatch.stopwatchRunning);
         }        
@@ -410,9 +409,9 @@ namespace stopwatch
             do{
                 Stopwatch.beepInterval--;
                 await Task.Delay(1000);
-            }while (Stopwatch.startIntervalRunning);
+            }while (Stopwatch.beepInterval > 0);
 
-            if (Stopwatch.startIntervalRunning) CountdownTimer.player.Play();
+            if (Stopwatch.startIntervalRunning && stpBeep.Checked) CountdownTimer.player.Play();
             Stopwatch.beepInterval = byte.Parse(stpBeepInterval.Text) * 10;
             startBeepInterval();
         }
@@ -448,7 +447,7 @@ namespace stopwatch
 
                 if (Stopwatch.beepInterval > 0 && stpBeep.Checked && !Stopwatch.startIntervalRunning)
                 {
-                    Stopwatch.beepInterval *= 10;
+                    Stopwatch.beepInterval *= 60;
                     Stopwatch.startIntervalRunning = true;
                     startBeepInterval();
                 }                
