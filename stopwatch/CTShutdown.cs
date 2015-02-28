@@ -16,5 +16,15 @@ namespace stopwatch
             }
             else return "Shutting down!";
         }
+
+        public static string callSleep()
+        {
+            if (interval > 0)
+            {
+                interval--;
+                return "Sleep in " + interval;
+            }
+            else return "Falling asleep!";
+        }
     }
 }

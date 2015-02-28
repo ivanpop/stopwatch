@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,6 +14,9 @@ namespace stopwatch
         }
 
         #region Countdown Timer
+
+        [DllImport("Powrprof.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
 
         public void shift(byte number)
         {
@@ -174,7 +178,13 @@ namespace stopwatch
                     shutdownBox.ForeColor = System.Drawing.Color.Red;
                     shutdownBox.Text = CTShutdown.callShutdown();
                     if (CTShutdown.interval == 0) Process.Start("shutdown", "/s /t 0");                        
-                }                
+                }
+                if (sleepBox.Checked)
+                {
+                    sleepBox.ForeColor = System.Drawing.Color.Red;
+                    sleepBox.Text = CTShutdown.callSleep();
+                    if (CTShutdown.interval == 0) SetSuspendState(false, true, true);
+                }
                 await Task.Delay(1000);
             } while (startBtn.Text == "Stop");
         }
