@@ -20,8 +20,8 @@ namespace stopwatch
 
         public void shift(byte number)
         {
-            CountdownTimer.shift(number);            
-            updateInput();            
+            CountdownTimer.shift(number);
+            updateInput();
         }
 
         public void updateMinusBtnStates()
@@ -38,7 +38,7 @@ namespace stopwatch
                 buttonAdd1.Enabled = clearBtn.Enabled = false;
                 plusMinusBtn.PerformClick();
                 plusMinusBtn.Enabled = false;
-            }            
+            }
             if (CountdownTimer.time == 0) btn0.Enabled = startBtn.Enabled = false;
         }
         
@@ -56,8 +56,8 @@ namespace stopwatch
             ctHoursLbl.Text = CountdownTimer.updateInput();
             if (ctHoursLbl.Text == "00" && ctMinutesLbl.Text == "00" && ctSecondsLbl.Text == "00") startBtn.Enabled = btn0.Enabled = clearBtn.Enabled = false;
             else startBtn.Enabled = btn0.Enabled = clearBtn.Enabled = true;
-            if (ctHoursLbl.Text == "00" && ctMinutesLbl.Text == "00" && plusMinusBtn.Enabled) plusMinusBtn.Enabled = false;            
-            plusMinusBtn.Enabled = ctHoursLbl.Text != "00" || ctMinutesLbl.Text != "00" ? true : false;                          
+            if (ctHoursLbl.Text == "00" && ctMinutesLbl.Text == "00" && plusMinusBtn.Enabled) plusMinusBtn.Enabled = false;
+            plusMinusBtn.Enabled = ctHoursLbl.Text != "00" || ctMinutesLbl.Text != "00" ? true : false;
         }
 
         public bool timeToSeconds()
@@ -65,7 +65,7 @@ namespace stopwatch
             CountdownTimer.timeToSeconds();
             if (CountdownTimer.hours < 0)
             {
-                if (beepBox.Checked) CountdownTimer.player.Play();                
+                if (beepBox.Checked) CountdownTimer.player.Play();
                 if (!CountdownTimer.CTended)
                 {
                     ctHLabel.ForeColor = ctMLabel.ForeColor = ctSLabel.ForeColor = ctHoursLbl.ForeColor = ctMinutesLbl.ForeColor = ctSecondsLbl.ForeColor = beepBox.ForeColor = System.Drawing.Color.Red;
@@ -75,8 +75,7 @@ namespace stopwatch
                     timeFromEnd();
                     return false;
                 }
-            }
-            
+            }            
             return true;
         }
 
@@ -84,7 +83,7 @@ namespace stopwatch
         {
             if (timeToSeconds())
             {
-                CountdownTimer.addTime(i);                
+                CountdownTimer.addTime(i);
                 progressBar1.Maximum = (int)CountdownTimer.time;
                 progressBar1.Value = 0;
             }
@@ -95,9 +94,9 @@ namespace stopwatch
         {
             doCountdownStep();
             do {
-                updateTime(); 
-                checkMinutes();                              
-                await Task.Delay(100);                
+                updateTime();
+                checkMinutes();
+                await Task.Delay(100);
             } while (CountdownTimer.CTstarted);
         }
 
@@ -114,7 +113,7 @@ namespace stopwatch
         }
 
         public void checkMinutes()
-        {            
+        {
             if (CountdownTimer.minutes < 1 && CountdownTimer.hours == 0 && CountdownTimer.minusMinutes)
             {
                 buttonAdd1.Enabled = false;
@@ -131,7 +130,7 @@ namespace stopwatch
         public void buttonChangeTime(sbyte i)
         {
             plusMinusBtn.Enabled = true;
-            if (!CountdownTimer.minusMinutes)            
+            if (!CountdownTimer.minusMinutes)
                 if (CountdownTimer.CTstarted) addTime(i);
                 else
                 {
@@ -140,17 +139,17 @@ namespace stopwatch
                     ctMinutesLbl.Text =  CountdownTimer.updateInput("minutes");
                     ctHoursLbl.Text = CountdownTimer.updateInput();
                     startBtn.Enabled = clearBtn.Enabled = btn0.Enabled = true;
-                }            
+                }
             else
             {
                 CountdownTimer.buttonChangeTime(i);
                 if (CountdownTimer.CTstarted)
-                {                    
+                {
                     progressBar1.Maximum = CountdownTimer.time;
                     progressBar1.Value = 0;
                 }
                 else
-                {                    
+                {
                     ctSecondsLbl.Text = CountdownTimer.updateInput("seconds");
                     ctMinutesLbl.Text = CountdownTimer.updateInput("minutes");
                     ctHoursLbl.Text = CountdownTimer.updateInput();
@@ -177,7 +176,7 @@ namespace stopwatch
                 {
                     shutdownBox.ForeColor = System.Drawing.Color.Red;
                     shutdownBox.Text = CTShutdown.callShutdown();
-                    if (CTShutdown.interval == 0) Process.Start("shutdown", "/s /t 0");                        
+                    if (CTShutdown.interval == 0) Process.Start("shutdown", "/s /t 0");
                 }
                 if (sleepBox.Checked)
                 {
@@ -223,11 +222,11 @@ namespace stopwatch
                 }
                 else
                 {
-                    CountdownTimer.CTstarted = false;                    
+                    CountdownTimer.CTstarted = false;
                     Array.Clear(CountdownTimer.timeArr, 0, CountdownTimer.timeArr.Length);
                 }
                 progressBar1.Value = CountdownTimer.time = 0;
-                CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, progressBar1.Maximum);                
+                CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, progressBar1.Maximum);
                 startBtn.Text = "Start";
                 ctHoursLbl.Text = ctSecondsLbl.Text = ctMinutesLbl.Text = "00";                
                 btn1.Enabled = btn2.Enabled = btn3.Enabled = btn4.Enabled = btn5.Enabled = btn6.Enabled = btn7.Enabled = btn8.Enabled = btn9.Enabled = ctHLabel.Visible = ctHoursLbl.Visible = true;
@@ -237,7 +236,7 @@ namespace stopwatch
 
         private void btn1_Click_1(object sender, EventArgs e)
         {
-            shift(1);            
+            shift(1);
         }
 
         private void btn0_Click(object sender, EventArgs e)
@@ -282,13 +281,13 @@ namespace stopwatch
 
         private void btn9_Click_1(object sender, EventArgs e)
         {
-            shift(9);            
+            shift(9);
         }
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }        
+        }
 
         private void buttonAdd1_Click(object sender, EventArgs e)
         {
@@ -311,7 +310,7 @@ namespace stopwatch
         }
 
         private void plusMinusBtn_Click(object sender, EventArgs e)
-        {            
+        {
             if (!CountdownTimer.minusMinutes)
             {
                 buttonAdd1.Text = "-1'";
@@ -329,45 +328,25 @@ namespace stopwatch
                 buttonAdd30.Text = "+30'";
                 buttonAdd1.Enabled = buttonAdd5.Enabled = buttonAdd10.Enabled = buttonAdd30.Enabled = true;
                 CountdownTimer.minusMinutes = false;
-            }            
+            }
         }
 
         private void tabControl1_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
-                case Keys.NumPad1:                    
-                case Keys.D1:                    
-                    btn1.PerformClick(); break;
-                case Keys.NumPad2:
-                case Keys.D2:                    
-                    btn2.PerformClick(); break;
-                case Keys.NumPad3:
-                case Keys.D3:
-                    btn3.PerformClick(); break;
-                case Keys.NumPad4:
-                case Keys.D4:                    
-                    btn4.PerformClick(); break;
-                case Keys.NumPad5:
-                case Keys.D5:                    
-                    btn5.PerformClick(); break;
-                case Keys.NumPad6:
-                case Keys.D6:                    
-                    btn6.PerformClick(); break;
-                case Keys.NumPad7:
-                case Keys.D7:                    
-                    btn7.PerformClick(); break;
-                case Keys.NumPad8:
-                case Keys.D8:
-                    btn8.PerformClick(); break;
-                case Keys.NumPad9:
-                case Keys.D9:
-                    btn9.PerformClick(); break;
-                case Keys.NumPad0:
-                case Keys.D0:
-                    btn0.PerformClick(); break;
-                case Keys.Back:
-                    clearBtn.PerformClick(); break;
+                case Keys.NumPad1:
+                case Keys.D1: btn1.PerformClick(); break;
+                case Keys.NumPad2: case Keys.D2: btn2.PerformClick(); break;
+                case Keys.NumPad3: case Keys.D3: btn3.PerformClick(); break;
+                case Keys.NumPad4: case Keys.D4: btn4.PerformClick(); break;
+                case Keys.NumPad5: case Keys.D5: btn5.PerformClick(); break;
+                case Keys.NumPad6: case Keys.D6: btn6.PerformClick(); break;
+                case Keys.NumPad7: case Keys.D7: btn7.PerformClick(); break;
+                case Keys.NumPad8: case Keys.D8: btn8.PerformClick(); break;
+                case Keys.NumPad9: case Keys.D9: btn9.PerformClick(); break;
+                case Keys.NumPad0: case Keys.D0: btn0.PerformClick(); break;
+                case Keys.Back: clearBtn.PerformClick(); break;
                 case Keys.Enter:
                     if (tabControl1.SelectedIndex == 0) startBtn.PerformClick();
                     else start2Btn.PerformClick();
@@ -398,7 +377,17 @@ namespace stopwatch
         private void beepBox_CheckedChanged(object sender, EventArgs e)
         {
             CountdownTimer.player.Stop();
-        }        
+        }
+
+        private void shutdownBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (shutdownBox.Checked && sleepBox.Checked) sleepBox.Checked = false;
+        }
+
+        private void sleepBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (shutdownBox.Checked && sleepBox.Checked) shutdownBox.Checked = false;
+        }
 
         #endregion
         #region Stopwatch
@@ -412,7 +401,7 @@ namespace stopwatch
                 hours2Lbl.Text = Stopwatch.updateDisplay("hours");
                 await Task.Delay(33);
             } while (Stopwatch.stopwatchRunning);
-        }        
+        }
 
         public async void startBeepInterval()
         {
@@ -460,7 +449,7 @@ namespace stopwatch
                     Stopwatch.beepInterval *= 60;
                     Stopwatch.startIntervalRunning = true;
                     startBeepInterval();
-                }                
+                }
             }
         }
 
@@ -476,12 +465,12 @@ namespace stopwatch
         }
 
         private void close2Btn_Click(object sender, EventArgs e)
-        {            
+        {
             Application.Exit();
         }
 
         private void pauseBtn2_Click(object sender, EventArgs e)
-        {            
+        {
             Stopwatch.stopwatchRunning = Stopwatch.stopwatchRunning ? false : true;
             if (!Stopwatch.stopwatchRunning) startMs();
         }
@@ -490,16 +479,6 @@ namespace stopwatch
         {
             Stopwatch.saveResults();
         }
-
-        private void stpBeep_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Stopwatch.stopwatchRunning && stpBeep.Checked)
-            {
-                
-            }
-        }
-
         #endregion 
-        
         }
 }

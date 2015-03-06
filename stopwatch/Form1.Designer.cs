@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.sleepBox = new System.Windows.Forms.CheckBox();
             this.shutdownBox = new System.Windows.Forms.CheckBox();
             this.clearBtn = new System.Windows.Forms.Button();
             this.pauseBtn1 = new System.Windows.Forms.Button();
@@ -76,7 +77,6 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
-            this.sleepBox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -132,6 +132,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Countdown timer";
             // 
+            // sleepBox
+            // 
+            this.sleepBox.AutoSize = true;
+            this.sleepBox.Location = new System.Drawing.Point(153, 282);
+            this.sleepBox.Name = "sleepBox";
+            this.sleepBox.Size = new System.Drawing.Size(121, 17);
+            this.sleepBox.TabIndex = 49;
+            this.sleepBox.Text = "Sleep when finished";
+            this.sleepBox.UseVisualStyleBackColor = true;
+            this.sleepBox.CheckStateChanged += new System.EventHandler(this.sleepBox_CheckStateChanged);
+            // 
             // shutdownBox
             // 
             this.shutdownBox.AutoSize = true;
@@ -141,6 +152,7 @@
             this.shutdownBox.TabIndex = 48;
             this.shutdownBox.Text = "Shutdown when finished";
             this.shutdownBox.UseVisualStyleBackColor = true;
+            this.shutdownBox.CheckStateChanged += new System.EventHandler(this.shutdownBox_CheckStateChanged);
             // 
             // clearBtn
             // 
@@ -460,7 +472,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(300, 341);
+            this.tabPage2.Size = new System.Drawing.Size(300, 371);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stopwatch";
             // 
@@ -482,7 +494,6 @@
             this.stpBeep.TabIndex = 46;
             this.stpBeep.Text = "Beep every         minutes";
             this.stpBeep.UseVisualStyleBackColor = true;
-            this.stpBeep.CheckedChanged += new System.EventHandler(this.stpBeep_CheckedChanged);
             // 
             // saveBtn
             // 
@@ -629,16 +640,6 @@
             this.hours2Lbl.Size = new System.Drawing.Size(51, 36);
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
-            // 
-            // sleepBox
-            // 
-            this.sleepBox.AutoSize = true;
-            this.sleepBox.Location = new System.Drawing.Point(153, 282);
-            this.sleepBox.Name = "sleepBox";
-            this.sleepBox.Size = new System.Drawing.Size(121, 17);
-            this.sleepBox.TabIndex = 49;
-            this.sleepBox.Text = "Sleep when finished";
-            this.sleepBox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
