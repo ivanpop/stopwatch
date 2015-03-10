@@ -198,6 +198,7 @@ namespace stopwatch
                 buttonAdd5.Text = "+5'";
                 buttonAdd10.Text = "+10'";
                 buttonAdd30.Text = "+30'";
+                CountdownTimer.time = 0;
                 CountdownTimer.seconds = (sbyte)(System.Convert.ToInt32(ctSecondsLbl.Text));
                 CountdownTimer.minutes = (sbyte)(System.Convert.ToInt32(ctMinutesLbl.Text));
                 CountdownTimer.hours = (sbyte)(System.Convert.ToInt32(ctHoursLbl.Text));
