@@ -77,6 +77,7 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
+            this.progressLbl = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -89,13 +90,14 @@
             this.tabControl1.Location = new System.Drawing.Point(-4, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(308, 397);
+            this.tabControl1.Size = new System.Drawing.Size(308, 384);
             this.tabControl1.TabIndex = 20;
             this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage1.Controls.Add(this.progressLbl);
             this.tabPage1.Controls.Add(this.sleepBox);
             this.tabPage1.Controls.Add(this.shutdownBox);
             this.tabPage1.Controls.Add(this.clearBtn);
@@ -128,7 +130,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(300, 371);
+            this.tabPage1.Size = new System.Drawing.Size(300, 358);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Countdown timer";
             // 
@@ -158,7 +160,7 @@
             // 
             this.clearBtn.Enabled = false;
             this.clearBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearBtn.Location = new System.Drawing.Point(61, 259);
+            this.clearBtn.Location = new System.Drawing.Point(55, 259);
             this.clearBtn.Name = "clearBtn";
             this.clearBtn.Size = new System.Drawing.Size(86, 40);
             this.clearBtn.TabIndex = 47;
@@ -182,7 +184,7 @@
             // 
             this.plusMinusBtn.Enabled = false;
             this.plusMinusBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.plusMinusBtn.Location = new System.Drawing.Point(176, 213);
+            this.plusMinusBtn.Location = new System.Drawing.Point(183, 213);
             this.plusMinusBtn.Name = "plusMinusBtn";
             this.plusMinusBtn.Size = new System.Drawing.Size(109, 40);
             this.plusMinusBtn.TabIndex = 45;
@@ -193,7 +195,7 @@
             // buttonAdd30
             // 
             this.buttonAdd30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd30.Location = new System.Drawing.Point(236, 167);
+            this.buttonAdd30.Location = new System.Drawing.Point(243, 167);
             this.buttonAdd30.Name = "buttonAdd30";
             this.buttonAdd30.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd30.TabIndex = 44;
@@ -204,7 +206,7 @@
             // buttonAdd10
             // 
             this.buttonAdd10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd10.Location = new System.Drawing.Point(176, 167);
+            this.buttonAdd10.Location = new System.Drawing.Point(183, 167);
             this.buttonAdd10.Name = "buttonAdd10";
             this.buttonAdd10.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd10.TabIndex = 43;
@@ -215,7 +217,7 @@
             // buttonAdd5
             // 
             this.buttonAdd5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd5.Location = new System.Drawing.Point(236, 122);
+            this.buttonAdd5.Location = new System.Drawing.Point(243, 122);
             this.buttonAdd5.Name = "buttonAdd5";
             this.buttonAdd5.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd5.TabIndex = 42;
@@ -228,7 +230,7 @@
             this.beepBox.AutoSize = true;
             this.beepBox.Checked = true;
             this.beepBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.beepBox.Location = new System.Drawing.Point(15, 305);
+            this.beepBox.Location = new System.Drawing.Point(9, 305);
             this.beepBox.Name = "beepBox";
             this.beepBox.Size = new System.Drawing.Size(119, 17);
             this.beepBox.TabIndex = 41;
@@ -239,7 +241,7 @@
             // buttonAdd1
             // 
             this.buttonAdd1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd1.Location = new System.Drawing.Point(176, 122);
+            this.buttonAdd1.Location = new System.Drawing.Point(183, 122);
             this.buttonAdd1.Name = "buttonAdd1";
             this.buttonAdd1.Size = new System.Drawing.Size(49, 40);
             this.buttonAdd1.TabIndex = 40;
@@ -249,9 +251,9 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(15, 339);
+            this.progressBar1.Location = new System.Drawing.Point(9, 329);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(270, 23);
+            this.progressBar1.Size = new System.Drawing.Size(236, 23);
             this.progressBar1.Step = 1;
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 39;
@@ -259,7 +261,7 @@
             // closeBtn
             // 
             this.closeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.closeBtn.Location = new System.Drawing.Point(199, 59);
+            this.closeBtn.Location = new System.Drawing.Point(206, 59);
             this.closeBtn.Name = "closeBtn";
             this.closeBtn.Size = new System.Drawing.Size(86, 40);
             this.closeBtn.TabIndex = 37;
@@ -270,7 +272,7 @@
             // btn2
             // 
             this.btn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn2.Location = new System.Drawing.Point(61, 121);
+            this.btn2.Location = new System.Drawing.Point(55, 121);
             this.btn2.Name = "btn2";
             this.btn2.Size = new System.Drawing.Size(40, 40);
             this.btn2.TabIndex = 36;
@@ -281,7 +283,7 @@
             // btn3
             // 
             this.btn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn3.Location = new System.Drawing.Point(107, 121);
+            this.btn3.Location = new System.Drawing.Point(101, 121);
             this.btn3.Name = "btn3";
             this.btn3.Size = new System.Drawing.Size(40, 40);
             this.btn3.TabIndex = 35;
@@ -292,7 +294,7 @@
             // btn8
             // 
             this.btn8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn8.Location = new System.Drawing.Point(61, 213);
+            this.btn8.Location = new System.Drawing.Point(55, 213);
             this.btn8.Name = "btn8";
             this.btn8.Size = new System.Drawing.Size(40, 40);
             this.btn8.TabIndex = 34;
@@ -303,7 +305,7 @@
             // btn9
             // 
             this.btn9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn9.Location = new System.Drawing.Point(107, 213);
+            this.btn9.Location = new System.Drawing.Point(101, 213);
             this.btn9.Name = "btn9";
             this.btn9.Size = new System.Drawing.Size(40, 40);
             this.btn9.TabIndex = 33;
@@ -315,7 +317,7 @@
             // 
             this.btn0.Enabled = false;
             this.btn0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn0.Location = new System.Drawing.Point(15, 259);
+            this.btn0.Location = new System.Drawing.Point(9, 259);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(40, 40);
             this.btn0.TabIndex = 32;
@@ -326,7 +328,7 @@
             // btn7
             // 
             this.btn7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn7.Location = new System.Drawing.Point(15, 213);
+            this.btn7.Location = new System.Drawing.Point(9, 213);
             this.btn7.Name = "btn7";
             this.btn7.Size = new System.Drawing.Size(40, 40);
             this.btn7.TabIndex = 31;
@@ -337,7 +339,7 @@
             // btn6
             // 
             this.btn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn6.Location = new System.Drawing.Point(107, 168);
+            this.btn6.Location = new System.Drawing.Point(101, 168);
             this.btn6.Name = "btn6";
             this.btn6.Size = new System.Drawing.Size(40, 40);
             this.btn6.TabIndex = 30;
@@ -348,7 +350,7 @@
             // btn4
             // 
             this.btn4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn4.Location = new System.Drawing.Point(15, 168);
+            this.btn4.Location = new System.Drawing.Point(9, 168);
             this.btn4.Name = "btn4";
             this.btn4.Size = new System.Drawing.Size(40, 40);
             this.btn4.TabIndex = 29;
@@ -359,7 +361,7 @@
             // btn5
             // 
             this.btn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn5.Location = new System.Drawing.Point(61, 168);
+            this.btn5.Location = new System.Drawing.Point(55, 168);
             this.btn5.Name = "btn5";
             this.btn5.Size = new System.Drawing.Size(40, 40);
             this.btn5.TabIndex = 28;
@@ -370,7 +372,7 @@
             // btn1
             // 
             this.btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn1.Location = new System.Drawing.Point(15, 121);
+            this.btn1.Location = new System.Drawing.Point(9, 121);
             this.btn1.Name = "btn1";
             this.btn1.Size = new System.Drawing.Size(40, 40);
             this.btn1.TabIndex = 27;
@@ -442,7 +444,7 @@
             // 
             this.startBtn.Enabled = false;
             this.startBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startBtn.Location = new System.Drawing.Point(15, 59);
+            this.startBtn.Location = new System.Drawing.Point(9, 59);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(86, 40);
             this.startBtn.TabIndex = 20;
@@ -472,7 +474,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(300, 371);
+            this.tabPage2.Size = new System.Drawing.Size(300, 358);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Stopwatch";
             // 
@@ -512,7 +514,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(13, 169);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(273, 160);
+            this.listBox1.Size = new System.Drawing.Size(273, 173);
             this.listBox1.TabIndex = 44;
             // 
             // swMSLabel
@@ -641,11 +643,22 @@
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
             // 
+            // progressLbl
+            // 
+            this.progressLbl.AutoSize = true;
+            this.progressLbl.BackColor = System.Drawing.Color.Transparent;
+            this.progressLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.progressLbl.Location = new System.Drawing.Point(251, 333);
+            this.progressLbl.Name = "progressLbl";
+            this.progressLbl.Size = new System.Drawing.Size(41, 13);
+            this.progressLbl.TabIndex = 50;
+            this.progressLbl.Text = "100 %";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 396);
+            this.ClientSize = new System.Drawing.Size(302, 381);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -709,6 +722,7 @@
         private System.Windows.Forms.TextBox stpBeepInterval;
         private System.Windows.Forms.CheckBox shutdownBox;
         private System.Windows.Forms.CheckBox sleepBox;
+        private System.Windows.Forms.Label progressLbl;
 
     }
 }

@@ -106,6 +106,7 @@ namespace stopwatch
                 progressBar1.PerformStep();
                 timeToSeconds();
                 CountdownTimer.taskbar.SetProgressValue(progressBar1.Value, progressBar1.Maximum);
+                progressPercent();                
                 CountdownTimer.seconds--;
                 CountdownTimer.time--;
                 await Task.Delay(1000);
@@ -388,6 +389,12 @@ namespace stopwatch
         private void sleepBox_CheckStateChanged(object sender, EventArgs e)
         {
             if (shutdownBox.Checked && sleepBox.Checked) shutdownBox.Checked = false;
+        }
+
+        public void progressPercent()
+        {
+            int s = Convert.ToInt32((double)(progressBar1.Value) / (double)(progressBar1.Maximum) * 100);
+            progressLbl.Text = s.ToString() + "%";
         }
 
         #endregion
