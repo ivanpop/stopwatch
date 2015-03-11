@@ -144,7 +144,13 @@ class CountdownTimer
             if (CTstarted)
             {
                 time -= (short)(i * 60);
-                minutes -= i;
+                if (minutes >= i) minutes -= i;
+                else
+                {
+                    hours--;
+                    minutes += 60;
+                    minutes -= i;
+                }
             }
             else
             {
