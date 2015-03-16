@@ -465,8 +465,7 @@ namespace stopwatch
         {
             if (!listBox1.Visible) listBox1.Visible = true;
             Stopwatch.lapCount++;
-            if (Stopwatch.lapCount < 10) listBox1.Items.Add(Stopwatch.getLapText());
-            else listBox1.Items.Add(Stopwatch.getLapText(1));
+            listBox1.Items.Add(Stopwatch.getLapText(Stopwatch.lapCount));
             Stopwatch.results += listBox1.GetItemText(listBox1.SelectedItem) + System.Environment.NewLine;
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
             Stopwatch.lapSeconds = Stopwatch.lapMinutes = Stopwatch.lapHours = 0;

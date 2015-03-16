@@ -65,7 +65,7 @@ class Stopwatch
 
     public static string getLapText(byte lapCount = 0)
     {
-        if (lapCount == 0) return "# 0" + lapCount + "  " + hours + ":" + minutes + ":" + seconds + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds;
+        if (lapCount < 10) return "# 0" + lapCount + "  " + hours + ":" + minutes + ":" + seconds + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds;
         else return "# " + lapCount + "  " + hours + ":" + minutes + ":" + seconds + "." + DateTime.Now.Millisecond + "   " + lapHours + ":" + lapMinutes + ":" + lapSeconds;
     }
 

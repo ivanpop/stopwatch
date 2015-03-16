@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.progressLbl = new System.Windows.Forms.Label();
             this.sleepBox = new System.Windows.Forms.CheckBox();
             this.shutdownBox = new System.Windows.Forms.CheckBox();
             this.clearBtn = new System.Windows.Forms.Button();
@@ -77,7 +78,7 @@
             this.seconds2Lbl = new System.Windows.Forms.Label();
             this.minutes2Lbl = new System.Windows.Forms.Label();
             this.hours2Lbl = new System.Windows.Forms.Label();
-            this.progressLbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -133,6 +134,17 @@
             this.tabPage1.Size = new System.Drawing.Size(300, 358);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Countdown timer";
+            // 
+            // progressLbl
+            // 
+            this.progressLbl.AutoSize = true;
+            this.progressLbl.BackColor = System.Drawing.Color.Transparent;
+            this.progressLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.progressLbl.Location = new System.Drawing.Point(251, 333);
+            this.progressLbl.Name = "progressLbl";
+            this.progressLbl.Size = new System.Drawing.Size(41, 13);
+            this.progressLbl.TabIndex = 50;
+            this.progressLbl.Text = "100 %";
             // 
             // sleepBox
             // 
@@ -455,6 +467,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.stpBeepInterval);
             this.tabPage2.Controls.Add(this.stpBeep);
             this.tabPage2.Controls.Add(this.saveBtn);
@@ -643,16 +656,14 @@
             this.hours2Lbl.TabIndex = 27;
             this.hours2Lbl.Text = "00";
             // 
-            // progressLbl
+            // label1
             // 
-            this.progressLbl.AutoSize = true;
-            this.progressLbl.BackColor = System.Drawing.Color.Transparent;
-            this.progressLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.progressLbl.Location = new System.Drawing.Point(251, 333);
-            this.progressLbl.Name = "progressLbl";
-            this.progressLbl.Size = new System.Drawing.Size(41, 13);
-            this.progressLbl.TabIndex = 50;
-            this.progressLbl.Text = "100 %";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(156, 150);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "label1";
             // 
             // Form1
             // 
@@ -723,6 +734,7 @@
         private System.Windows.Forms.CheckBox shutdownBox;
         private System.Windows.Forms.CheckBox sleepBox;
         private System.Windows.Forms.Label progressLbl;
+        private System.Windows.Forms.Label label1;
 
     }
 }
